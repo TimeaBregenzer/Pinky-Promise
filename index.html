@@ -212,10 +212,11 @@ body::before {
 
 .polaroid img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-
+  height: auto;
+  max-height: 260px;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f7f1ed;
 }
 
 .polaroid::after {

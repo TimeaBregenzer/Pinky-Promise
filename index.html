@@ -1,269 +1,573 @@
-HTML
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1..0">
-  <title>Pinky Promise💕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pinky Promise 💗</title>
 
   <style>
-    *{
-      box-sizing:border-box;
+    * {
+      box-sizing: border-box;
     }
+
     body {
-    margin: 0:
-    front-family:-apple-system, BlinkMacStystemFont, "Segoe UI" , sans-serif;
-    background: #fff7fa;
-    color; #3d3035;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #fff7fa, #fdf1f6);
+      color: #3f3439;
+      min-height: 100vh;
     }
 
-    .hero {
-      text-align: center;
-      padding: 70px 20px 45px;
-    }
-    
-    .heart {
-      font-size: 42px;
-      margin-bottom:10px;
-    }
-
-    h1{
-      font-size:42px;
-      margin:0 0 12px;
-      font-weight:700;
-    }
-
-    subtitle{
-      max-width:500px;
-      margin: auto;
-      font-size: 18px;
-      line-height: 1.6;
-      color:#7666d;
-    }
-
-    container{
-      max-width: 850px;
+    .page {
+      max-width: 900px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 55px 20px 70px;
     }
 
-    .videos {
+    header {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .logo {
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 7vw, 52px);
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .intro {
+      margin: 12px auto 0;
+      max-width: 520px;
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: 0.72;
+    }
+
+    .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(180, 130, 150, 0.16);
       border-radius: 22px;
       padding: 25px;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 5px 20px rgba(100, 60, 80, 0.08);
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1px solid #f4e5eb;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 30px rgba(80, 45, 60, 0.06);
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 9px 25px rgba(100, 60, 80, 0.13);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(80, 45, 60, 0.10);
     }
 
-    .emoji {
-      font-size: 32px;
-      margin-bottom: 12px;
+    .icon {
+      font-size: 27px;
+      margin-bottom: 14px;
     }
 
     .card h2 {
       margin: 0 0 8px;
-      font-size: 21px;
+      font-size: 19px;
     }
 
     .card p {
       margin: 0;
-      color: #88777e;
+      font-size: 14px;
       line-height: 1.5;
+      opacity: 0.65;
+    }
+
+    .count {
+      margin-top: 17px;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.55;
+    }
+
+    /* Fenster für eine Kategorie */
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(35, 25, 30, 0.48);
+      backdrop-filter: blur(7px);
+      z-index: 100;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .overlay.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #fffafb;
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: 0 25px 70px rgba(30, 20, 25, 0.25);
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: 18px;
+      top: 15px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #f5e8ed;
+      font-size: 21px;
+      cursor: pointer;
+    }
+
+    .modal-title {
+      padding-right: 45px;
+      margin-bottom: 24px;
+    }
+
+    .modal-title .icon {
+      margin-bottom: 7px;
+    }
+
+    .modal-title h2 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .video-choice {
+      width: 100%;
+      text-align: left;
+      border: 1px solid #eadce2;
+      background: white;
+      border-radius: 15px;
+      padding: 15px 17px;
+      cursor: pointer;
       font-size: 15px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .video-choice:hover {
+      background: #fff4f7;
+      transform: translateX(2px);
+    }
+
+    .video-number {
+      font-weight: 700;
+      margin-right: 8px;
+      opacity: 0.55;
+    }
+
+    /* Videoplayer */
+
+    .player {
+      display: none;
+      margin-top: 22px;
+    }
+
+    .player.active {
+      display: block;
+    }
+
+    .back-button {
+      border: none;
+      background: transparent;
+      padding: 5px 0 14px;
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 0.65;
+    }
+
+    .player video {
+      width: 100%;
+      display: block;
+      border-radius: 17px;
+      background: black;
+    }
+
+    .player-title {
+      margin: 14px 0 0;
+      font-size: 16px;
+      font-weight: 600;
     }
 
     footer {
       text-align: center;
-      padding: 55px 20px;
-      color: #a28f97;
-      font-size: 14px;
+      margin-top: 55px;
+      font-size: 13px;
+      opacity: 0.45;
     }
 
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 34px;
+    @media (max-width: 650px) {
+      .page {
+        padding: 38px 16px 55px;
       }
 
-      .hero {
-        padding-top: 50px;
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .modal {
+        padding: 23px;
+        border-radius: 22px;
       }
     }
-    .video-button {
-  margin-top: 18px;
-  padding: 12px 18px;
-  border-radius: 14px;
-  background: #f9e5ec;
-  text-align: center;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.video-container {
-  display: none;
-  margin-top: 18px;
-}
-
-.card.opened .video-button {
-  display: none;
-}
-
-.card.opened .video-container {
-  display: block;
-}
-
-.video-container video {
-  width: 100%;
-  border-radius: 14px;
-  display: block;
-}
   </style>
 </head>
 
 <body>
 
-  <section class="hero">
-    <div class="heart">💗</div>
+<div class="page">
+
+  <header>
+    <div class="logo">💗</div>
     <h1>Pinky Promise</h1>
-    <p class="subtitle">
-      Für die Tage, an denen ich nicht bei dir sein kann.
-      <br>
-      Öffne einfach das, was du gerade brauchst. :)
+    <p class="intro">
+      Ein paar kleine Nachrichten für dich.
+      Für heute, morgen und die Tage dazwischen.
     </p>
-  </section>
+  </header>
 
-  <main class="container">
 
-    <div class="videos">
+  <main class="cards">
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">🎂</div>
-    <h2>Dein Geburtstag</h2>
-    <p>Erst an deinem Geburtstag öffnen. ❤️</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src=https://stream.vidhosting.in/videos/ed6b58ee.mp4 type="video/mp4">
-      </video>
+    <div class="card" onclick="openCategory('birthday')">
+      <div class="icon">🎂</div>
+      <h2>Dein Geburtstag</h2>
+      <p>Erst an deinem Geburtstag öffnen. ❤️</p>
+      <div class="count">1 Video</div>
     </div>
-  </div>
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">🎄</div>
-    <h2>Weihnachten</h2>
-    <p>Für deinen Weihnachtsmorgen. 🎄</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="DEIN-WEIHNACHTS-LINK" type="video/mp4">
-      </video>
-    </div>
-  </div>
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">💭</div>
-    <h2>Wenn du mich vermisst</h2>
-    <p>Für genau solche Tage. 🫶</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="DEIN-VERMISSE-LINK" type="video/mp4">
-      </video>
+    <div class="card" onclick="openCategory('christmas')">
+      <div class="icon">🎄</div>
+      <h2>Weihnachten</h2>
+      <p>Für deinen Weihnachtsmorgen.</p>
+      <div class="count">1 Video</div>
     </div>
-  </div>
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">☀️</div>
-    <h2>Einfach so</h2>
-    <p>Kein besonderer Grund. Ich wollte dir einfach etwas sagen.</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="DEIN-EINFACH-SO-LINK" type="video/mp4">
-      </video>
-    </div>
-  </div>
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">😂</div>
-    <h2>Wenn du lachen willst</h2>
-    <p>Für ein kleines Grinsen zwischendurch. 😂</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="DEIN-LACHEN-LINK" type="video/mp4">
-      </video>
+    <div class="card" onclick="openCategory('missyou')">
+      <div class="icon">💭</div>
+      <h2>Wenn du mich vermisst</h2>
+      <p>Für die Tage, an denen du mich besonders vermisst.</p>
+      <div class="count">3 Videos</div>
     </div>
-  </div>
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">🌙</div>
-    <h2>Für die Nacht</h2>
-    <p>Wenn du gerade nicht schlafen kannst. 🌙</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="DEIN-NACHT-LINK" type="video/mp4">
-      </video>
-    </div>
-  </div>
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">🫶</div>
-    <h2>Wenn du einen schlechten Tag hast</h2>
-    <p>Ein kleines bisschen von mir für dich. ❤️</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="DEIN-SCHLECHTER-TAG-LINK" type="video/mp4">
-      </video>
+    <div class="card" onclick="openCategory('random')">
+      <div class="icon">☀️</div>
+      <h2>Einfach so</h2>
+      <p>Kein besonderer Grund. Einfach eine Nachricht.</p>
+      <div class="count">3 Videos</div>
     </div>
-  </div>
 
-  <div class="card" onclick="openVideo(this)">
-    <div class="emoji">🏠</div>
-    <h2>Bis wir uns wiedersehen</h2>
-    <p>Für die Tage dazwischen. 🥹</p>
-    <div class="video-button">▶️ Video öffnen</div>
-    <div class="video-container">
-      <video controls playsinline>
-        <source src="DEIN-WIEDERSEHEN-LINK" type="video/mp4">
-      </video>
+
+    <div class="card" onclick="openCategory('laugh')">
+      <div class="icon">😂</div>
+      <h2>Wenn du lachen willst</h2>
+      <p>Für ein kleines Grinsen zwischendurch.</p>
+      <div class="count">2 Videos</div>
     </div>
+
+
+    <div class="card" onclick="openCategory('night')">
+      <div class="icon">🌙</div>
+      <h2>Für die Nacht</h2>
+      <p>Wenn der Tag langsam ruhig wird.</p>
+      <div class="count">2 Videos</div>
+    </div>
+
+
+    <div class="card" onclick="openCategory('bad-day')">
+      <div class="icon">🫶</div>
+      <h2>Wenn du einen schlechten Tag hast</h2>
+      <p>Ein kleines bisschen von mir für dich.</p>
+      <div class="count">2 Videos</div>
+    </div>
+
+
+    <div class="card" onclick="openCategory('again')">
+      <div class="icon">🏠</div>
+      <h2>Bis wir uns wiedersehen</h2>
+      <p>Für die Tage dazwischen.</p>
+      <div class="count">2 Videos</div>
+    </div>
+
+  </main>
+
+
+  <footer>
+    Für dich. 💗
+  </footer>
+
+</div>
+
+
+<!-- Kategorie-Fenster -->
+
+<div class="overlay" id="overlay">
+
+  <div class="modal">
+
+    <button class="close" onclick="closeCategory()">×</button>
+
+    <div class="modal-title">
+      <div class="icon" id="modalIcon"></div>
+      <h2 id="modalTitle"></h2>
+    </div>
+
+    <div class="video-list" id="videoList"></div>
+
+    <div class="player" id="player">
+
+      <button class="back-button" onclick="closePlayer()">
+        ← Zurück zur Auswahl
+      </button>
+
+      <video id="videoPlayer" controls playsinline></video>
+
+      <div class="player-title" id="playerTitle"></div>
+
+    </div>
+
   </div>
 
 </div>
 
-  </main>
 
-  <footer>
-    Made with love 💗
-  </footer>
-  
 <script>
-function openVideo(card) {
-  card.classList.add("opened");
+
+const categories = {
+
+  birthday: {
+    icon: "🎂",
+    title: "Dein Geburtstag",
+    videos: [
+      {
+        title: "Deine Geburtstagsnachricht",
+        url: "DEIN-GEBURTSTAG-LINK"
+      }
+    ]
+  },
+
+  christmas: {
+    icon: "🎄",
+    title: "Weihnachten",
+    videos: [
+      {
+        title: "Für deinen Weihnachtsmorgen",
+        url: "DEIN-WEIHNACHTS-LINK"
+      }
+    ]
+  },
+
+  missyou: {
+    icon: "💭",
+    title: "Wenn du mich vermisst",
+    videos: [
+      {
+        title: "Für heute",
+        url: "DEIN-VERMISSE-LINK-1"
+      },
+      {
+        title: "Wenn du mich besonders vermisst",
+        url: "DEIN-VERMISSE-LINK-2"
+      },
+      {
+        title: "Einfach weil ich dich vermisse",
+        url: "DEIN-VERMISSE-LINK-3"
+      }
+    ]
+  },
+
+  random: {
+    icon: "☀️",
+    title: "Einfach so",
+    videos: [
+      {
+        title: "Eine kleine Nachricht",
+        url: "DEIN-EINFACH-SO-LINK-1"
+      },
+      {
+        title: "Einfach so",
+        url: "DEIN-EINFACH-SO-LINK-2"
+      },
+      {
+        title: "Für irgendwann",
+        url: "DEIN-EINFACH-SO-LINK-3"
+      }
+    ]
+  },
+
+  laugh: {
+    icon: "😂",
+    title: "Wenn du lachen willst",
+    videos: [
+      {
+        title: "Nummer 1",
+        url: "DEIN-LACHEN-LINK-1"
+      },
+      {
+        title: "Nummer 2",
+        url: "DEIN-LACHEN-LINK-2"
+      }
+    ]
+  },
+
+  night: {
+    icon: "🌙",
+    title: "Für die Nacht",
+    videos: [
+      {
+        title: "Gute Nacht",
+        url: "DEIN-NACHT-LINK-1"
+      },
+      {
+        title: "Noch wach?",
+        url: "DEIN-NACHT-LINK-2"
+      }
+    ]
+  },
+
+  "bad-day": {
+    icon: "🫶",
+    title: "Wenn du einen schlechten Tag hast",
+    videos: [
+      {
+        title: "Für heute",
+        url: "DEIN-SCHLECHTER-TAG-LINK-1"
+      },
+      {
+        title: "Es wird wieder besser",
+        url: "DEIN-SCHLECHTER-TAG-LINK-2"
+      }
+    ]
+  },
+
+  again: {
+    icon: "🏠",
+    title: "Bis wir uns wiedersehen",
+    videos: [
+      {
+        title: "Für die Tage dazwischen",
+        url: "DEIN-WIEDERSEHEN-LINK-1"
+      },
+      {
+        title: "Bis bald",
+        url: "DEIN-WIEDERSEHEN-LINK-2"
+      }
+    ]
+  }
+
+};
+
+
+function openCategory(category) {
+
+  const data = categories[category];
+
+  document.getElementById("modalIcon").textContent = data.icon;
+  document.getElementById("modalTitle").textContent = data.title;
+
+  const list = document.getElementById("videoList");
+
+  list.innerHTML = "";
+
+  data.videos.forEach((video, index) => {
+
+    const button = document.createElement("button");
+
+    button.className = "video-choice";
+
+    button.innerHTML =
+      '<span class="video-number">' +
+      String(index + 1).padStart(2, "0") +
+      '</span>' +
+      video.title;
+
+    button.onclick = function() {
+      openPlayer(video);
+    };
+
+    list.appendChild(button);
+
+  });
+
+  document.getElementById("overlay").classList.add("active");
+
 }
+
+
+function closeCategory() {
+
+  closePlayer();
+
+  document.getElementById("overlay").classList.remove("active");
+
+}
+
+
+function openPlayer(video) {
+
+  const player = document.getElementById("player");
+  const videoElement = document.getElementById("videoPlayer");
+
+  document.getElementById("playerTitle").textContent = video.title;
+
+  videoElement.src = video.url;
+
+  player.classList.add("active");
+
+  document.getElementById("videoList").style.display = "none";
+
+}
+
+
+function closePlayer() {
+
+  const videoElement = document.getElementById("videoPlayer");
+
+  videoElement.pause();
+  videoElement.removeAttribute("src");
+  videoElement.load();
+
+  document.getElementById("player").classList.remove("active");
+
+  document.getElementById("videoList").style.display = "flex";
+
+}
+
+
 </script>
-  
+
 </body>
 </html>
-
-    
-    
-    
-  

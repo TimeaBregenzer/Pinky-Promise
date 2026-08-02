@@ -14,13 +14,13 @@
 }
 
 :root {
-  --paper: #f7eee8;
+  --paper: #f8f0eb;
   --paper-light: #fffaf7;
-  --rose: #c99798;
-  --rose-light: #ead0d0;
-  --ink: #302a29;
-  --muted: #786d69;
-  --line: rgba(48,42,41,.18);
+  --rose: #bd9293;
+  --rose-light: #ead1d0;
+  --ink: #302b2a;
+  --muted: #756b68;
+  --line: rgba(48,42,41,.16);
 }
 
 html {
@@ -30,11 +30,12 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 15% 10%, rgba(220,180,180,.22), transparent 25%),
-    radial-gradient(circle at 90% 30%, rgba(210,190,160,.18), transparent 28%),
-    linear-gradient(135deg, #eee1d8, #f9f0eb 45%, #eadbd3);
   font-family: 'Montserrat', sans-serif;
+
+  background:
+    radial-gradient(circle at 15% 10%, rgba(220,180,180,.20), transparent 25%),
+    radial-gradient(circle at 90% 30%, rgba(210,190,160,.16), transparent 28%),
+    linear-gradient(135deg, #eee2da, #faf1ec 45%, #eaded7);
 }
 
 body::before {
@@ -42,7 +43,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: .17;
+  opacity: .16;
   background-image:
     repeating-linear-gradient(
       0deg,
@@ -57,10 +58,13 @@ body::before {
 .page {
   width: min(1100px, calc(100% - 32px));
   margin: auto;
-  padding: 50px 0 70px;
+  padding: 45px 0 70px;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
   min-height: 560px;
@@ -68,13 +72,13 @@ body::before {
   grid-template-columns: 1.15fr .85fr;
   gap: 35px;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 65px;
 }
 
 .hero-paper {
   position: relative;
-  background: rgba(255,250,247,.91);
-  padding: 70px 55px 55px;
+  background: rgba(255,250,247,.93);
+  padding: 70px 55px 50px;
   box-shadow: 0 25px 60px rgba(65,45,40,.14);
   transform: rotate(-.6deg);
 }
@@ -82,8 +86,8 @@ body::before {
 .hero-paper::before {
   content: "";
   position: absolute;
-  inset: 9px;
-  border: 1px solid rgba(150,110,105,.16);
+  inset: 10px;
+  border: 1px solid rgba(150,110,105,.15);
   pointer-events: none;
 }
 
@@ -100,7 +104,6 @@ body::before {
   letter-spacing: 4px;
   line-height: 1.9;
   font-weight: 500;
-  max-width: 400px;
 }
 
 .small-heart {
@@ -109,37 +112,41 @@ body::before {
   margin-top: 22px;
 }
 
-.note {
-  position: absolute;
-  right: 25px;
-  bottom: -35px;
-  width: 180px;
-  padding: 18px;
-  background: #dfc2c0;
-  font-family: 'Caveat', cursive;
-  font-size: 23px;
-  transform: rotate(4deg);
-  box-shadow: 0 12px 25px rgba(60,40,35,.12);
-}
+
+/* =========================
+   SPOTIFY BUTTON
+========================= */
 
 .music-card {
   margin-top: 45px;
-  padding: 15px 20px;
+  padding: 15px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+
   display: flex;
   align-items: center;
   gap: 15px;
+
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.music-card:hover {
+  transform: translateX(4px);
 }
 
 .music-dot {
   width: 34px;
   height: 34px;
+
   border: 1px solid var(--ink);
   border-radius: 50%;
+
   display: grid;
   place-items: center;
-  font-size: 12px;
+
+  font-size: 11px;
+  flex-shrink: 0;
 }
 
 .music-text {
@@ -148,20 +155,22 @@ body::before {
 
 .music-title {
   font-size: 11px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   font-weight: 600;
 }
 
 .music-sub {
   font-family: 'Caveat', cursive;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .music-line {
-  width: 70px;
+  width: 65px;
   height: 18px;
+
   background:
-    linear-gradient(90deg,
+    linear-gradient(
+      90deg,
       transparent 0 8%,
       var(--rose) 8% 11%,
       transparent 11% 18%,
@@ -174,10 +183,14 @@ body::before {
       var(--rose) 55% 59%,
       transparent 59% 70%,
       var(--rose) 70% 73%,
-      transparent 73%);
+      transparent 73%
+    );
 }
 
-/* POLAROIDS */
+
+/* =========================
+   POLAROIDS
+========================= */
 
 .photo-area {
   position: relative;
@@ -186,31 +199,49 @@ body::before {
 
 .polaroid {
   position: absolute;
+
   width: 220px;
   padding: 10px 10px 42px;
+
   background: #fff;
+
   box-shadow: 0 16px 35px rgba(55,40,35,.18);
+}
+
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  display: block;
+
+  object-fit: cover;
 }
 
 .polaroid::after {
   content: attr(data-caption);
+
   position: absolute;
-  bottom: 12px;
+  bottom: 11px;
   left: 14px;
+
   font-family: 'Caveat', cursive;
   font-size: 21px;
 }
 
-.photo-placeholder {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background:
-    linear-gradient(135deg, #d8c1b7, #bca29a 50%, #e4d2ca);
-  display: grid;
-  place-items: center;
-  color: rgba(255,255,255,.8);
-  font-size: 12px;
-  letter-spacing: 2px;
+.tape {
+  position: absolute;
+
+  width: 65px;
+  height: 22px;
+
+  background: rgba(213,181,155,.62);
+
+  top: -10px;
+  left: 50%;
+
+  transform: translateX(-50%) rotate(-2deg);
+
+  z-index: 2;
 }
 
 .p1 {
@@ -231,21 +262,14 @@ body::before {
   transform: rotate(-3deg);
 }
 
-.tape {
-  position: absolute;
-  width: 65px;
-  height: 22px;
-  background: rgba(213,181,155,.62);
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-2deg);
-}
 
-/* INTRO */
+/* =========================
+   SECTION INTRO
+========================= */
 
 .section-intro {
   text-align: center;
-  margin: 35px 0 35px;
+  margin: 35px 0;
 }
 
 .section-number {
@@ -262,12 +286,15 @@ body::before {
 }
 
 .section-intro p {
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 2px;
   color: var(--muted);
 }
 
-/* CARDS */
+
+/* =========================
+   MEMORY CARDS
+========================= */
 
 .memory-grid {
   display: grid;
@@ -277,13 +304,22 @@ body::before {
 
 .memory-card {
   position: relative;
+
   min-height: 245px;
   padding: 25px;
-  background: rgba(255,249,245,.82);
+
+  background: rgba(255,249,245,.84);
+
   border: 1px solid rgba(90,65,58,.10);
+
   box-shadow: 0 12px 30px rgba(65,45,40,.09);
+
   cursor: pointer;
-  transition: transform .25s ease, box-shadow .25s ease;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
   overflow: hidden;
 }
 
@@ -307,48 +343,72 @@ body::before {
 }
 
 .memory-card h3 {
-  margin: 8px 0 8px;
-  font-size: 18px;
+  margin: 8px 0;
+
+  font-size: 17px;
   letter-spacing: 2px;
   font-weight: 500;
+
+  max-width: 230px;
 }
 
 .memory-card p {
   margin: 0;
-  max-width: 230px;
+
+  max-width: 220px;
+
   font-family: 'Caveat', cursive;
-  font-size: 22px;
+  font-size: 21px;
+
   color: var(--muted);
 }
 
 .memory-photo {
   position: absolute;
+
   width: 115px;
   height: 115px;
+
   right: 20px;
   bottom: 22px;
+
   padding: 7px;
+
   background: white;
+
   box-shadow: 0 8px 20px rgba(50,35,30,.14);
+
   transform: rotate(6deg);
 }
 
-.memory-photo div {
+.memory-photo img {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #d6beb4, #eee0d8);
+
+  display: block;
+
+  object-fit: cover;
 }
 
-/* MODAL */
+
+/* =========================
+   MODAL
+========================= */
 
 .overlay {
   display: none;
+
   position: fixed;
   inset: 0;
+
   z-index: 50;
+
   padding: 18px;
+
   background: rgba(38,29,27,.48);
+
   backdrop-filter: blur(8px);
+
   align-items: center;
   justify-content: center;
 }
@@ -360,29 +420,41 @@ body::before {
 .modal {
   width: min(700px, 100%);
   max-height: 90vh;
+
   overflow-y: auto;
+
   position: relative;
+
   padding: 35px;
+
   background: #fff9f5;
+
   box-shadow: 0 30px 80px rgba(20,15,13,.3);
 }
 
 .modal-close {
   position: absolute;
+
   top: 17px;
   right: 18px;
+
   width: 38px;
   height: 38px;
+
   border: 0;
   border-radius: 50%;
+
   background: #ead9d5;
+
   cursor: pointer;
+
   font-size: 21px;
 }
 
 .modal-number {
   color: var(--rose);
-  font-size: 12px;
+
+  font-size: 11px;
   letter-spacing: 3px;
 }
 
@@ -390,8 +462,14 @@ body::before {
   font-family: 'Caveat', cursive;
   font-size: 48px;
   font-weight: 500;
+
   margin: 4px 0 25px;
 }
+
+
+/* =========================
+   VIDEO LIST
+========================= */
 
 .video-list {
   display: flex;
@@ -403,13 +481,22 @@ body::before {
   display: flex;
   align-items: center;
   gap: 16px;
+
   width: 100%;
+
   padding: 14px;
+
   border: 1px solid rgba(70,50,45,.13);
+
   background: rgba(255,255,255,.7);
+
   cursor: pointer;
+
   text-align: left;
-  transition: background .2s ease, transform .2s ease;
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
 }
 
 .video-choice:hover {
@@ -420,11 +507,19 @@ body::before {
 .video-thumb {
   width: 65px;
   height: 65px;
+
   flex-shrink: 0;
-  background: linear-gradient(135deg, #d8c0b6, #efe0d8);
-  display: grid;
-  place-items: center;
-  color: white;
+
+  background: #ead8d1;
+
+  overflow: hidden;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
 }
 
 .video-info {
@@ -445,12 +540,20 @@ body::before {
 .play {
   width: 32px;
   height: 32px;
+
   border: 1px solid var(--ink);
   border-radius: 50%;
+
   display: grid;
   place-items: center;
+
   font-size: 11px;
 }
+
+
+/* =========================
+   VIDEO PLAYER
+========================= */
 
 .player {
   display: none;
@@ -463,16 +566,21 @@ body::before {
 .back {
   border: 0;
   background: transparent;
+
   padding: 0;
   margin-bottom: 15px;
+
   font-size: 13px;
+
   cursor: pointer;
+
   color: var(--muted);
 }
 
 .player video {
   width: 100%;
   max-height: 65vh;
+
   background: #111;
   border-radius: 3px;
 }
@@ -480,20 +588,51 @@ body::before {
 .player-caption {
   font-family: 'Caveat', cursive;
   font-size: 25px;
+
   margin-top: 12px;
 }
 
-/* FOOTER */
+
+/* =========================
+   SPOTIFY
+========================= */
+
+.spotify-player {
+  display: none;
+}
+
+.spotify-player.active {
+  display: block;
+}
+
+.spotify-player iframe {
+  width: 100%;
+  height: 352px;
+
+  border: 0;
+  border-radius: 12px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
   text-align: center;
+
   margin-top: 65px;
+
   font-family: 'Caveat', cursive;
   font-size: 28px;
+
   color: var(--muted);
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 760px) {
 
@@ -563,11 +702,6 @@ footer {
     font-size: 61px;
   }
 
-  .note {
-    width: 145px;
-    font-size: 19px;
-  }
-
   .photo-area {
     height: 330px;
   }
@@ -588,403 +722,958 @@ footer {
 </style>
 </head>
 
+
 <body>
 
 <div class="page">
 
-  <section class="hero">
 
-    <div class="hero-paper">
+<!-- =========================
+     STARTSEITE
+========================= -->
 
-      <h1 class="hero-title">
-        Pinky<br>
-        Promise
-      </h1>
+<section class="hero">
 
-      <div class="hero-subtitle">
-        FÜR DIE TAGE, AN DENEN DU<br>
-        MICH VERMISST.
-      </div>
 
-      <div class="small-heart">♡</div>
+  <div class="hero-paper">
 
-      <div class="music-card">
-        <div class="music-dot">▶</div>
+    <h1 class="hero-title">
+      Pinky<br>
+      Promise
+    </h1>
 
-        <div class="music-text">
-          <div class="music-title">YOU &amp; ME</div>
-          <div class="music-sub">a little playlist for you</div>
+    <div class="hero-subtitle">
+      FÜR DIE TAGE, AN DENEN DU<br>
+      MICH VERMISST.
+    </div>
+
+    <div class="small-heart">♡</div>
+
+
+    <!-- SPOTIFY -->
+
+    <div class="music-card" onclick="openSpotify()">
+
+      <div class="music-dot">▶</div>
+
+      <div class="music-text">
+
+        <div class="music-title">
+          YOU &amp; ME
         </div>
 
-        <div class="music-line"></div>
+        <div class="music-sub">
+          a little playlist for you
+        </div>
+
       </div>
 
-      <div class="note">
-        Für dich.<br>
-        Immer. ♡
+      <div class="music-line"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- POLAROIDS -->
+
+  <div class="photo-area">
+
+
+    <div class="polaroid p1" data-caption="you & me">
+
+      <div class="tape"></div>
+
+      <img
+        src="oben 1.jpeg"
+        alt="Erinnerung"
+      >
+
+    </div>
+
+
+    <div class="polaroid p2" data-caption="♡">
+
+      <div class="tape"></div>
+
+      <img
+        src="oben 2.jpeg"
+        alt="Erinnerung"
+      >
+
+    </div>
+
+
+    <div class="polaroid p3" data-caption="für dich">
+
+      <div class="tape"></div>
+
+      <img
+        src="oben 3.jpeg"
+        alt="Erinnerung"
+      >
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     KAPITEL
+========================= -->
+
+<section>
+
+  <div class="section-intro">
+
+    <div class="section-number">
+      01 — 08
+    </div>
+
+    <h2>
+      Für dich.
+    </h2>
+
+    <p>
+      KLEINE NACHRICHTEN FÜR DIE TAGE DAZWISCHEN
+    </p>
+
+  </div>
+
+
+
+  <div class="memory-grid">
+
+
+    <!-- 01 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('birthday')"
+    >
+
+      <div class="memory-number">
+        01
+      </div>
+
+      <h3>
+        DEIN GEBURTSTAG
+      </h3>
+
+      <p>
+        Für deinen besonderen Tag.
+      </p>
+
+      <div class="memory-photo">
+
+        <img
+          src="Geburtstag.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
 
-    <div class="photo-area">
 
-      <div class="polaroid p1" data-caption="you & me">
-        <div class="tape"></div>
-        <div class="photo-placeholder">DEIN FOTO</div>
+    <!-- 02 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('christmas')"
+    >
+
+      <div class="memory-number">
+        02
       </div>
 
-      <div class="polaroid p2" data-caption="♡">
-        <div class="tape"></div>
-        <div class="photo-placeholder">DEIN FOTO</div>
-      </div>
+      <h3>
+        WEIHNACHTEN
+      </h3>
 
-      <div class="polaroid p3" data-caption="für dich">
-        <div class="tape"></div>
-        <div class="photo-placeholder">DEIN FOTO</div>
-      </div>
+      <p>
+        Für deinen Weihnachtsmorgen.
+      </p>
 
-    </div>
+      <div class="memory-photo">
 
-  </section>
+        <img
+          src="weinachten 05.jpeg"
+          alt=""
+        >
 
-
-  <section>
-
-    <div class="section-intro">
-      <div class="section-number">01 — 08</div>
-      <h2>Für dich.</h2>
-      <p>KLEINE NACHRICHTEN FÜR DIE TAGE DAZWISCHEN</p>
-    </div>
-
-
-    <div class="memory-grid">
-
-      <div class="memory-card" onclick="openCategory('birthday')">
-        <div class="memory-number">01</div>
-        <h3>DEIN GEBURTSTAG</h3>
-        <p>Für deinen besonderen Tag.</p>
-        <div class="memory-photo"><div></div></div>
-      </div>
-
-
-      <div class="memory-card" onclick="openCategory('christmas')">
-        <div class="memory-number">02</div>
-        <h3>WEIHNACHTEN</h3>
-        <p>Für deinen Weihnachtsmorgen.</p>
-        <div class="memory-photo"><div></div></div>
-      </div>
-
-
-      <div class="memory-card" onclick="openCategory('missyou')">
-        <div class="memory-number">03</div>
-        <h3>WENN DU MICH VERMISST</h3>
-        <p>Für die Tage dazwischen.</p>
-        <div class="memory-photo"><div></div></div>
-      </div>
-
-
-      <div class="memory-card" onclick="openCategory('random')">
-        <div class="memory-number">04</div>
-        <h3>EINFACH SO</h3>
-        <p>Weil es keinen Grund braucht.</p>
-        <div class="memory-photo"><div></div></div>
-      </div>
-
-
-      <div class="memory-card" onclick="openCategory('laugh')">
-        <div class="memory-number">05</div>
-        <h3>WENN DU LACHEN WILLST</h3>
-        <p>Für ein kleines Grinsen.</p>
-        <div class="memory-photo"><div></div></div>
-      </div>
-
-
-      <div class="memory-card" onclick="openCategory('night')">
-        <div class="memory-number">06</div>
-        <h3>FÜR DIE NACHT</h3>
-        <p>Wenn der Tag ruhig wird.</p>
-        <div class="memory-photo"><div></div></div>
-      </div>
-
-
-      <div class="memory-card" onclick="openCategory('bad')">
-        <div class="memory-number">07</div>
-        <h3>WENN DU EINEN SCHLECHTEN TAG HAST</h3>
-        <p>Ein kleines bisschen von mir.</p>
-        <div class="memory-photo"><div></div></div>
-      </div>
-
-
-      <div class="memory-card" onclick="openCategory('again')">
-        <div class="memory-number">08</div>
-        <h3>BIS WIR UNS WIEDERSEHEN</h3>
-        <p>Für die Tage dazwischen.</p>
-        <div class="memory-photo"><div></div></div>
       </div>
 
     </div>
 
-  </section>
 
 
-  <footer>
-    für dich, immer. ♡
-  </footer>
+    <!-- 03 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('missyou')"
+    >
+
+      <div class="memory-number">
+        03
+      </div>
+
+      <h3>
+        WENN DU MICH VERMISST
+      </h3>
+
+      <p>
+        Für die Tage dazwischen.
+      </p>
+
+      <div class="memory-photo">
+
+        <img
+          src="wenn du mich vermisst 03.jpeg"
+          alt=""
+        >
+
+      </div>
+
+    </div>
+
+
+
+    <!-- 04 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('random')"
+    >
+
+      <div class="memory-number">
+        04
+      </div>
+
+      <h3>
+        EINFACH SO
+      </h3>
+
+      <p>
+        Weil es keinen Grund braucht.
+      </p>
+
+      <div class="memory-photo">
+
+        <img
+          src="einfach so 01.jpeg"
+          alt=""
+        >
+
+      </div>
+
+    </div>
+
+
+
+    <!-- 05 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('laugh')"
+    >
+
+      <div class="memory-number">
+        05
+      </div>
+
+      <h3>
+        WENN DU LACHEN WILLST
+      </h3>
+
+      <p>
+        Für ein kleines Grinsen.
+      </p>
+
+      <div class="memory-photo">
+
+        <img
+          src="wenn du lachen willst 0.2.jpeg"
+          alt=""
+        >
+
+      </div>
+
+    </div>
+
+
+
+    <!-- 06 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('night')"
+    >
+
+      <div class="memory-number">
+        06
+      </div>
+
+      <h3>
+        FÜR DIE NACHT
+      </h3>
+
+      <p>
+        Wenn der Tag ruhig wird.
+      </p>
+
+      <div class="memory-photo">
+
+        <img
+          src="für die nacht.jpeg"
+          alt=""
+        >
+
+      </div>
+
+    </div>
+
+
+
+    <!-- 07 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('bad')"
+    >
+
+      <div class="memory-number">
+        07
+      </div>
+
+      <h3>
+        WENN DU EINEN SCHLECHTEN TAG HAST
+      </h3>
+
+      <p>
+        Ein kleines bisschen von mir.
+      </p>
+
+      <div class="memory-photo">
+
+        <img
+          src="wenn du einen schlechten tag hast 04.jpeg"
+          alt=""
+        >
+
+      </div>
+
+    </div>
+
+
+
+    <!-- 08 -->
+
+    <div
+      class="memory-card"
+      onclick="openCategory('again')"
+    >
+
+      <div class="memory-number">
+        08
+      </div>
+
+      <h3>
+        BIS WIR UNS WIEDERSEHEN
+      </h3>
+
+      <p>
+        Für die Tage dazwischen.
+      </p>
+
+      <div class="memory-photo">
+
+        <img
+          src="bis wir uns wiedersehen 06.jpeg"
+          alt=""
+        >
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<footer>
+  für dich, immer. ♡
+</footer>
+
 
 </div>
 
 
-<!-- VIDEO-FENSTER -->
 
-<div class="overlay" id="overlay">
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+  class="overlay"
+  id="overlay"
+>
+
 
   <div class="modal">
 
-    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <button
+      class="modal-close"
+      onclick="closeModal()"
+      aria-label="Schließen"
+    >
+      ×
+    </button>
+
+
+
+    <!-- VIDEO-LISTE -->
 
     <div id="listView">
 
-      <div class="modal-number" id="modalNumber"></div>
+      <div
+        class="modal-number"
+        id="modalNumber"
+      ></div>
 
       <h2 id="modalTitle"></h2>
 
-      <div class="video-list" id="videoList"></div>
+      <div
+        class="video-list"
+        id="videoList"
+      ></div>
 
     </div>
 
 
-    <div class="player" id="player">
 
-      <button class="back" onclick="backToList()">
+    <!-- VIDEO -->
+
+    <div
+      class="player"
+      id="player"
+    >
+
+      <button
+        class="back"
+        onclick="backToList()"
+      >
         ← zurück
       </button>
 
-      <video id="videoElement" controls playsinline></video>
+      <video
+        id="videoElement"
+        controls
+        playsinline
+      ></video>
 
-      <div class="player-caption" id="playerCaption"></div>
+      <div
+        class="player-caption"
+        id="playerCaption"
+      ></div>
 
     </div>
+
+
+
+    <!-- SPOTIFY -->
+
+    <div
+      class="spotify-player"
+      id="spotifyPlayer"
+    >
+
+      <div class="modal-number">
+        PLAYLIST
+      </div>
+
+      <h2>
+        You &amp; Me
+      </h2>
+
+      <iframe
+        src="https://open.spotify.com/embed/playlist/0MQWfTlAiJbHLrfESSXRgn?utm_source=generator"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="You and Me Spotify Playlist"
+      ></iframe>
+
+    </div>
+
 
   </div>
 
 </div>
 
 
+
 <script>
+
+
+/* ==================================
+   VIDEO-DATEN
+================================== */
 
 const categories = {
 
+
   birthday: {
+
     number: "01",
+
     title: "Dein Geburtstag",
+
     videos: [
+
       {
         name: "Für deinen Geburtstag",
-        url: "DEIN-GEBURTSTAG-LINK"
+        url: "DEIN-GEBURTSTAG-LINK",
+        image: "Geburtstag.jpeg"
       }
+
     ]
+
   },
+
 
   christmas: {
+
     number: "02",
+
     title: "Weihnachten",
+
     videos: [
+
       {
         name: "Für deinen Weihnachtsmorgen",
-        url: "DEIN-WEIHNACHTS-LINK"
+        url: "DEIN-WEIHNACHTS-LINK",
+        image: "weinachten 05.jpeg"
       }
+
     ]
+
   },
+
 
   missyou: {
+
     number: "03",
+
     title: "Wenn du mich vermisst",
+
     videos: [
+
       {
         name: "Für heute",
-        url: "DEIN-VERMISSE-LINK-1"
+        url: "DEIN-VERMISSE-LINK-1",
+        image: "wenn du mich vermisst 03.jpeg"
       },
+
       {
         name: "Wenn du mich besonders vermisst",
-        url: "DEIN-VERMISSE-LINK-2"
+        url: "DEIN-VERMISSE-LINK-2",
+        image: "wenn du mich vermisst 03.jpeg"
       },
+
       {
         name: "Einfach weil ich dich vermisse",
-        url: "DEIN-VERMISSE-LINK-3"
+        url: "DEIN-VERMISSE-LINK-3",
+        image: "wenn du mich vermisst 03.jpeg"
       }
+
     ]
+
   },
+
 
   random: {
+
     number: "04",
+
     title: "Einfach so",
+
     videos: [
+
       {
         name: "Eine kleine Nachricht",
-        url: "DEIN-EINFACH-SO-LINK-1"
+        url: "DEIN-EINFACH-SO-LINK-1",
+        image: "einfach so 01.jpeg"
       },
+
       {
         name: "Einfach so",
-        url: "DEIN-EINFACH-SO-LINK-2"
+        url: "DEIN-EINFACH-SO-LINK-2",
+        image: "einfach so 01.jpeg"
       },
+
       {
         name: "Für irgendwann",
-        url: "DEIN-EINFACH-SO-LINK-3"
+        url: "DEIN-EINFACH-SO-LINK-3",
+        image: "einfach so 01.jpeg"
       }
+
     ]
+
   },
+
 
   laugh: {
+
     number: "05",
+
     title: "Wenn du lachen willst",
+
     videos: [
+
       {
         name: "Nummer 1",
-        url: "DEIN-LACHEN-LINK-1"
+        url: "DEIN-LACHEN-LINK-1",
+        image: "wenn du lachen willst 0.2.jpeg"
       },
+
       {
         name: "Nummer 2",
-        url: "DEIN-LACHEN-LINK-2"
+        url: "DEIN-LACHEN-LINK-2",
+        image: "wenn du lachen willst 0.2.jpeg"
       }
+
     ]
+
   },
+
 
   night: {
+
     number: "06",
+
     title: "Für die Nacht",
+
     videos: [
+
       {
         name: "Gute Nacht",
-        url: "DEIN-NACHT-LINK-1"
+        url: "DEIN-NACHT-LINK-1",
+        image: "für die nacht.jpeg"
       },
+
       {
         name: "Noch wach?",
-        url: "DEIN-NACHT-LINK-2"
+        url: "DEIN-NACHT-LINK-2",
+        image: "für die nacht.jpeg"
       }
+
     ]
+
   },
+
 
   bad: {
+
     number: "07",
+
     title: "Wenn du einen schlechten Tag hast",
+
     videos: [
+
       {
         name: "Für heute",
-        url: "DEIN-SCHLECHTER-TAG-LINK-1"
+        url: "DEIN-SCHLECHTER-TAG-LINK-1",
+        image: "wenn du einen schlechten tag hast 04.jpeg"
       },
+
       {
         name: "Für einen schweren Tag",
-        url: "DEIN-SCHLECHTER-TAG-LINK-2"
+        url: "DEIN-SCHLECHTER-TAG-LINK-2",
+        image: "wenn du einen schlechten tag hast 04.jpeg"
       }
+
     ]
+
   },
 
+
   again: {
+
     number: "08",
+
     title: "Bis wir uns wiedersehen",
+
     videos: [
+
       {
         name: "Für die Tage dazwischen",
-        url: "DEIN-WIEDERSEHEN-LINK-1"
+        url: "DEIN-WIEDERSEHEN-LINK-1",
+        image: "bis wir uns wiedersehen 06.jpeg"
       },
+
       {
         name: "Bis bald",
-        url: "DEIN-WIEDERSEHEN-LINK-2"
+        url: "DEIN-WIEDERSEHEN-LINK-2",
+        image: "bis wir uns wiedersehen 06.jpeg"
       }
+
     ]
+
   }
 
 };
 
 
+
+/* ==================================
+   KATEGORIE ÖFFNEN
+================================== */
+
 function openCategory(category) {
 
   const data = categories[category];
 
-  document.getElementById("modalNumber").textContent = data.number;
-  document.getElementById("modalTitle").textContent = data.title;
+  document.getElementById("modalNumber").textContent =
+    data.number;
 
-  const list = document.getElementById("videoList");
+  document.getElementById("modalTitle").textContent =
+    data.title;
+
+
+  const list =
+    document.getElementById("videoList");
 
   list.innerHTML = "";
 
+
   data.videos.forEach((video, index) => {
 
-    const button = document.createElement("button");
+    const button =
+      document.createElement("button");
 
-    button.className = "video-choice";
+    button.className =
+      "video-choice";
+
 
     button.innerHTML = `
-      <div class="video-thumb">▶</div>
+
+      <div class="video-thumb">
+
+        <img
+          src="${video.image}"
+          alt=""
+        >
+
+      </div>
+
+
       <div class="video-info">
+
         <div class="video-number">
           ${String(index + 1).padStart(2, "0")}
         </div>
-        <div class="video-name">${video.name}</div>
+
+        <div class="video-name">
+          ${video.name}
+        </div>
+
       </div>
-      <div class="play">▶</div>
+
+
+      <div class="play">
+        ▶
+      </div>
+
     `;
 
-    button.onclick = () => openVideo(video);
+
+    button.onclick =
+      () => openVideo(video);
+
 
     list.appendChild(button);
 
   });
 
-  document.getElementById("listView").style.display = "block";
-  document.getElementById("player").classList.remove("active");
 
-  document.getElementById("overlay").classList.add("active");
+  document.getElementById("listView")
+    .style.display = "block";
+
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  document.getElementById("spotifyPlayer")
+    .classList.remove("active");
+
+
+  document.getElementById("overlay")
+    .classList.add("active");
 
 }
 
+
+
+/* ==================================
+   VIDEO ÖFFNEN
+================================== */
 
 function openVideo(video) {
 
-  const element = document.getElementById("videoElement");
+  const element =
+    document.getElementById("videoElement");
 
-  element.src = video.url;
+
+  element.src =
+    video.url;
+
+
   element.load();
 
-  document.getElementById("playerCaption").textContent = video.name;
 
-  document.getElementById("listView").style.display = "none";
-  document.getElementById("player").classList.add("active");
+  document.getElementById("playerCaption")
+    .textContent =
+    video.name;
+
+
+  document.getElementById("listView")
+    .style.display = "none";
+
+
+  document.getElementById("spotifyPlayer")
+    .classList.remove("active");
+
+
+  document.getElementById("player")
+    .classList.add("active");
 
 }
 
+
+
+/* ==================================
+   ZURÜCK ZUR VIDEO-LISTE
+================================== */
 
 function backToList() {
 
-  const element = document.getElementById("videoElement");
+  const element =
+    document.getElementById("videoElement");
+
 
   element.pause();
+
   element.removeAttribute("src");
+
   element.load();
 
-  document.getElementById("player").classList.remove("active");
-  document.getElementById("listView").style.display = "block";
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  document.getElementById("listView")
+    .style.display = "block";
 
 }
 
+
+
+/* ==================================
+   SPOTIFY ÖFFNEN
+================================== */
+
+function openSpotify() {
+
+  document.getElementById("listView")
+    .style.display = "none";
+
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  document.getElementById("spotifyPlayer")
+    .classList.add("active");
+
+
+  document.getElementById("overlay")
+    .classList.add("active");
+
+}
+
+
+
+/* ==================================
+   MODAL SCHLIESSEN
+================================== */
 
 function closeModal() {
 
-  const element = document.getElementById("videoElement");
+  const element =
+    document.getElementById("videoElement");
+
 
   element.pause();
+
   element.removeAttribute("src");
+
   element.load();
 
-  document.getElementById("overlay").classList.remove("active");
+
+  document.getElementById("overlay")
+    .classList.remove("active");
+
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  document.getElementById("spotifyPlayer")
+    .classList.remove("active");
+
+
+  document.getElementById("listView")
+    .style.display = "block";
 
 }
 
 
-document.getElementById("overlay").addEventListener("click", function(event) {
 
-  if (event.target === this) {
+/* ==================================
+   AUSSERHALB KLICKEN
+================================== */
+
+document
+  .getElementById("overlay")
+  .addEventListener("click", function(event) {
+
+    if (event.target === this) {
+      closeModal();
+    }
+
+  });
+
+
+
+/* ==================================
+   ESC-TASTE
+================================== */
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
     closeModal();
   }
 

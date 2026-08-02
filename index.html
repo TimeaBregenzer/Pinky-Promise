@@ -103,6 +103,34 @@ HTML
         padding-top: 50px;
       }
     }
+    .video-button {
+  margin-top: 18px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: #f9e5ec;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.video-container {
+  display: none;
+  margin-top: 18px;
+}
+
+.card.opened .video-button {
+  display: none;
+}
+
+.card.opened .video-container {
+  display: block;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+}
   </style>
 </head>
 
@@ -122,55 +150,116 @@ HTML
 
     <div class="videos">
 
-   <div class="card">
-  <div class="emoji">🎂</div>
-  <h2>Dein Geburtstag</h2>
-  <p>Erst an deinem Geburtstag öffnen. ❤️</p>
-
-  <video controls playsinline style="width:100%; margin-top:18px; border-radius:14px;">
-    <source src=https://stream.vidhosting.in/videos/ed6b58ee.mp4 type="video/mp4">
-    Dein Browser kann dieses Video leider nicht abspielen.
-  </video>
-</div>
-
-      <a class="card" href="#">
-        <div class="emoji">🎄</div>
-        <h2>Weihnachten</h2>
-        <p>Für deinen Weihnachtsmorgen.</p>
-      </a>
-
-      <a class="card" href="#">
-        <div class="emoji">💭</div>
-        <h2>Wenn du mich vermisst</h2>
-        <p>Für genau solche Tage.</p>
-      </a>
-
-      <a class="card" href="#">
-        <div class="emoji">☀️</div>
-        <h2>Einfach so</h2>
-        <p>Kein besonderer Grund. Ich wollte dir einfach etwas sagen.</p>
-      </a>
-
-      <a class="card" href="#">
-        <div class="emoji">😂</div>
-        <h2>Wenn du lachen willst</h2>
-        <p>Hier kommt hoffentlich wenigstens ein kleines Grinsen.</p>
-      </a>
-
-      <a class="card" href="#">
-        <div class="emoji">🌙</div>
-        <h2>Für die Nacht</h2>
-        <p>Wenn du gerade nicht schlafen kannst.</p>
-      </a>
-
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">🎂</div>
+    <h2>Dein Geburtstag</h2>
+    <p>Erst an deinem Geburtstag öffnen. ❤️</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src=https://stream.vidhosting.in/videos/ed6b58ee.mp4 type="video/mp4">
+      </video>
     </div>
+  </div>
+
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">🎄</div>
+    <h2>Weihnachten</h2>
+    <p>Für deinen Weihnachtsmorgen. 🎄</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="DEIN-WEIHNACHTS-LINK" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">💭</div>
+    <h2>Wenn du mich vermisst</h2>
+    <p>Für genau solche Tage. 🫶</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="DEIN-VERMISSE-LINK" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">☀️</div>
+    <h2>Einfach so</h2>
+    <p>Kein besonderer Grund. Ich wollte dir einfach etwas sagen.</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="DEIN-EINFACH-SO-LINK" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">😂</div>
+    <h2>Wenn du lachen willst</h2>
+    <p>Für ein kleines Grinsen zwischendurch. 😂</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="DEIN-LACHEN-LINK" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">🌙</div>
+    <h2>Für die Nacht</h2>
+    <p>Wenn du gerade nicht schlafen kannst. 🌙</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="DEIN-NACHT-LINK" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">🫶</div>
+    <h2>Wenn du einen schlechten Tag hast</h2>
+    <p>Ein kleines bisschen von mir für dich. ❤️</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="DEIN-SCHLECHTER-TAG-LINK" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="card" onclick="openVideo(this)">
+    <div class="emoji">🏠</div>
+    <h2>Bis wir uns wiedersehen</h2>
+    <p>Für die Tage dazwischen. 🥹</p>
+    <div class="video-button">▶️ Video öffnen</div>
+    <div class="video-container">
+      <video controls playsinline>
+        <source src="DEIN-WIEDERSEHEN-LINK" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+</div>
 
   </main>
 
   <footer>
     Made with love 💗
   </footer>
-
+  
+<script>
+function openVideo(card) {
+  card.classList.add("opened");
+}
+</script>
+  
 </body>
 </html>
 

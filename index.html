@@ -20,7 +20,6 @@
   --pink-soft: #e6c8c7;
   --ink: #564641;
   --muted: #8b7770;
-  --green: #1ed760;
   --shadow: rgba(66,45,39,.16);
 }
 
@@ -53,7 +52,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Aquarell */
 body::before {
   content: "";
   position: fixed;
@@ -67,6 +65,7 @@ body::before {
   pointer-events: none;
   z-index: -5;
 }
+
 
 /* =========================================================
    HERO
@@ -109,6 +108,7 @@ body::before {
 
   z-index: -1;
 }
+
 
 /* =========================================================
    HAUPTPAPIER
@@ -173,6 +173,7 @@ body::before {
 
   pointer-events: none;
 }
+
 
 /* =========================================================
    TITEL
@@ -250,12 +251,15 @@ body::before {
   background: rgba(80,55,48,.2);
 }
 
+
 /* =========================================================
-   SPOTIFY FAKE PLAYER
+   SPOTIFY
 ========================================================= */
 
 .spotify-card {
   position: relative;
+
+  display: block;
 
   width: min(570px,92%);
 
@@ -274,6 +278,10 @@ body::before {
   text-align: left;
 
   cursor: pointer;
+
+  text-decoration: none;
+
+  color: inherit;
 
   transition:
     transform .25s ease,
@@ -419,6 +427,7 @@ body::before {
   color: #9a8982;
 }
 
+
 /* =========================================================
    BLUMEN
 ========================================================= */
@@ -461,6 +470,7 @@ body::before {
 
   transform: rotate(8deg);
 }
+
 
 /* =========================================================
    POLAROIDS HERO
@@ -558,8 +568,9 @@ body::before {
   transform: rotate(-8deg);
 }
 
+
 /* =========================================================
-   KERZEN / LICHTER
+   KERZEN
 ========================================================= */
 
 .candle {
@@ -665,6 +676,7 @@ body::before {
   pointer-events: none;
 }
 
+
 /* =========================================================
    DOODLES
 ========================================================= */
@@ -708,8 +720,9 @@ body::before {
   transform: rotate(-8deg);
 }
 
+
 /* =========================================================
-   ZWEITER BEREICH
+   ERINNERUNGEN
 ========================================================= */
 
 .memories {
@@ -791,8 +804,9 @@ body::before {
   color: var(--muted);
 }
 
+
 /* =========================================================
-   ORDNUNG STATT CHAOS
+   GALLERY
 ========================================================= */
 
 .gallery {
@@ -823,6 +837,24 @@ body::before {
 
   box-shadow:
     0 18px 32px rgba(55,38,33,.15);
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.gallery-card:hover {
+  z-index: 30;
+
+  transform:
+    translateY(-7px)
+    rotate(0deg)
+    scale(1.025) !important;
+
+  box-shadow:
+    0 25px 40px rgba(55,38,33,.21);
 }
 
 .gallery-card img {
@@ -855,7 +887,34 @@ body::before {
   z-index: 5;
 }
 
-/* Foto 5 */
+/* Klick-Hinweis */
+.gallery-card::after {
+  content: "▶";
+
+  position: absolute;
+
+  right: 17px;
+  bottom: 10px;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(86,70,65,.85);
+
+  color: white;
+
+  font-size: 9px;
+
+  opacity: .75;
+}
+
+/* Fotos */
+
 .g5 {
   grid-column: 1 / span 4;
   grid-row: 1 / span 4;
@@ -863,7 +922,6 @@ body::before {
   transform: rotate(-3deg);
 }
 
-/* Foto 6 */
 .g6 {
   grid-column: 5 / span 4;
   grid-row: 2 / span 4;
@@ -871,7 +929,6 @@ body::before {
   transform: rotate(3deg);
 }
 
-/* Foto 7 */
 .g7 {
   grid-column: 9 / span 4;
   grid-row: 1 / span 4;
@@ -879,7 +936,6 @@ body::before {
   transform: rotate(-4deg);
 }
 
-/* Foto 8 */
 .g8 {
   grid-column: 2 / span 4;
   grid-row: 6 / span 4;
@@ -887,7 +943,6 @@ body::before {
   transform: rotate(4deg);
 }
 
-/* Foto 9 */
 .g9 {
   grid-column: 6 / span 4;
   grid-row: 7 / span 4;
@@ -895,7 +950,6 @@ body::before {
   transform: rotate(-3deg);
 }
 
-/* Foto 10 */
 .g10 {
   grid-column: 10 / span 3;
   grid-row: 6 / span 4;
@@ -903,7 +957,6 @@ body::before {
   transform: rotate(5deg);
 }
 
-/* Foto 11 */
 .g11 {
   grid-column: 4 / span 4;
   grid-row: 11 / span 4;
@@ -911,8 +964,9 @@ body::before {
   transform: rotate(-4deg);
 }
 
+
 /* =========================================================
-   PAPIER NOTIZEN
+   NOTIZEN
 ========================================================= */
 
 .note {
@@ -972,6 +1026,7 @@ body::before {
   transform: rotate(5deg);
 }
 
+
 /* =========================================================
    BLUMEN UNTEN
 ========================================================= */
@@ -1006,6 +1061,7 @@ body::before {
   transform: rotate(10deg);
 }
 
+
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -1033,6 +1089,291 @@ footer p {
 
   text-transform: uppercase;
 }
+
+
+/* =========================================================
+   VIDEO MODAL
+========================================================= */
+
+.overlay {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  padding: 18px;
+
+  background:
+    rgba(38,29,27,.52);
+
+  backdrop-filter: blur(9px);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay.active {
+  display: flex;
+}
+
+.modal {
+  position: relative;
+
+  width: min(700px,100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 38px;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.25),
+      rgba(255,255,255,.08)
+    ),
+    #fff9f5;
+
+  box-shadow:
+    0 30px 80px rgba(20,15,13,.3);
+
+  transform: rotate(-.3deg);
+}
+
+.modal::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 12px;
+
+  border: 1px solid rgba(80,55,48,.10);
+
+  pointer-events: none;
+}
+
+.modal-close {
+  position: absolute;
+
+  top: 17px;
+  right: 18px;
+
+  z-index: 5;
+
+  width: 38px;
+  height: 38px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #ead9d5;
+
+  color: var(--ink);
+
+  cursor: pointer;
+
+  font-size: 21px;
+
+  transition: transform .2s ease;
+}
+
+.modal-close:hover {
+  transform: rotate(8deg) scale(1.05);
+}
+
+.modal-number {
+  position: relative;
+
+  color: var(--pink);
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+}
+
+.modal h2 {
+  position: relative;
+
+  font-family: "Caveat", cursive;
+
+  font-size: 50px;
+
+  font-weight: 500;
+
+  margin: 4px 0 25px;
+}
+
+
+/* =========================================================
+   VIDEO LISTE
+========================================================= */
+
+.video-list {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.video-choice {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid rgba(70,50,45,.13);
+
+  background: rgba(255,255,255,.72);
+
+  color: var(--ink);
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.video-choice:hover {
+  background: #f7e7e7;
+
+  transform: translateX(4px);
+
+  box-shadow:
+    0 8px 18px rgba(60,40,35,.08);
+}
+
+.video-thumb {
+  width: 70px;
+  height: 70px;
+
+  flex-shrink: 0;
+
+  background: #ead8d1;
+
+  overflow: hidden;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.video-info {
+  flex: 1;
+}
+
+.video-number {
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  color: var(--pink);
+}
+
+.video-name {
+  font-family: "Caveat", cursive;
+
+  font-size: 24px;
+
+  line-height: 1.05;
+}
+
+.play {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border: 1px solid var(--ink);
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   VIDEO PLAYER
+========================================================= */
+
+.player {
+  position: relative;
+
+  display: none;
+}
+
+.player.active {
+  display: block;
+}
+
+.back {
+  position: relative;
+
+  border: 0;
+
+  background: transparent;
+
+  padding: 0;
+
+  margin-bottom: 15px;
+
+  font-family: "DM Sans", sans-serif;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  color: var(--muted);
+}
+
+.back:hover {
+  color: var(--ink);
+}
+
+.player video {
+  position: relative;
+
+  width: 100%;
+
+  max-height: 65vh;
+
+  display: block;
+
+  background: #111;
+
+  border-radius: 3px;
+}
+
+.player-caption {
+  position: relative;
+
+  font-family: "Caveat", cursive;
+
+  font-size: 27px;
+
+  margin-top: 12px;
+}
+
 
 /* =========================================================
    MOBILE
@@ -1081,10 +1422,9 @@ footer p {
     width: 45px;
   }
 
-  /* Spotify bleibt frei */
-
   .spotify-card {
     width: 90%;
+
     margin-top: 35px;
 
     padding: 14px;
@@ -1099,8 +1439,6 @@ footer p {
     font-size: 14px;
   }
 
-  /* Blumen */
-
   .flowers-left {
     width: 220px;
 
@@ -1114,8 +1452,6 @@ footer p {
     right: -95px;
     top: 10px;
   }
-
-  /* Fotos */
 
   .hero-p1 {
     width: 120px;
@@ -1158,10 +1494,6 @@ footer p {
     right: 28%;
     bottom: 60px;
   }
-
-  /* =====================================================
-     MOBILE GALLERY
-  ===================================================== */
 
   .memories {
     padding:
@@ -1258,6 +1590,29 @@ footer p {
     right: -80px;
     top: 1100px;
   }
+
+  .modal {
+    padding: 32px 20px 25px;
+  }
+
+  .modal h2 {
+    font-size: 43px;
+  }
+
+  .video-choice {
+    padding: 11px;
+
+    gap: 12px;
+  }
+
+  .video-thumb {
+    width: 58px;
+    height: 58px;
+  }
+
+  .video-name {
+    font-size: 21px;
+  }
 }
 
 @media(max-width:430px) {
@@ -1290,10 +1645,30 @@ footer p {
   .gallery-card {
     padding-bottom: 26px;
   }
+
+  .modal {
+    padding:
+      30px 14px 20px;
+  }
+
+  .video-thumb {
+    width: 52px;
+    height: 52px;
+  }
+
+  .video-name {
+    font-size: 19px;
+  }
+
+  .play {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -1307,7 +1682,7 @@ footer p {
   <div class="hero-glow"></div>
 
 
-  <!-- Blumen -->
+  <!-- BLUMEN -->
 
   <div class="flowers flowers-left">
     <img src="flowers.png" alt="">
@@ -1318,9 +1693,7 @@ footer p {
   </div>
 
 
-  <!-- ===================================================
-       HAUPTPAPIER
-  ==================================================== -->
+  <!-- HAUPTPAPIER -->
 
   <div class="paper">
 
@@ -1333,24 +1706,17 @@ footer p {
       ♡
     </div>
 
-
     <p class="intro">
       Für all die kleinen Momente,<br>
       in denen du mich vermisst.
     </p>
-
 
     <div class="ornament">
       ♡
     </div>
 
 
-    <!-- =================================================
-         SPOTIFY LOOK
-         
-         Kein echter Player.
-         Klick öffnet Spotify.
-    ================================================== -->
+    <!-- SPOTIFY -->
 
     <a
       class="spotify-card"
@@ -1388,7 +1754,6 @@ footer p {
 
       </div>
 
-
       <div class="spotify-progress"></div>
 
       <div class="spotify-bottom">
@@ -1406,9 +1771,7 @@ footer p {
   </div>
 
 
-  <!-- ===================================================
-       HERO FOTOS
-  ==================================================== -->
+  <!-- HERO FOTOS -->
 
   <div class="polaroid hero-p1">
     <div class="tape"></div>
@@ -1431,21 +1794,23 @@ footer p {
   </div>
 
 
-  <!-- ===================================================
-       KERZEN
-  ==================================================== -->
+  <!-- KERZEN -->
 
-  <div class="candle-glow"
-       style="left:18%;bottom:65px;"></div>
+  <div
+    class="candle-glow"
+    style="left:18%;bottom:65px;"
+  ></div>
 
-  <div class="candle-glow"
-       style="right:18%;bottom:50px;"></div>
+  <div
+    class="candle-glow"
+    style="right:18%;bottom:50px;"
+  ></div>
 
   <div class="candle candle1"></div>
   <div class="candle candle2"></div>
 
 
-  <!-- Doodles -->
+  <!-- DOODLES -->
 
   <div class="doodle doodle1">
     ♡
@@ -1462,9 +1827,8 @@ footer p {
 </section>
 
 
-
 <!-- =====================================================
-     WEITERES MOODBOARD
+     ERINNERUNGEN
 ===================================================== -->
 
 <section class="memories">
@@ -1485,7 +1849,7 @@ footer p {
   </div>
 
 
-  <!-- Blumen im Hintergrund -->
+  <!-- BLUMEN -->
 
   <div class="bottom-flower bf1">
     <img src="flowers.png" alt="">
@@ -1498,49 +1862,70 @@ footer p {
 
   <!-- ===================================================
        FOTO-GRID
-       
-       Fotos 5-11 genau EINMAL
+
+       JEDES FOTO IST JETZT ANKLICKBAR
   ==================================================== -->
 
   <div class="gallery">
 
 
-    <div class="gallery-card g5">
+    <div
+      class="gallery-card g5"
+      onclick="openCategory('birthday')"
+    >
       <img src="5.jpeg" alt="Foto 5">
     </div>
 
 
-    <div class="gallery-card g6">
+    <div
+      class="gallery-card g6"
+      onclick="openCategory('christmas')"
+    >
       <img src="6.jpeg" alt="Foto 6">
     </div>
 
 
-    <div class="gallery-card g7">
+    <div
+      class="gallery-card g7"
+      onclick="openCategory('missyou')"
+    >
       <img src="7.jpeg" alt="Foto 7">
     </div>
 
 
-    <div class="gallery-card g8">
+    <div
+      class="gallery-card g8"
+      onclick="openCategory('random')"
+    >
       <img src="8.jpeg" alt="Foto 8">
     </div>
 
 
-    <div class="gallery-card g9">
+    <div
+      class="gallery-card g9"
+      onclick="openCategory('laugh')"
+    >
       <img src="9.jpeg" alt="Foto 9">
     </div>
 
 
-    <div class="gallery-card g10">
+    <div
+      class="gallery-card g10"
+      onclick="openCategory('night')"
+    >
       <img src="10.jpeg" alt="Foto 10">
     </div>
 
 
-    <div class="gallery-card g11">
+    <div
+      class="gallery-card g11"
+      onclick="openCategory('bad')"
+    >
       <img src="11.jpeg" alt="Foto 11">
     </div>
 
 
-    <!-- Papiernotizen -->
+    <!-- NOTIZEN -->
 
     <div class="note note1">
       manche Momente<br>
@@ -1555,7 +1940,6 @@ footer p {
   </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -1574,6 +1958,543 @@ footer p {
 
 </footer>
 
+
+
+<!-- =====================================================
+     VIDEO MODAL
+===================================================== -->
+
+<div
+  class="overlay"
+  id="overlay"
+>
+
+  <div class="modal">
+
+    <button
+      class="modal-close"
+      onclick="closeModal()"
+      aria-label="Schließen"
+    >
+      ×
+    </button>
+
+
+    <!-- VIDEO-LISTE -->
+
+    <div id="listView">
+
+      <div
+        class="modal-number"
+        id="modalNumber"
+      ></div>
+
+      <h2 id="modalTitle"></h2>
+
+      <div
+        class="video-list"
+        id="videoList"
+      ></div>
+
+    </div>
+
+
+    <!-- VIDEO PLAYER -->
+
+    <div
+      class="player"
+      id="player"
+    >
+
+      <button
+        class="back"
+        onclick="backToList()"
+      >
+        ← zurück
+      </button>
+
+      <video
+        id="videoElement"
+        controls
+        playsinline
+      ></video>
+
+      <div
+        class="player-caption"
+        id="playerCaption"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   VIDEO-DATEN
+
+   HIER TRÄGST DU DEINE VIDEOS EIN
+===================================================== */
+
+const categories = {
+
+  birthday: {
+
+    number: "01",
+
+    title: "Dein Geburtstag",
+
+    videos: [
+
+      {
+        name: "Für deinen Geburtstag",
+
+        url: "videos/geburtstag.mp4",
+
+        image: "5.jpeg"
+      }
+
+    ]
+
+  },
+
+
+  christmas: {
+
+    number: "02",
+
+    title: "Weihnachten",
+
+    videos: [
+
+      {
+        name: "Für deinen Weihnachtsmorgen",
+
+        url: "videos/weihnachten.mp4",
+
+        image: "6.jpeg"
+      }
+
+    ]
+
+  },
+
+
+  missyou: {
+
+    number: "03",
+
+    title: "Wenn du mich vermisst",
+
+    videos: [
+
+      {
+        name: "Für heute",
+
+        url: "videos/vermissen-1.mp4",
+
+        image: "7.jpeg"
+      },
+
+      {
+        name: "Wenn du mich besonders vermisst",
+
+        url: "videos/vermissen-2.mp4",
+
+        image: "7.jpeg"
+      },
+
+      {
+        name: "Einfach weil ich dich vermisse",
+
+        url: "videos/vermissen-3.mp4",
+
+        image: "7.jpeg"
+      }
+
+    ]
+
+  },
+
+
+  random: {
+
+    number: "04",
+
+    title: "Einfach so",
+
+    videos: [
+
+      {
+        name: "Eine kleine Nachricht",
+
+        url: "videos/einfach-so-1.mp4",
+
+        image: "8.jpeg"
+      },
+
+      {
+        name: "Einfach so",
+
+        url: "videos/einfach-so-2.mp4",
+
+        image: "8.jpeg"
+      },
+
+      {
+        name: "Für irgendwann",
+
+        url: "videos/einfach-so-3.mp4",
+
+        image: "8.jpeg"
+      }
+
+    ]
+
+  },
+
+
+  laugh: {
+
+    number: "05",
+
+    title: "Wenn du lachen willst",
+
+    videos: [
+
+      {
+        name: "Nummer 1",
+
+        url: "videos/lachen-1.mp4",
+
+        image: "9.jpeg"
+      },
+
+      {
+        name: "Nummer 2",
+
+        url: "videos/lachen-2.mp4",
+
+        image: "9.jpeg"
+      }
+
+    ]
+
+  },
+
+
+  night: {
+
+    number: "06",
+
+    title: "Für die Nacht",
+
+    videos: [
+
+      {
+        name: "Gute Nacht",
+
+        url: "videos/nacht-1.mp4",
+
+        image: "10.jpeg"
+      },
+
+      {
+        name: "Noch wach?",
+
+        url: "videos/nacht-2.mp4",
+
+        image: "10.jpeg"
+      }
+
+    ]
+
+  },
+
+
+  bad: {
+
+    number: "07",
+
+    title: "Wenn du einen schlechten Tag hast",
+
+    videos: [
+
+      {
+        name: "Für heute",
+
+        url: "videos/schlechter-tag-1.mp4",
+
+        image: "11.jpeg"
+      },
+
+      {
+        name: "Für einen schweren Tag",
+
+        url: "videos/schlechter-tag-2.mp4",
+
+        image: "11.jpeg"
+      }
+
+    ]
+
+  }
+
+};
+
+
+
+/* =====================================================
+   KATEGORIE ÖFFNEN
+===================================================== */
+
+function openCategory(category) {
+
+  const data = categories[category];
+
+  if (!data) {
+    console.error("Kategorie nicht gefunden:", category);
+    return;
+  }
+
+
+  document.getElementById("modalNumber").textContent =
+    data.number;
+
+
+  document.getElementById("modalTitle").textContent =
+    data.title;
+
+
+  const list =
+    document.getElementById("videoList");
+
+
+  list.innerHTML = "";
+
+
+  data.videos.forEach((video, index) => {
+
+    const button =
+      document.createElement("button");
+
+
+    button.className =
+      "video-choice";
+
+
+    button.innerHTML = `
+
+      <div class="video-thumb">
+
+        <img
+          src="${video.image}"
+          alt=""
+        >
+
+      </div>
+
+
+      <div class="video-info">
+
+        <div class="video-number">
+
+          ${String(index + 1).padStart(2, "0")}
+
+        </div>
+
+
+        <div class="video-name">
+
+          ${video.name}
+
+        </div>
+
+      </div>
+
+
+      <div class="play">
+
+        ▶
+
+      </div>
+
+    `;
+
+
+    button.onclick =
+      () => openVideo(video);
+
+
+    list.appendChild(button);
+
+  });
+
+
+  document.getElementById("listView")
+    .style.display = "block";
+
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  document.getElementById("overlay")
+    .classList.add("active");
+
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+
+/* =====================================================
+   VIDEO ÖFFNEN
+===================================================== */
+
+function openVideo(video) {
+
+  const element =
+    document.getElementById("videoElement");
+
+
+  element.src =
+    video.url;
+
+
+  element.load();
+
+
+  document.getElementById("playerCaption")
+    .textContent =
+    video.name;
+
+
+  document.getElementById("listView")
+    .style.display = "none";
+
+
+  document.getElementById("player")
+    .classList.add("active");
+
+
+  /*
+     NICHT automatisch abspielen.
+     Dadurch entscheidet die Person selbst,
+     wann das Video startet.
+  */
+
+}
+
+
+
+/* =====================================================
+   ZURÜCK ZUR VIDEO-LISTE
+===================================================== */
+
+function backToList() {
+
+  const element =
+    document.getElementById("videoElement");
+
+
+  element.pause();
+
+  element.removeAttribute("src");
+
+  element.load();
+
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  document.getElementById("listView")
+    .style.display = "block";
+
+}
+
+
+
+/* =====================================================
+   MODAL SCHLIESSEN
+===================================================== */
+
+function closeModal() {
+
+  const element =
+    document.getElementById("videoElement");
+
+
+  element.pause();
+
+  element.removeAttribute("src");
+
+  element.load();
+
+
+  document.getElementById("overlay")
+    .classList.remove("active");
+
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  document.getElementById("listView")
+    .style.display = "block";
+
+
+  document.body.style.overflow = "";
+
+}
+
+
+
+/* =====================================================
+   KLICK AUF DEN HINTERGRUND
+===================================================== */
+
+document
+  .getElementById("overlay")
+  .addEventListener(
+    "click",
+    function(event) {
+
+      if (event.target === this) {
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+
+/* =====================================================
+   ESC-TASTE
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Escape") {
+
+      closeModal();
+
+    }
+
+  }
+);
+
+</script>
 
 </body>
 </html>

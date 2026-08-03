@@ -13,12 +13,14 @@
 
   <style>
     :root {
-      --cream: #f7f0ea;
-      --paper: #fbf8f4;
-      --pink: #d5a9aa;
-      --pink-light: #ead0cf;
-      --brown: #554540;
-      --shadow: rgba(68, 45, 39, .16);
+      --cream: #f5ede6;
+      --paper: #fcf9f5;
+      --paper2: #f1e5dd;
+      --pink: #d2a5a6;
+      --pink-dark: #b98487;
+      --ink: #4e403b;
+      --muted: #806f68;
+      --shadow: rgba(65, 43, 37, .17);
     }
 
     * {
@@ -31,24 +33,29 @@
 
     body {
       margin: 0;
-      color: var(--brown);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
       background:
         radial-gradient(
-          circle at 20% 10%,
-          rgba(239, 205, 201, .65),
-          transparent 34%
+          circle at 15% 8%,
+          rgba(238, 202, 198, .65),
+          transparent 30%
         ),
         radial-gradient(
-          circle at 85% 30%,
-          rgba(225, 193, 188, .45),
-          transparent 35%
+          circle at 88% 30%,
+          rgba(225, 194, 188, .5),
+          transparent 32%
         ),
-        #eee2db;
-      font-family: "DM Sans", sans-serif;
+        linear-gradient(
+          135deg,
+          #e9dcd5,
+          #f7eee8 48%,
+          #eadbd4
+        );
       overflow-x: hidden;
     }
 
-    /* Aquarellstruktur */
+    /* Aquarelltextur */
     body::before {
       content: "";
       position: fixed;
@@ -62,7 +69,7 @@
       mix-blend-mode: multiply;
     }
 
-    /* weiches Licht */
+    /* weicher fotografischer Rand */
     body::after {
       content: "";
       position: fixed;
@@ -73,58 +80,65 @@
         radial-gradient(
           ellipse at center,
           transparent 45%,
-          rgba(74, 49, 43, .08)
+          rgba(65, 43, 37, .07)
         );
     }
 
-    /* ==================================================
+    /* =====================================================
+       ALLGEMEIN
+    ===================================================== */
+
+    .hand {
+      font-family: "Caveat", cursive;
+    }
+
+    /* =====================================================
        HERO
-    ================================================== */
+    ===================================================== */
 
     .hero {
       position: relative;
-      min-height: 800px;
-      padding: 80px 5vw 120px;
+      min-height: 900px;
+      padding: 80px 30px 130px;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
     }
 
-    /* große warme Lichtfläche */
-    .hero::before {
-      content: "";
+    .hero-light {
       position: absolute;
-      width: 900px;
-      height: 600px;
+      width: 1000px;
+      height: 700px;
       left: 50%;
       top: 45%;
       transform: translate(-50%, -50%);
       background:
         radial-gradient(
           ellipse,
-          rgba(255, 247, 240, .9),
-          rgba(239, 211, 207, .48) 48%,
+          rgba(255, 248, 241, .9),
+          rgba(236, 205, 201, .5) 45%,
           transparent 72%
         );
-      filter: blur(25px);
+      filter: blur(30px);
       z-index: -1;
     }
 
-    /* ==================================================
-       HAUPT-PAPIER
-    ================================================== */
+    /* =====================================================
+       HAUPTPAPIER
+    ===================================================== */
 
-    .main-paper {
+    .hero-paper {
       position: relative;
-      width: min(880px, 72vw);
-      min-height: 580px;
-      padding: 90px 70px 65px;
+      width: min(850px, 70vw);
+      min-height: 600px;
+
+      padding: 90px 60px 70px;
 
       background:
         linear-gradient(
           rgba(255,255,255,.25),
-          rgba(255,255,255,.12)
+          rgba(255,255,255,.1)
         ),
         url("watercolor.png");
 
@@ -132,47 +146,54 @@
       background-position: center;
 
       box-shadow:
-        0 30px 70px rgba(65, 43, 37, .17),
-        inset 0 0 50px rgba(110, 76, 67, .05);
+        0 35px 75px rgba(63, 42, 36, .18),
+        inset 0 0 50px rgba(95, 66, 58, .05);
 
       transform: rotate(-.7deg);
 
       clip-path: polygon(
         1% 2%,
-        96% 0,
-        100% 4%,
-        99% 97%,
-        84% 99%,
-        65% 97%,
-        48% 100%,
-        28% 98%,
+        18% 1%,
+        36% 3%,
+        55% 0,
+        77% 2%,
+        98% 0,
+        100% 21%,
+        98% 43%,
+        100% 67%,
+        98% 97%,
+        80% 99%,
+        62% 97%,
+        45% 100%,
+        26% 98%,
         8% 100%,
         0 97%,
-        1% 72%,
-        0 48%
+        1% 76%,
+        0 52%,
+        1% 30%
       );
 
       text-align: center;
       z-index: 3;
     }
 
-    .main-paper::before {
+    .hero-paper::after {
       content: "";
       position: absolute;
-      inset: 14px;
-      border: 1px solid rgba(91, 65, 57, .08);
+      inset: 15px;
+      border: 1px solid rgba(87, 61, 54, .07);
       pointer-events: none;
     }
 
-    /* ==================================================
+    /* =====================================================
        TITEL
-    ================================================== */
+    ===================================================== */
 
     .title {
       margin: 0;
 
       font-family: "Caveat", cursive;
-      font-size: clamp(85px, 9vw, 145px);
+      font-size: clamp(82px, 9vw, 145px);
       font-weight: 500;
       line-height: .68;
       letter-spacing: -4px;
@@ -184,52 +205,52 @@
       display: block;
     }
 
-    .tiny-heart {
+    .heart {
       position: absolute;
-      top: 135px;
+      top: 140px;
       right: 17%;
 
-      font-family: "Caveat", cursive;
-      font-size: 55px;
       color: var(--pink);
+      font-family: "Caveat", cursive;
+      font-size: 58px;
 
       transform: rotate(12deg);
     }
 
     .intro {
-      margin: 55px auto 25px;
+      margin: 60px auto 25px;
       max-width: 450px;
 
-      font-size: 11px;
+      font-size: 10px;
       line-height: 2.1;
-      letter-spacing: .27em;
+      letter-spacing: .28em;
       text-transform: uppercase;
     }
 
     .ornament {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+
       color: var(--pink);
       font-size: 21px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
     }
 
     .ornament::before,
     .ornament::after {
       content: "";
-      width: 110px;
+      width: 115px;
       height: 1px;
-      background: rgba(86, 62, 54, .22);
+      background: rgba(80, 59, 53, .2);
     }
 
-    /* ==================================================
+    /* =====================================================
        BLUMEN
-       WICHTIG: Z-INDEX 1 → HINTER den Polaroids
-    ================================================== */
+       Hinter den Polaroids!
+    ===================================================== */
 
-    .flower-decoration {
+    .flowers {
       position: absolute;
       z-index: 1;
       pointer-events: none;
@@ -237,46 +258,77 @@
 
       filter:
         drop-shadow(
-          3px 7px 8px rgba(65, 40, 35, .08)
+          3px 7px 8px rgba(58, 38, 33, .08)
         );
     }
 
-    .flower-decoration img {
+    .flowers img {
       display: block;
       width: 100%;
       height: auto;
     }
 
     .flowers-left {
-      width: 350px;
-      left: -95px;
-      bottom: 5px;
+      width: 370px;
+      left: -100px;
+      bottom: 20px;
       transform: rotate(-12deg);
     }
 
     .flowers-right {
-      width: 370px;
-      right: -105px;
-      top: 15px;
+      width: 390px;
+      right: -110px;
+      top: 10px;
       transform: rotate(8deg);
     }
 
-    /* ==================================================
+    /* =====================================================
+       SPOTIFY
+    ===================================================== */
+
+    .spotify {
+      position: relative;
+      z-index: 15;
+
+      width: min(620px, 92%);
+      margin: 40px auto 0;
+
+      padding: 10px;
+
+      background: rgba(250, 244, 238, .8);
+
+      box-shadow:
+        0 15px 32px rgba(58, 38, 33, .13);
+
+      transform: rotate(.4deg);
+    }
+
+    .spotify iframe {
+      display: block;
+
+      width: 100%;
+      height: 152px;
+
+      border: 0;
+      border-radius: 12px;
+    }
+
+    /* =====================================================
        POLAROIDS
-    ================================================== */
+    ===================================================== */
 
     .polaroid {
       position: absolute;
 
+      background: #fffdf9;
+
       padding: 10px 10px 43px;
 
-      background: #fffdfa;
-
       box-shadow:
-        0 20px 35px rgba(56, 38, 33, .18),
-        0 3px 8px rgba(56, 38, 33, .10);
+        0 20px 35px rgba(54, 37, 32, .2),
+        0 3px 8px rgba(54, 37, 32, .1);
 
-      z-index: 7;
+      z-index: 8;
 
       transition:
         transform .35s ease,
@@ -285,95 +337,99 @@
 
     .polaroid img {
       display: block;
+
       width: 100%;
       height: 100%;
+
       object-fit: cover;
     }
 
     .polaroid:hover {
-      z-index: 30;
-      box-shadow:
-        0 28px 45px rgba(56, 38, 33, .24);
+      z-index: 50;
 
       transform:
-        translateY(-10px)
+        translateY(-12px)
         rotate(0deg)
         scale(1.04) !important;
+
+      box-shadow:
+        0 30px 50px rgba(54, 37, 32, .25);
     }
 
-    /* Tape */
     .tape {
       position: absolute;
 
-      width: 70px;
-      height: 24px;
-
-      left: 50%;
       top: -13px;
+      left: 50%;
+
+      width: 72px;
+      height: 24px;
 
       transform:
         translateX(-50%)
         rotate(-3deg);
 
-      background: rgba(224, 188, 174, .55);
+      background: rgba(224, 188, 173, .57);
 
       box-shadow:
         0 1px 3px rgba(60, 38, 31, .08);
-
-      z-index: 4;
     }
 
-    .photo1 {
+    /* 1 */
+    .p1 {
       width: 205px;
-      height: 255px;
-
-      left: 3%;
-      bottom: 65px;
-
-      transform: rotate(-10deg);
-    }
-
-    .photo2 {
-      width: 205px;
-      height: 255px;
-
-      left: 15%;
-      bottom: 18px;
-
-      transform: rotate(7deg);
-    }
-
-    .photo3 {
-      width: 205px;
-      height: 255px;
-
-      right: 15%;
-      top: 70px;
-
-      transform: rotate(7deg);
-    }
-
-    .photo4 {
-      width: 210px;
       height: 260px;
 
+      left: 3%;
+      top: 180px;
+
+      transform: rotate(-9deg);
+    }
+
+    /* 2 */
+    .p2 {
+      width: 195px;
+      height: 250px;
+
+      left: 14%;
+      bottom: 55px;
+
+      transform: rotate(7deg);
+    }
+
+    /* 3 */
+    .p3 {
+      width: 205px;
+      height: 260px;
+
+      right: 14%;
+      top: 90px;
+
+      transform: rotate(8deg);
+    }
+
+    /* 4 */
+    .p4 {
+      width: 210px;
+      height: 265px;
+
       right: 3%;
-      top: 190px;
+      top: 290px;
 
       transform: rotate(-8deg);
     }
 
-    /* ==================================================
+    /* =====================================================
        POST-IT
-    ================================================== */
+    ===================================================== */
 
-    .post-it {
+    .postit {
       position: absolute;
 
-      right: 7%;
-      bottom: 65px;
+      right: 8%;
+      bottom: 75px;
 
-      z-index: 12;
+      z-index: 14;
 
       width: 165px;
       min-height: 135px;
@@ -389,13 +445,13 @@
       background:
         linear-gradient(
           135deg,
-          rgba(255,255,255,.18),
+          rgba(255,255,255,.16),
           transparent
         ),
-        #e7c6c5;
+        #e6c5c4;
 
       box-shadow:
-        9px 16px 25px rgba(58, 38, 33, .16);
+        9px 17px 26px rgba(55, 37, 32, .16);
 
       font-family: "Caveat", cursive;
       font-size: 25px;
@@ -404,13 +460,13 @@
       transform: rotate(6deg);
     }
 
-    .post-it::before {
+    .postit::before {
       content: "";
 
       position: absolute;
 
       top: -11px;
-      left: 32px;
+      left: 34px;
 
       width: 75px;
       height: 23px;
@@ -420,195 +476,149 @@
       transform: rotate(-4deg);
     }
 
-    /* ==================================================
-       SPOTIFY
-    ================================================== */
+    /* =====================================================
+       DOODLES
+    ===================================================== */
 
-<div class="spotify-wrap">
-  <iframe
-    src="https://open.spotify.com/embed/playlist/0MQWfTlAiJbHLrfESSXRgn"
-    width="100%"
-    height="152"
-    frameborder="0"
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    loading="lazy">
-  </iframe>
-</div>
+    .doodle {
+      position: absolute;
 
-    /* ==================================================
-       CONTENT
-    ================================================== */
+      font-family: "Caveat", cursive;
+      color: var(--pink);
 
-    .content {
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .doodle-heart {
+      font-size: 45px;
+      transform: rotate(-12deg);
+    }
+
+    .doodle-star {
+      font-size: 25px;
+      transform: rotate(15deg);
+    }
+
+    .doodle-arrow {
+      font-size: 45px;
+      transform: rotate(-15deg);
+    }
+
+    .d1 {
+      left: 8%;
+      top: 100px;
+    }
+
+    .d2 {
+      right: 10%;
+      bottom: 170px;
+    }
+
+    /* =====================================================
+       NEUE SEITE / MOODBOARD
+    ===================================================== */
+
+    .memories-section {
       position: relative;
 
-      padding: 100px 6vw 130px;
+      padding: 120px 6vw 150px;
 
       background:
         linear-gradient(
-          rgba(255,255,255,.35),
-          rgba(255,255,255,.35)
+          rgba(255,255,255,.34),
+          rgba(255,255,255,.34)
         ),
         url("watercolor.png");
 
       background-size: cover;
+      background-position: center;
     }
 
-    /* Papierkante */
-    .content::before {
-      content: "";
-
+    .paper-edge {
       position: absolute;
 
-      top: -30px;
+      top: -35px;
       left: 0;
 
       width: 100%;
-      height: 70px;
+      height: 75px;
 
       background: var(--cream);
 
       clip-path: polygon(
-        0 40%,
-        8% 25%,
+        0 38%,
+        8% 22%,
         16% 39%,
-        25% 18%,
-        34% 40%,
+        25% 17%,
+        35% 40%,
         44% 20%,
-        54% 38%,
+        54% 37%,
         64% 15%,
-        74% 36%,
+        75% 36%,
         85% 19%,
         94% 38%,
-        100% 23%,
+        100% 22%,
         100% 100%,
         0 100%
       );
     }
 
-    .section-heading {
+    .section-title {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 85px;
     }
 
-    .section-heading h2 {
+    .section-title h2 {
       margin: 0;
 
       font-family: "Caveat", cursive;
-      font-size: 57px;
+      font-size: 60px;
       font-weight: 500;
 
       transform: rotate(-2deg);
     }
 
-    .section-heading p {
-      margin-top: 5px;
+    .section-title p {
+      margin-top: 8px;
 
       font-size: 9px;
       letter-spacing: .27em;
       text-transform: uppercase;
+
+      color: var(--muted);
     }
 
-    /* ==================================================
-       ERINNERUNGEN
-    ================================================== */
+    /* =====================================================
+       11 FOTOS
+    ===================================================== */
 
-    .memories {
-      width: min(1180px, 100%);
-      margin: auto;
-
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 35px;
-    }
-
-    .memory {
+    .photo-wall {
       position: relative;
 
-      min-height: 330px;
+      width: min(1150px, 100%);
+      min-height: 2050px;
 
-      padding: 28px;
-
-      background: var(--paper);
-
-      box-shadow:
-        0 20px 35px rgba(60, 40, 34, .12);
-
-      overflow: visible;
+      margin: auto;
     }
 
-    .memory:nth-child(1) {
-      transform: rotate(-1.4deg);
-    }
-
-    .memory:nth-child(2) {
-      transform: rotate(1.2deg) translateY(12px);
-    }
-
-    .memory:nth-child(3) {
-      transform: rotate(-.6deg);
-    }
-
-    .memory:nth-child(4) {
-      transform: rotate(1deg) translateY(-6px);
-    }
-
-    .memory:nth-child(5) {
-      transform: rotate(-1.5deg) translateY(10px);
-    }
-
-    .memory:nth-child(6) {
-      transform: rotate(.8deg);
-    }
-
-    .memory-number {
-      font-family: "Playfair Display", serif;
-      font-style: italic;
-      font-size: 28px;
-
-      color: var(--pink);
-    }
-
-    .memory h3 {
-      margin: 8px 0 0;
-
-      max-width: 170px;
-
-      font-size: 13px;
-      line-height: 1.7;
-
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-weight: 400;
-    }
-
-    .memory-photo {
+    .wall-photo {
       position: absolute;
 
-      right: 22px;
-      top: 43px;
+      padding: 11px 11px 45px;
 
-      width: 130px;
-      height: 165px;
-
-      padding: 7px 7px 25px;
-
-      background: white;
+      background: #fffdfa;
 
       box-shadow:
-        0 11px 22px rgba(57, 38, 33, .17);
+        0 20px 38px rgba(58, 39, 34, .18),
+        0 2px 6px rgba(58, 39, 34, .1);
 
-      transform: rotate(6deg);
-
-      z-index: 4;
+      transition:
+        transform .35s ease,
+        z-index .1s;
     }
 
-    .memory:nth-child(even) .memory-photo {
-      transform: rotate(-5deg);
-    }
-
-    .memory-photo img {
+    .wall-photo img {
       display: block;
 
       width: 100%;
@@ -617,97 +627,319 @@
       object-fit: cover;
     }
 
-    .memory-tape {
+    .wall-photo:hover {
+      z-index: 50 !important;
+
+      transform:
+        translateY(-12px)
+        rotate(0deg)
+        scale(1.05) !important;
+    }
+
+    /* Tape */
+    .wall-photo::before {
+      content: "";
+
       position: absolute;
 
-      top: -10px;
-      left: 50%;
+      width: 72px;
+      height: 23px;
 
-      width: 55px;
-      height: 18px;
+      top: -12px;
+      left: 50%;
 
       transform:
         translateX(-50%)
         rotate(-3deg);
 
-      background: rgba(224, 188, 174, .56);
+      background: rgba(224, 188, 173, .55);
+
+      z-index: 5;
     }
 
-    .doodle {
-      position: absolute;
+    /* FOTO 1 */
+    .w1 {
+      width: 260px;
+      height: 320px;
 
-      left: 28px;
-      bottom: 30px;
+      left: 4%;
+      top: 40px;
 
-      font-family: "Caveat", cursive;
-      font-size: 30px;
+      transform: rotate(-7deg);
+      z-index: 5;
+    }
 
-      color: var(--pink);
+    /* FOTO 2 */
+    .w2 {
+      width: 230px;
+      height: 290px;
+
+      left: 31%;
+      top: 5px;
+
+      transform: rotate(5deg);
+      z-index: 7;
+    }
+
+    /* FOTO 3 */
+    .w3 {
+      width: 255px;
+      height: 315px;
+
+      right: 4%;
+      top: 90px;
+
+      transform: rotate(8deg);
+      z-index: 6;
+    }
+
+    /* FOTO 4 */
+    .w4 {
+      width: 235px;
+      height: 295px;
+
+      left: 13%;
+      top: 410px;
+
+      transform: rotate(8deg);
+      z-index: 8;
+    }
+
+    /* FOTO 5 */
+    .w5 {
+      width: 250px;
+      height: 310px;
+
+      right: 28%;
+      top: 470px;
+
+      transform: rotate(-6deg);
+      z-index: 10;
+    }
+
+    /* FOTO 6 */
+    .w6 {
+      width: 245px;
+      height: 305px;
+
+      right: 2%;
+      top: 450px;
 
       transform: rotate(-9deg);
+      z-index: 7;
     }
 
-    .little-flower {
+    /* FOTO 7 */
+    .w7 {
+      width: 270px;
+      height: 330px;
+
+      left: 1%;
+      top: 800px;
+
+      transform: rotate(-5deg);
+      z-index: 8;
+    }
+
+    /* FOTO 8 */
+    .w8 {
+      width: 235px;
+      height: 295px;
+
+      left: 34%;
+      top: 850px;
+
+      transform: rotate(7deg);
+      z-index: 10;
+    }
+
+    /* FOTO 9 */
+    .w9 {
+      width: 255px;
+      height: 315px;
+
+      right: 5%;
+      top: 790px;
+
+      transform: rotate(-6deg);
+      z-index: 8;
+    }
+
+    /* FOTO 10 */
+    .w10 {
+      width: 245px;
+      height: 305px;
+
+      left: 17%;
+      top: 1200px;
+
+      transform: rotate(8deg);
+      z-index: 9;
+    }
+
+    /* FOTO 11 */
+    .w11 {
+      width: 270px;
+      height: 330px;
+
+      right: 20%;
+      top: 1280px;
+
+      transform: rotate(-7deg);
+      z-index: 10;
+    }
+
+    /* =====================================================
+       PAPIERZETTEL ZWISCHEN FOTOS
+    ===================================================== */
+
+    .paper-note {
       position: absolute;
 
-      right: -28px;
-      bottom: -35px;
+      z-index: 20;
 
-      width: 120px;
+      width: 190px;
+      min-height: 130px;
 
-      opacity: .55;
+      padding: 25px;
 
-      z-index: 2;
+      background: #efe0d4;
 
-      pointer-events: none;
+      box-shadow:
+        8px 15px 24px rgba(60, 40, 34, .13);
+
+      font-family: "Caveat", cursive;
+      font-size: 27px;
+      line-height: 1.05;
+
+      text-align: center;
     }
 
-    /* ==================================================
+    .paper-note::before {
+      content: "";
+
+      position: absolute;
+
+      width: 65px;
+      height: 21px;
+
+      top: -11px;
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        rotate(-4deg);
+
+      background: rgba(224, 188, 173, .53);
+    }
+
+    .note1 {
+      left: 49%;
+      top: 280px;
+
+      transform: rotate(-5deg);
+    }
+
+    .note2 {
+      right: 32%;
+      top: 730px;
+
+      transform: rotate(5deg);
+    }
+
+    .note3 {
+      left: 40%;
+      top: 1080px;
+
+      transform: rotate(-4deg);
+    }
+
+    /* =====================================================
+       BLUMEN AUF DER MEMORY-SEITE
+    ===================================================== */
+
+    .wall-flowers {
+      position: absolute;
+
+      width: 320px;
+
+      opacity: .6;
+
+      pointer-events: none;
+
+      z-index: 2;
+    }
+
+    .wall-flowers img {
+      width: 100%;
+      display: block;
+    }
+
+    .wf1 {
+      left: -80px;
+      top: 520px;
+      transform: rotate(-15deg);
+    }
+
+    .wf2 {
+      right: -90px;
+      top: 1120px;
+      transform: rotate(10deg);
+    }
+
+    .wf3 {
+      left: -80px;
+      top: 1550px;
+      transform: rotate(-8deg);
+    }
+
+    /* =====================================================
        FOOTER
-    ================================================== */
+    ===================================================== */
 
     footer {
-      padding: 70px 20px 100px;
+      padding: 80px 20px 110px;
 
       text-align: center;
 
-      background: #ecded7;
+      background: #eadcd5;
     }
 
     footer .hand {
-      font-family: "Caveat", cursive;
-      font-size: 35px;
+      font-size: 37px;
     }
 
     footer p {
+      margin-top: 8px;
+
       font-size: 9px;
       letter-spacing: .25em;
       text-transform: uppercase;
     }
 
-    /* ==================================================
+    /* =====================================================
        MOBILE
-    ================================================== */
+    ===================================================== */
 
     @media (max-width: 850px) {
 
       .hero {
         min-height: 780px;
-        padding: 45px 15px 80px;
+        padding: 45px 12px 90px;
       }
 
-      .main-paper {
+      .hero-paper {
         width: 94%;
-        min-height: 610px;
-        padding: 80px 20px 40px;
+        min-height: 590px;
+        padding: 80px 20px 45px;
       }
 
       .title {
-        font-size: clamp(76px, 18vw, 110px);
+        font-size: clamp(75px, 18vw, 105px);
       }
 
       .intro {
-        max-width: 280px;
+        max-width: 275px;
         margin-top: 55px;
 
         font-size: 9px;
@@ -716,94 +948,216 @@
 
       .ornament::before,
       .ornament::after {
-        width: 50px;
+        width: 48px;
       }
 
-      /* Blumen bleiben HINTER den Fotos */
+      /* Blumen bleiben hinten */
 
       .flowers-left {
         width: 230px;
-        left: -90px;
-        bottom: 25px;
+        left: -95px;
+        bottom: 20px;
       }
 
       .flowers-right {
-        width: 235px;
+        width: 240px;
         right: -100px;
-        top: 5px;
+        top: 0;
       }
 
-      .photo1 {
-        width: 130px;
-        height: 165px;
+      .p1 {
+        width: 125px;
+        height: 160px;
 
-        left: -5px;
-        bottom: 50px;
+        left: -4px;
+        top: 125px;
       }
 
-      .photo2 {
-        width: 130px;
-        height: 165px;
+      .p2 {
+        width: 125px;
+        height: 160px;
 
-        left: 42px;
-        bottom: 10px;
+        left: 38px;
+        bottom: 12px;
       }
 
-      .photo3 {
-        width: 130px;
-        height: 165px;
+      .p3 {
+        width: 125px;
+        height: 160px;
 
-        right: 35px;
+        right: 28px;
         top: 120px;
       }
 
-      .photo4 {
-        width: 130px;
-        height: 170px;
+      .p4 {
+        width: 125px;
+        height: 160px;
 
-        right: -7px;
-        top: 210px;
+        right: -5px;
+        top: 215px;
       }
 
-      .post-it {
-        right: 30px;
-        bottom: 175px;
-
-        width: 115px;
+      .postit {
+        width: 112px;
         min-height: 100px;
+
+        right: 28px;
+        bottom: 170px;
 
         font-size: 20px;
       }
 
-      .spotify-wrap {
+      .spotify {
         width: 90%;
-        padding: 10px;
+        margin-top: 35px;
       }
 
-      .spotify-wrap iframe {
+      .spotify iframe {
         height: 152px;
       }
 
-      .content {
-        padding: 75px 18px 100px;
+      /* ==================================================
+         MOBILE FOTO WALL
+      ================================================== */
+
+      .memories-section {
+        padding: 80px 12px 100px;
       }
 
-      .section-heading h2 {
-        font-size: 50px;
+      .section-title {
+        margin-bottom: 50px;
       }
 
-      .memories {
-        grid-template-columns: 1fr;
-        gap: 28px;
+      .section-title h2 {
+        font-size: 52px;
       }
 
-      .memory {
-        min-height: 285px;
+      .photo-wall {
+        min-height: 2800px;
+        width: 100%;
       }
 
-      .memory-photo {
-        width: 115px;
-        height: 148px;
+      .wall-photo {
+        width: 155px;
+        height: 195px;
+        padding: 7px 7px 30px;
+      }
+
+      .wall-photo::before {
+        width: 50px;
+        height: 17px;
+        top: -9px;
+      }
+
+      .w1 {
+        left: 4%;
+        top: 20px;
+        transform: rotate(-7deg);
+      }
+
+      .w2 {
+        left: auto;
+        right: 4%;
+        top: 65px;
+        transform: rotate(6deg);
+      }
+
+      .w3 {
+        right: 12%;
+        top: 300px;
+        transform: rotate(8deg);
+      }
+
+      .w4 {
+        left: 5%;
+        top: 390px;
+        transform: rotate(7deg);
+      }
+
+      .w5 {
+        right: 5%;
+        top: 650px;
+        transform: rotate(-6deg);
+      }
+
+      .w6 {
+        left: 4%;
+        top: 730px;
+        transform: rotate(-8deg);
+      }
+
+      .w7 {
+        right: 10%;
+        top: 970px;
+        transform: rotate(-5deg);
+      }
+
+      .w8 {
+        left: 3%;
+        top: 1100px;
+        transform: rotate(7deg);
+      }
+
+      .w9 {
+        right: 5%;
+        top: 1350px;
+        transform: rotate(-6deg);
+      }
+
+      .w10 {
+        left: 5%;
+        top: 1490px;
+        transform: rotate(8deg);
+      }
+
+      .w11 {
+        right: 9%;
+        top: 1730px;
+        transform: rotate(-7deg);
+      }
+
+      .paper-note {
+        width: 135px;
+        min-height: 100px;
+
+        padding: 20px;
+
+        font-size: 21px;
+      }
+
+      .note1 {
+        left: 30%;
+        top: 525px;
+      }
+
+      .note2 {
+        left: 10%;
+        top: 870px;
+      }
+
+      .note3 {
+        right: 12%;
+        top: 1250px;
+        left: auto;
+      }
+
+      .wall-flowers {
+        width: 220px;
+      }
+
+      .wf1 {
+        left: -90px;
+        top: 560px;
+      }
+
+      .wf2 {
+        right: -95px;
+        top: 1150px;
+      }
+
+      .wf3 {
+        left: -100px;
+        top: 1650px;
       }
     }
 
@@ -813,42 +1167,35 @@
         min-height: 750px;
       }
 
-      .main-paper {
-        min-height: 590px;
+      .hero-paper {
+        min-height: 570px;
       }
 
       .title {
-        font-size: 77px;
+        font-size: 76px;
       }
 
-      .tiny-heart {
-        top: 145px;
-        right: 8%;
+      .heart {
+        top: 140px;
+        right: 7%;
         font-size: 45px;
       }
 
-      .photo1,
-      .photo2,
-      .photo3,
-      .photo4 {
-        width: 120px;
+      .p1,
+      .p2,
+      .p3,
+      .p4 {
+        width: 115px;
+        height: 150px;
       }
 
-      .photo1 {
-        height: 153px;
+      .photo-wall {
+        min-height: 2700px;
       }
 
-      .photo2 {
-        height: 153px;
-      }
-
-      .photo3 {
-        height: 153px;
-        right: 23px;
-      }
-
-      .photo4 {
-        height: 158px;
+      .wall-photo {
+        width: 145px;
+        height: 185px;
       }
     }
   </style>
@@ -856,31 +1203,34 @@
 
 <body>
 
-  <!-- ==================================================
+  <!-- =====================================================
        HERO
-  ================================================== -->
+  ===================================================== -->
 
   <section class="hero">
 
-    <!-- Blumen HINTER allem -->
-    <div class="flower-decoration flowers-left">
+    <div class="hero-light"></div>
+
+    <!-- Blumen hinter den Fotos -->
+    <div class="flowers flowers-left">
       <img src="flowers.png" alt="">
     </div>
 
-    <div class="flower-decoration flowers-right">
+    <div class="flowers flowers-right">
       <img src="flowers.png" alt="">
     </div>
 
 
     <!-- Hauptpapier -->
-    <div class="main-paper">
+
+    <div class="hero-paper">
 
       <h1 class="title">
         <span>Pinky</span>
         <span>Promise</span>
       </h1>
 
-      <div class="tiny-heart">♡</div>
+      <div class="heart">♡</div>
 
       <p class="intro">
         Für all die kleinen Momente,<br>
@@ -892,16 +1242,14 @@
       </div>
 
 
-      <!-- ==================================================
-           SPOTIFY
-
-           ERSETZE NUR DIE URL IM src.
+      <!-- =================================================
+           DEINE SPOTIFY-PLAYLIST
       ================================================== -->
 
-      <div class="spotify-wrap">
+      <div class="spotify">
 
         <iframe
-          src="DEINE-SPOTIFY-EMBED-URL"
+          src="https://open.spotify.com/embed/playlist/0MQWfTlAiJbHLrfESSXRgn"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy">
         </iframe>
@@ -911,184 +1259,167 @@
     </div>
 
 
-    <!-- ==================================================
-         POLAROIDS
+    <!-- =================================================
+         HERO POLAROIDS
+         1-4
     ================================================== -->
 
-    <div class="polaroid photo1">
+    <div class="polaroid p1">
       <div class="tape"></div>
-      <img src="1.jpeg" alt="Erinnerung 1">
+      <img src="1.jpeg" alt="Foto 1">
     </div>
 
-    <div class="polaroid photo2">
+    <div class="polaroid p2">
       <div class="tape"></div>
-      <img src="10.jpeg" alt="Erinnerung 10">
+      <img src="2.jpeg" alt="Foto 2">
     </div>
 
-    <div class="polaroid photo3">
+    <div class="polaroid p3">
       <div class="tape"></div>
-      <img src="6.jpeg" alt="Erinnerung 6">
+      <img src="3.jpeg" alt="Foto 3">
     </div>
 
-    <div class="polaroid photo4">
+    <div class="polaroid p4">
       <div class="tape"></div>
-      <img src="4.jpeg" alt="Erinnerung 4">
+      <img src="4.jpeg" alt="Foto 4">
     </div>
 
 
     <!-- Post-it -->
-    <div class="post-it">
+
+    <div class="postit">
       Für dich.<br>
       Immer. ♡
+    </div>
+
+
+    <!-- Doodles -->
+
+    <div class="doodle doodle-heart d1">
+      ♡
+    </div>
+
+    <div class="doodle doodle-star d2">
+      ✦
     </div>
 
   </section>
 
 
-  <!-- ==================================================
-       ERINNERUNGEN
-  ================================================== -->
+  <!-- =====================================================
+       FOTO-MOODBOARD
+       5-11
+  ===================================================== -->
 
-  <main class="content">
+  <section class="memories-section">
 
-    <div class="section-heading">
-      <h2>Für dich, immer.</h2>
-      <p>kleine Dinge für große Gefühle</p>
-    </div>
+    <div class="paper-edge"></div>
 
 
-    <div class="memories">
+    <div class="section-title">
 
-      <!-- 01 -->
-      <article class="memory">
+      <h2>
+        Für dich, immer.
+      </h2>
 
-        <div class="memory-number">01</div>
-
-        <h3>
-          Dein<br>
-          Geburtstag
-        </h3>
-
-        <div class="memory-photo">
-          <div class="memory-tape"></div>
-          <img src="1.jpeg" alt="">
-        </div>
-
-        <div class="doodle">♡</div>
-
-        <img
-          class="little-flower"
-          src="flowers.png"
-          alt="">
-      </article>
-
-
-      <!-- 02 -->
-      <article class="memory">
-
-        <div class="memory-number">02</div>
-
-        <h3>
-          Weihnachten
-        </h3>
-
-        <div class="memory-photo">
-          <div class="memory-tape"></div>
-          <img src="2.jpeg" alt="">
-        </div>
-
-        <div class="doodle">♡</div>
-      </article>
-
-
-      <!-- 03 -->
-      <article class="memory">
-
-        <div class="memory-number">03</div>
-
-        <h3>
-          Wenn du<br>
-          mich vermisst
-        </h3>
-
-        <div class="memory-photo">
-          <div class="memory-tape"></div>
-          <img src="6.jpeg" alt="">
-        </div>
-
-        <div class="doodle">↝ ♡</div>
-
-        <img
-          class="little-flower"
-          src="flowers.png"
-          alt="">
-      </article>
-
-
-      <!-- 04 -->
-      <article class="memory">
-
-        <div class="memory-number">04</div>
-
-        <h3>
-          Einfach so
-        </h3>
-
-        <div class="memory-photo">
-          <div class="memory-tape"></div>
-          <img src="3.jpeg" alt="">
-        </div>
-
-        <div class="doodle">♡</div>
-      </article>
-
-
-      <!-- 05 -->
-      <article class="memory">
-
-        <div class="memory-number">05</div>
-
-        <h3>
-          Wenn du<br>
-          lachen willst
-        </h3>
-
-        <div class="memory-photo">
-          <div class="memory-tape"></div>
-          <img src="10.jpeg" alt="">
-        </div>
-
-        <div class="doodle">✦ ♡</div>
-
-        <img
-          class="little-flower"
-          src="flowers.png"
-          alt="">
-      </article>
-
-
-      <!-- 06 -->
-      <article class="memory">
-
-        <div class="memory-number">06</div>
-
-        <h3>
-          Für die<br>
-          Nacht
-        </h3>
-
-        <div class="memory-photo">
-          <div class="memory-tape"></div>
-          <img src="5.jpeg" alt="">
-        </div>
-
-        <div class="doodle">☾</div>
-      </article>
+      <p>
+        kleine Erinnerungen
+      </p>
 
     </div>
 
-  </main>
 
+    <div class="photo-wall">
+
+      <!-- Blumen hinter dem Moodboard -->
+
+      <div class="wall-flowers wf1">
+        <img src="flowers.png" alt="">
+      </div>
+
+      <div class="wall-flowers wf2">
+        <img src="flowers.png" alt="">
+      </div>
+
+      <div class="wall-flowers wf3">
+        <img src="flowers.png" alt="">
+      </div>
+
+
+      <!-- FOTO 5 -->
+
+      <div class="wall-photo w5">
+        <img src="5.jpeg" alt="Foto 5">
+      </div>
+
+
+      <!-- FOTO 6 -->
+
+      <div class="wall-photo w6">
+        <img src="6.jpeg" alt="Foto 6">
+      </div>
+
+
+      <!-- FOTO 7 -->
+
+      <div class="wall-photo w7">
+        <img src="7.jpeg" alt="Foto 7">
+      </div>
+
+
+      <!-- FOTO 8 -->
+
+      <div class="wall-photo w8">
+        <img src="8.jpeg" alt="Foto 8">
+      </div>
+
+
+      <!-- FOTO 9 -->
+
+      <div class="wall-photo w9">
+        <img src="9.jpeg" alt="Foto 9">
+      </div>
+
+
+      <!-- FOTO 10 -->
+
+      <div class="wall-photo w10">
+        <img src="10.jpeg" alt="Foto 10">
+      </div>
+
+
+      <!-- FOTO 11 -->
+
+      <div class="wall-photo w11">
+        <img src="11.jpeg" alt="Foto 11">
+      </div>
+
+
+      <!-- Kleine Papiernotizen -->
+
+      <div class="paper-note note1">
+        ein kleines<br>
+        Stück von uns ♡
+      </div>
+
+      <div class="paper-note note2">
+        Erinnerst du<br>
+        dich noch?
+      </div>
+
+      <div class="paper-note note3">
+        manche Momente<br>
+        bleiben.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
 
   <footer>
 

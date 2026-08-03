@@ -4,1482 +4,1566 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pinky Promise</title>
+<title>Pinky Promise ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
-
-* {
-  box-sizing: border-box;
+:root{
+    --cream:#f7eee8;
+    --paper:#fff9f4;
+    --pink:#d7b4ac;
+    --pink2:#c9968d;
+    --brown:#51433d;
+    --shadow:rgba(73,52,44,.16);
 }
 
-:root {
-  --paper: #f8f0eb;
-  --paper-light: #fffaf7;
-  --rose: #bd9293;
-  --rose-light: #ead1d0;
-  --ink: #302b2a;
-  --muted: #756b68;
-  --line: rgba(48,42,41,.16);
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-  margin: 0;
-  color: var(--ink);
-  font-family: 'Montserrat', sans-serif;
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--brown);
+    font-family:"DM Sans",sans-serif;
 
-  background:
-    radial-gradient(circle at 15% 10%, rgba(220,180,180,.20), transparent 25%),
-    radial-gradient(circle at 90% 30%, rgba(210,190,160,.16), transparent 28%),
-    linear-gradient(135deg, #eee2da, #faf1ec 45%, #eaded7);
+    background:
+        radial-gradient(
+            ellipse at 50% 5%,
+            rgba(255,255,255,.95),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            #eadbd3 0%,
+            #f8f0ea 42%,
+            #eee0d8 100%
+        );
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: .16;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(80,50,40,.035) 0px,
-      rgba(80,50,40,.035) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  z-index: -1;
+/* ganz dezente Papierstruktur */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
+
+    opacity:.035;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(70,50,40,.7) 0,
+            rgba(70,50,40,.7) 1px,
+            transparent 1px,
+            transparent 5px
+        );
 }
 
-.page {
-  width: min(1100px, calc(100% - 32px));
-  margin: auto;
-  padding: 45px 0 70px;
+
+/* =====================================================
+   AQUARELL
+===================================================== */
+
+.watercolor{
+    position:absolute;
+    pointer-events:none;
+    z-index:0;
+
+    background-image:url("watercolor.png");
+    background-size:cover;
+    background-position:center;
+
+    opacity:.24;
+    mix-blend-mode:multiply;
+
+    filter:
+        saturate(.65)
+        brightness(1.15);
+}
+
+.watercolor.one{
+    width:760px;
+    height:520px;
+    top:-100px;
+    left:50%;
+    transform:translateX(-50%) rotate(-5deg);
+}
+
+.watercolor.two{
+    width:500px;
+    height:420px;
+    left:-170px;
+    top:620px;
+    opacity:.17;
+    transform:rotate(12deg);
+}
+
+.watercolor.three{
+    width:500px;
+    height:450px;
+    right:-170px;
+    top:850px;
+    opacity:.15;
+    transform:rotate(-12deg);
 }
 
 
-/* =========================
+/* =====================================================
+   BLUMEN
+===================================================== */
+
+.flowers{
+    position:absolute;
+    z-index:5;
+    pointer-events:none;
+}
+
+.flowers img{
+    display:block;
+    width:100%;
+    height:auto;
+
+    opacity:.82;
+
+    filter:
+        brightness(1.1)
+        saturate(.65)
+        contrast(.9);
+}
+
+.flowers.left{
+    width:330px;
+    left:-70px;
+    top:10px;
+    transform:rotate(-8deg);
+}
+
+.flowers.right{
+    width:320px;
+    right:-80px;
+    top:70px;
+
+    transform:
+        scaleX(-1)
+        rotate(-7deg);
+}
+
+.flowers.bottom{
+    width:250px;
+    right:2%;
+    bottom:-60px;
+
+    opacity:.55;
+
+    transform:
+        scaleX(-1)
+        rotate(155deg);
+}
+
+
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
-.hero {
-  min-height: 560px;
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: 35px;
-  align-items: center;
-  margin-bottom: 65px;
+.hero{
+    position:relative;
+    min-height:920px;
+    overflow:hidden;
+
+    padding:40px 25px 100px;
 }
 
-.hero-paper {
-  position: relative;
-  background: rgba(255,250,247,.93);
-  padding: 70px 55px 50px;
-  box-shadow: 0 25px 60px rgba(65,45,40,.14);
-  transform: rotate(-.6deg);
-}
-
-.hero-paper::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border: 1px solid rgba(150,110,105,.15);
-  pointer-events: none;
-}
-
-.hero-title {
-  font-family: 'Caveat', cursive;
-  font-size: clamp(65px, 9vw, 110px);
-  font-weight: 500;
-  line-height: .78;
-  margin: 0 0 30px;
-}
-
-.hero-subtitle {
-  font-size: 11px;
-  letter-spacing: 4px;
-  line-height: 1.9;
-  font-weight: 500;
-}
-
-.small-heart {
-  color: var(--rose);
-  font-size: 28px;
-  margin-top: 22px;
+.hero-inner{
+    position:relative;
+    width:min(1400px,100%);
+    min-height:800px;
+    margin:auto;
 }
 
 
-/* =========================
-   SPOTIFY
-========================= */
+/* =====================================================
+   KLEINER ZETTEL
+===================================================== */
 
-.music-card {
-  margin-top: 45px;
-  padding: 15px 0;
+.little-note{
+    position:absolute;
+    z-index:12;
 
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+    left:7%;
+    top:35px;
 
-  display: flex;
-  align-items: center;
-  gap: 15px;
+    width:175px;
+    padding:25px 20px;
 
-  cursor: pointer;
+    background:#ead7cf;
 
-  transition: transform .2s ease;
+    box-shadow:
+        0 16px 35px var(--shadow);
+
+    transform:rotate(-7deg);
+
+    font-family:"Parisienne",cursive;
+    font-size:29px;
+    line-height:.95;
 }
 
-.music-card:hover {
-  transform: translateX(4px);
+.little-note span{
+    display:block;
+    margin-top:18px;
+
+    font-family:"DM Sans",sans-serif;
+    font-size:8px;
+    letter-spacing:3px;
 }
 
-.music-dot {
-  width: 34px;
-  height: 34px;
 
-  border: 1px solid var(--ink);
-  border-radius: 50%;
+/* =====================================================
+   HAUPTPAPIER
+===================================================== */
 
-  display: grid;
-  place-items: center;
+.main-paper{
+    position:absolute;
+    z-index:8;
 
-  font-size: 11px;
-  flex-shrink: 0;
+    width:min(720px,68vw);
+
+    left:50%;
+    top:55px;
+
+    transform:
+        translateX(-50%)
+        rotate(-.7deg);
+
+    padding:
+        82px 65px 70px;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            ellipse at 12% 20%,
+            rgba(215,180,172,.32),
+            transparent 36%
+        ),
+        radial-gradient(
+            ellipse at 90% 80%,
+            rgba(255,255,255,.8),
+            transparent 45%
+        ),
+        var(--paper);
+
+    box-shadow:
+        0 28px 60px rgba(66,47,39,.15);
+
+    clip-path:polygon(
+        1% 2%,
+        10% 4%,
+        22% 1%,
+        35% 3%,
+        48% 1%,
+        61% 4%,
+        74% 1%,
+        87% 3%,
+        99% 1%,
+        98% 96%,
+        87% 98%,
+        74% 96%,
+        61% 99%,
+        47% 96%,
+        34% 99%,
+        20% 96%,
+        7% 98%,
+        1% 95%
+    );
 }
 
-.music-text {
-  flex: 1;
+.main-paper h1{
+    font-family:"Parisienne",cursive;
+    font-size:clamp(80px,8vw,125px);
+    font-weight:400;
+    line-height:.75;
+    letter-spacing:-3px;
 }
 
-.music-title {
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-weight: 600;
+.main-paper .subtitle{
+    margin-top:40px;
+
+    font-size:10px;
+    line-height:2;
+    letter-spacing:4px;
 }
 
-.music-sub {
-  font-family: 'Caveat', cursive;
-  font-size: 18px;
+.main-paper .signature{
+    margin-top:22px;
+
+    color:var(--pink2);
+
+    font-family:"Parisienne",cursive;
+    font-size:29px;
 }
 
-.music-line {
-  width: 65px;
-  height: 18px;
+.heart{
+    position:absolute;
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0 8%,
-      var(--rose) 8% 11%,
-      transparent 11% 18%,
-      var(--rose) 18% 22%,
-      transparent 22% 29%,
-      var(--rose) 29% 32%,
-      transparent 32% 42%,
-      var(--rose) 42% 45%,
-      transparent 45% 55%,
-      var(--rose) 55% 59%,
-      transparent 59% 70%,
-      var(--rose) 70% 73%,
-      transparent 73%
+    right:65px;
+    top:120px;
+
+    color:#bd8c84;
+
+    font-size:55px;
+
+    transform:rotate(10deg);
+}
+
+
+/* =====================================================
+   POLAROIDS
+===================================================== */
+
+.polaroid{
+    position:absolute;
+    z-index:20;
+
+    background:#fffdf9;
+
+    padding:
+        10px 10px 38px;
+
+    box-shadow:
+        0 20px 42px rgba(55,40,32,.23);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+.polaroid:hover{
+    z-index:50;
+
+    box-shadow:
+        0 30px 55px rgba(55,40,32,.30);
+}
+
+.polaroid img{
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    background:#eee3dc;
+
+    filter:
+        sepia(5%)
+        saturate(.85)
+        brightness(1.04)
+        contrast(.94);
+}
+
+.tape{
+    position:absolute;
+    z-index:3;
+
+    width:62px;
+    height:20px;
+
+    left:50%;
+    top:-9px;
+
+    transform:
+        translateX(-50%)
+        rotate(-4deg);
+
+    background:rgba(216,181,168,.75);
+}
+
+
+/* Hero-Fotos */
+
+.hero-photo-1{
+    width:230px;
+    height:270px;
+
+    left:7%;
+    bottom:55px;
+
+    transform:rotate(-8deg);
+}
+
+.hero-photo-2{
+    width:220px;
+    height:260px;
+
+    right:8%;
+    top:130px;
+
+    transform:rotate(7deg);
+}
+
+.hero-photo-3{
+    width:190px;
+    height:225px;
+
+    right:19%;
+    bottom:45px;
+
+    transform:rotate(5deg);
+}
+
+
+/* =====================================================
+   PAPIER-SCRAPS
+===================================================== */
+
+.scrap{
+    position:absolute;
+    z-index:3;
+
+    background:#eadbd2;
+
+    box-shadow:
+        0 12px 25px rgba(65,45,35,.08);
+}
+
+.scrap.one{
+    width:140px;
+    height:80px;
+
+    left:24%;
+    bottom:65px;
+
+    transform:rotate(-8deg);
+
+    clip-path:polygon(
+        2% 7%,
+        93% 1%,
+        100% 89%,
+        9% 98%
+    );
+}
+
+.scrap.two{
+    width:105px;
+    height:140px;
+
+    right:29%;
+    top:110px;
+
+    transform:rotate(10deg);
+
+    background:#f1ded6;
+
+    clip-path:polygon(
+        3% 4%,
+        96% 2%,
+        93% 96%,
+        4% 100%
     );
 }
 
 
-/* =========================
-   POLAROIDS
-========================= */
+/* =====================================================
+   PLAYLIST
+===================================================== */
 
-.photo-area {
-  position: relative;
-  height: 470px;
+.playlist-wrap{
+    position:relative;
+    z-index:40;
+
+    width:min(820px,92%);
+
+    margin:-35px auto 0;
 }
 
-.polaroid {
-  position: absolute;
+.playlist{
+    display:flex;
+    align-items:center;
+    gap:22px;
 
-  width: 220px;
-  padding: 10px 10px 42px;
+    padding:22px 28px;
 
-  background: #fff;
+    background:#f8eee7;
 
-  box-shadow: 0 16px 35px rgba(55,40,35,.18);
+    box-shadow:
+        0 18px 38px rgba(65,45,35,.15);
+
+    transform:rotate(-.6deg);
+
+    clip-path:polygon(
+        1% 6%,
+        12% 4%,
+        24% 7%,
+        38% 4%,
+        52% 7%,
+        67% 4%,
+        82% 7%,
+        99% 4%,
+        98% 94%,
+        85% 97%,
+        69% 94%,
+        53% 98%,
+        37% 94%,
+        22% 97%,
+        8% 94%,
+        1% 96%
+    );
 }
 
-.polaroid img {
-  width: 100%;
-  height: auto;
-  max-height: 260px;
-  display: block;
-  object-fit: contain;
-  background: #f7f1ed;
+.vinyl{
+    flex:none;
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #171514 0 2px,
+            #292523 3px 5px
+        );
+
+    position:relative;
 }
 
-.polaroid::after {
-  content: attr(data-caption);
+.vinyl::after{
+    content:"";
 
-  position: absolute;
-  bottom: 11px;
-  left: 14px;
+    position:absolute;
 
-  font-family: 'Caveat', cursive;
-  font-size: 21px;
+    width:19px;
+    height:19px;
+
+    left:25.5px;
+    top:25.5px;
+
+    border-radius:50%;
+
+    background:#c5968d;
 }
 
-.tape {
-  position: absolute;
-
-  width: 65px;
-  height: 22px;
-
-  background: rgba(213,181,155,.62);
-
-  top: -10px;
-  left: 50%;
-
-  transform: translateX(-50%) rotate(-2deg);
-
-  z-index: 2;
+.playlist-text{
+    flex:1;
 }
 
-.p1 {
-  top: 25px;
-  left: 25px;
-  transform: rotate(-8deg);
+.playlist-text h3{
+    font-family:"Parisienne",cursive;
+    font-size:35px;
+    font-weight:400;
 }
 
-.p2 {
-  top: 150px;
-  right: 5px;
-  transform: rotate(7deg);
+.playlist-text p{
+    margin-top:2px;
+
+    font-size:9px;
+    letter-spacing:1.7px;
 }
 
-.p3 {
-  bottom: 0;
-  left: 85px;
-  transform: rotate(-3deg);
+.playlist button{
+    border:0;
+    cursor:pointer;
 }
 
+.play{
+    width:46px;
+    height:46px;
 
-/* =========================
-   SECTION
-========================= */
+    border-radius:50%;
 
-.section-intro {
-  text-align: center;
-  margin: 35px 0;
+    background:#352c28;
+    color:#fff;
 }
 
-.section-number {
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: var(--rose);
-}
+.spotify{
+    padding:12px 17px;
 
-.section-intro h2 {
-  font-family: 'Caveat', cursive;
-  font-size: 46px;
-  font-weight: 500;
-  margin: 3px 0 5px;
-}
+    background:#b88982;
+    color:white;
 
-.section-intro p {
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--muted);
-}
-
-
-/* =========================
-   MEMORY CARDS
-========================= */
-
-.memory-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-.memory-card {
-  position: relative;
-
-  min-height: 245px;
-  padding: 25px;
-
-  background: rgba(255,249,245,.84);
-
-  border: 1px solid rgba(90,65,58,.10);
-
-  box-shadow: 0 12px 30px rgba(65,45,40,.09);
-
-  cursor: pointer;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-
-  overflow: hidden;
-}
-
-.memory-card:nth-child(odd) {
-  transform: rotate(-.7deg);
-}
-
-.memory-card:nth-child(even) {
-  transform: rotate(.7deg);
-}
-
-.memory-card:hover {
-  transform: translateY(-5px) rotate(0);
-  box-shadow: 0 20px 40px rgba(65,45,40,.14);
-}
-
-.memory-number {
-  font-family: 'Caveat', cursive;
-  font-size: 31px;
-  color: var(--rose);
-}
-
-.memory-card h3 {
-  margin: 8px 0;
-
-  font-size: 17px;
-  letter-spacing: 2px;
-  font-weight: 500;
-
-  max-width: 230px;
-}
-
-.memory-card p {
-  margin: 0;
-
-  max-width: 220px;
-
-  font-family: 'Caveat', cursive;
-  font-size: 21px;
-
-  color: var(--muted);
-}
-
-.memory-photo {
-  position: absolute;
-
-  width: 115px;
-  height: 115px;
-
-  right: 20px;
-  bottom: 22px;
-
-  padding: 7px;
-
-  background: white;
-
-  box-shadow: 0 8px 20px rgba(50,35,30,.14);
-
-  transform: rotate(6deg);
-}
-
-.memory-photo img {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-  object-fit: cover;
+    font-size:9px;
+    letter-spacing:1.5px;
 }
 
 
-/* =========================
-   MODAL
-========================= */
+/* =====================================================
+   MEMORY SECTION
+===================================================== */
 
-.overlay {
-  display: none;
+.memories{
+    position:relative;
 
-  position: fixed;
-  inset: 0;
+    max-width:1400px;
 
-  z-index: 50;
+    margin:auto;
 
-  padding: 18px;
-
-  background: rgba(38,29,27,.48);
-
-  backdrop-filter: blur(8px);
-
-  align-items: center;
-  justify-content: center;
+    padding:
+        150px 6vw 190px;
 }
 
-.overlay.active {
-  display: flex;
+.heading{
+    text-align:center;
+
+    margin-bottom:95px;
 }
 
-.modal {
-  width: min(700px, 100%);
-  max-height: 90vh;
-
-  overflow-y: auto;
-
-  position: relative;
-
-  padding: 35px;
-
-  background: #fff9f5;
-
-  box-shadow: 0 30px 80px rgba(20,15,13,.3);
+.heading small{
+    font-size:9px;
+    letter-spacing:5px;
 }
 
-.modal-close {
-  position: absolute;
+.heading h2{
+    margin-top:5px;
 
-  top: 17px;
-  right: 18px;
+    font-family:"Parisienne",cursive;
 
-  width: 38px;
-  height: 38px;
-
-  border: 0;
-  border-radius: 50%;
-
-  background: #ead9d5;
-
-  cursor: pointer;
-
-  font-size: 21px;
+    font-size:80px;
+    font-weight:400;
 }
 
-.modal-number {
-  color: var(--rose);
+.heading p{
+    margin-top:14px;
 
-  font-size: 11px;
-  letter-spacing: 3px;
-}
-
-.modal h2 {
-  font-family: 'Caveat', cursive;
-  font-size: 48px;
-  font-weight: 500;
-
-  margin: 4px 0 25px;
+    font-size:10px;
+    letter-spacing:1.5px;
 }
 
 
-/* =========================
-   VIDEOS
-========================= */
+/* =====================================================
+   MEMORY GRID
+===================================================== */
 
-.video-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.memory-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:65px 35px;
 }
 
-.video-choice {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.memory{
+    position:relative;
 
-  width: 100%;
+    min-height:400px;
 
-  padding: 14px;
+    padding:30px 18px;
 
-  border: 1px solid rgba(70,50,45,.13);
+    text-align:center;
 
-  background: rgba(255,255,255,.7);
+    background:
+        radial-gradient(
+            ellipse at 20% 20%,
+            rgba(255,255,255,.72),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #f6ebe3,
+            #eee0d7
+        );
 
-  cursor: pointer;
+    box-shadow:
+        0 14px 32px rgba(65,45,35,.12);
 
-  text-align: left;
-
-  transition:
-    background .2s ease,
-    transform .2s ease;
+    clip-path:polygon(
+        1% 3%,
+        14% 1%,
+        28% 3%,
+        43% 1%,
+        59% 3%,
+        75% 1%,
+        98% 4%,
+        97% 97%,
+        83% 95%,
+        68% 98%,
+        52% 96%,
+        36% 98%,
+        20% 95%,
+        2% 97%
+    );
 }
 
-.video-choice:hover {
-  background: #f7e7e7;
-  transform: translateX(3px);
+.memory:nth-child(1){transform:rotate(-1.5deg);}
+.memory:nth-child(2){transform:rotate(1.3deg);}
+.memory:nth-child(3){transform:rotate(-.9deg);}
+.memory:nth-child(4){transform:rotate(1.7deg);}
+.memory:nth-child(5){transform:rotate(-1.2deg);}
+.memory:nth-child(6){transform:rotate(.9deg);}
+.memory:nth-child(7){transform:rotate(-1.5deg);}
+.memory:nth-child(8){transform:rotate(1.2deg);}
+
+.number{
+    color:#b98b83;
+
+    font-family:"Parisienne",cursive;
+
+    font-size:37px;
 }
 
-.video-thumb {
-  width: 65px;
-  height: 65px;
+.memory h3{
+    margin-top:3px;
 
-  flex-shrink: 0;
+    font-size:11px;
+    line-height:1.7;
 
-  background: #ead8d1;
+    letter-spacing:2.3px;
 
-  overflow: hidden;
+    font-weight:500;
 }
 
-.video-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.memory-heart{
+    margin:8px 0 19px;
+
+    color:#bd8e86;
+
+    font-size:14px;
 }
 
-.video-info {
-  flex: 1;
+.memory-photo{
+    position:relative;
+
+    width:155px;
+    height:190px;
+
+    margin:auto;
+
+    padding:8px 8px 25px;
+
+    background:#fffdf9;
+
+    box-shadow:
+        0 13px 24px rgba(55,40,32,.19);
 }
 
-.video-number {
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--rose);
+.memory-photo img{
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    background:#eee2da;
+
+    filter:
+        sepia(5%)
+        saturate(.85)
+        brightness(1.04)
+        contrast(.94);
 }
 
-.video-name {
-  font-family: 'Caveat', cursive;
-  font-size: 23px;
+.memory:nth-child(odd) .memory-photo{
+    transform:rotate(-4deg);
 }
 
-.play {
-  width: 32px;
-  height: 32px;
-
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-
-  display: grid;
-  place-items: center;
-
-  font-size: 11px;
-}
-
-
-/* =========================
-   VIDEO PLAYER
-========================= */
-
-.player {
-  display: none;
-}
-
-.player.active {
-  display: block;
-}
-
-.back {
-  border: 0;
-  background: transparent;
-
-  padding: 0;
-  margin-bottom: 15px;
-
-  font-size: 13px;
-
-  cursor: pointer;
-
-  color: var(--muted);
-}
-
-.player video {
-  width: 100%;
-  max-height: 65vh;
-
-  background: #111;
-  border-radius: 3px;
-}
-
-.player-caption {
-  font-family: 'Caveat', cursive;
-  font-size: 25px;
-
-  margin-top: 12px;
-}
-
-
-/* =========================
-   SPOTIFY BUTTON
-========================= */
-
-.spotify-box {
-  padding: 10px 0 5px;
-}
-
-.spotify-box p {
-  font-family: 'Caveat', cursive;
-  font-size: 23px;
-  color: var(--muted);
-}
-
-.spotify-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-
-  margin-top: 10px;
-  padding: 13px 20px;
-
-  color: var(--ink);
-  text-decoration: none;
-
-  border: 1px solid var(--ink);
-
-  font-size: 10px;
-  letter-spacing: 2px;
-
-  transition:
-    background .2s ease,
-    color .2s ease;
-}
-
-.spotify-link:hover {
-  background: var(--ink);
-  color: white;
+.memory:nth-child(even) .memory-photo{
+    transform:rotate(4deg);
 }
 
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
-footer {
-  text-align: center;
+footer{
+    position:relative;
 
-  margin-top: 65px;
+    min-height:430px;
 
-  font-family: 'Caveat', cursive;
-  font-size: 28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  color: var(--muted);
+    text-align:center;
+
+    padding:80px 20px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,249,244,.95),
+            transparent 65%
+        ),
+        #eadcd4;
+}
+
+footer h2{
+    font-family:"Parisienne",cursive;
+
+    font-size:75px;
+    line-height:.95;
+    font-weight:400;
+}
+
+footer p{
+    margin-top:23px;
+
+    font-size:9px;
+    letter-spacing:3px;
+}
+
+.footer-heart{
+    margin-top:22px;
+
+    color:#bd8f87;
+
+    font-size:28px;
 }
 
 
-/* =========================
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:1000px){
+
+    .hero{
+        min-height:900px;
+    }
+
+    .main-paper{
+        width:72vw;
+    }
+
+    .little-note{
+        left:1%;
+        transform:scale(.8) rotate(-7deg);
+    }
+
+    .hero-photo-1{
+        left:2%;
+    }
+
+    .hero-photo-2{
+        right:2%;
+    }
+
+    .hero-photo-3{
+        right:10%;
+    }
+
+    .memory-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:45px 25px;
+    }
+}
+
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
-@media (max-width: 760px) {
+@media(max-width:650px){
 
-  .page {
-    width: min(100% - 22px, 600px);
-    padding-top: 25px;
-  }
+    .hero{
+        min-height:900px;
 
-  .hero {
-    display: block;
-    min-height: auto;
-    margin-bottom: 45px;
-  }
+        padding:
+            20px 12px 80px;
+    }
 
-  .hero-paper {
-    padding: 55px 28px 45px;
-  }
+    .hero-inner{
+        min-height:810px;
+    }
 
-  .hero-title {
-    font-size: 72px;
-  }
+    .flowers{
+        width:190px;
+    }
 
-  .photo-area {
-    height: 390px;
-    margin-top: 35px;
-  }
+    .flowers.left{
+        left:-55px;
+        top:5px;
+    }
 
-  .polaroid {
-    width: 185px;
-  }
+    .flowers.right{
+        right:-65px;
+        top:30px;
+    }
 
-  .p1 {
-    left: 5%;
-  }
+    .flowers.bottom{
+        display:none;
+    }
 
-  .p2 {
-    right: 2%;
-    top: 125px;
-  }
+    .little-note{
+        display:none;
+    }
 
-  .p3 {
-    left: 25%;
-    bottom: 0;
-  }
+    .main-paper{
+        width:91vw;
 
-  .memory-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
+        top:70px;
 
-  .memory-card {
-    min-height: 210px;
-  }
+        padding:
+            65px 25px 58px;
+    }
 
-  .modal {
-    padding: 25px 20px;
-  }
+    .main-paper h1{
+        font-size:64px;
+        letter-spacing:-2px;
+    }
 
-  .modal h2 {
-    font-size: 42px;
-  }
+    .main-paper .subtitle{
+        margin-top:31px;
+
+        font-size:8px;
+        letter-spacing:2.7px;
+    }
+
+    .main-paper .signature{
+        font-size:24px;
+    }
+
+    .heart{
+        right:28px;
+        top:105px;
+        font-size:43px;
+    }
+
+    /* Mobile bekommt eine eigene Komposition */
+
+    .hero-photo-1{
+        width:145px;
+        height:175px;
+
+        left:3%;
+        bottom:65px;
+
+        transform:rotate(-8deg);
+    }
+
+    .hero-photo-2{
+        width:140px;
+        height:170px;
+
+        right:3%;
+        top:270px;
+
+        transform:rotate(7deg);
+    }
+
+    .hero-photo-3{
+        width:125px;
+        height:150px;
+
+        right:7%;
+        bottom:40px;
+
+        transform:rotate(5deg);
+    }
+
+    .scrap{
+        display:none;
+    }
+
+    /* Playlist */
+
+    .playlist-wrap{
+        width:94%;
+        margin:-20px auto 0;
+    }
+
+    .playlist{
+        gap:13px;
+        padding:18px 17px;
+    }
+
+    .vinyl{
+        width:53px;
+        height:53px;
+    }
+
+    .vinyl::after{
+        width:14px;
+        height:14px;
+
+        left:19.5px;
+        top:19.5px;
+    }
+
+    .playlist-text h3{
+        font-size:28px;
+    }
+
+    .playlist-text p{
+        font-size:7px;
+        letter-spacing:1.2px;
+    }
+
+    .spotify{
+        display:none;
+    }
+
+    .play{
+        width:42px;
+        height:42px;
+    }
+
+    /* Memories */
+
+    .memories{
+        padding:
+            110px 20px 140px;
+    }
+
+    .heading{
+        margin-bottom:60px;
+    }
+
+    .heading small{
+        font-size:8px;
+        letter-spacing:3.5px;
+    }
+
+    .heading h2{
+        font-size:58px;
+    }
+
+    .heading p{
+        max-width:290px;
+
+        margin:
+            12px auto 0;
+
+        line-height:1.7;
+    }
+
+    .memory-grid{
+        grid-template-columns:1fr;
+        gap:42px;
+    }
+
+    .memory{
+        width:min(370px,94vw);
+        min-height:390px;
+        margin:auto;
+    }
+
+    .memory-photo{
+        width:165px;
+        height:200px;
+    }
+
+    footer{
+        min-height:380px;
+    }
+
+    footer h2{
+        font-size:52px;
+    }
 }
 
-@media (max-width: 420px) {
 
-  .hero-title {
-    font-size: 61px;
-  }
+/* =====================================================
+   SEHR KLEINE HANDYS
+===================================================== */
 
-  .photo-area {
-    height: 330px;
-  }
+@media(max-width:390px){
 
-  .polaroid {
-    width: 155px;
-    padding-bottom: 32px;
-  }
+    .hero{
+        min-height:840px;
+    }
 
-  .polaroid::after {
-    font-size: 17px;
-  }
+    .hero-inner{
+        min-height:760px;
+    }
 
-  .p3 {
-    left: 23%;
-  }
+    .main-paper{
+        top:60px;
+        padding-top:58px;
+    }
+
+    .main-paper h1{
+        font-size:53px;
+    }
+
+    .hero-photo-1{
+        width:125px;
+        height:150px;
+        bottom:58px;
+    }
+
+    .hero-photo-2{
+        width:120px;
+        height:145px;
+        top:265px;
+    }
+
+    .hero-photo-3{
+        width:108px;
+        height:130px;
+        bottom:38px;
+    }
+
+    .memory{
+        min-height:370px;
+    }
+
+    .memory-photo{
+        width:150px;
+        height:180px;
+    }
 }
+
 </style>
 </head>
 
 
 <body>
 
-<div class="page">
+<!-- Aquarell -->
+<div class="watercolor one"></div>
+<div class="watercolor two"></div>
+<div class="watercolor three"></div>
 
 
-<!-- =========================
-     START
-========================= -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
-  <div class="hero-paper">
+<div class="hero-inner">
 
-    <h1 class="hero-title">
-      Pinky<br>
-      Promise
-    </h1>
 
-    <div class="hero-subtitle">
-      FÜR DIE TAGE, AN DENEN DU<br>
-      MICH VERMISST.
+    <!-- Blumen -->
+
+    <div class="flowers left">
+        <img src="flowers.png" alt="">
     </div>
 
-    <div class="small-heart">♡</div>
+    <div class="flowers right">
+        <img src="flowers.png" alt="">
+    </div>
 
 
-    <!-- SPOTIFY -->
+    <!-- Kleiner Zettel -->
 
-    <div class="music-card" onclick="openSpotify()">
+    <div class="little-note">
+        you mean
+        <br>
+        the world
+        <br>
+        to me ♡
 
-      <div class="music-dot">▶</div>
+        <span>
+            FÜR DICH
+        </span>
+    </div>
 
-      <div class="music-text">
 
-        <div class="music-title">
-          YOU &amp; ME
+    <!-- Hauptpapier -->
+
+    <div class="main-paper">
+
+        <h1>
+            Pinky<br>
+            Promise
+        </h1>
+
+        <div class="heart">
+            ♡
         </div>
 
-        <div class="music-sub">
-          a little playlist for you
+        <div class="subtitle">
+            FÜR DIE TAGE,<br>
+            AN DENEN DU MICH VERMISST.
         </div>
 
-      </div>
-
-      <div class="music-line"></div>
-
-    </div>
-
-  </div>
-
-
-  <!-- POLAROIDS -->
-
-  <div class="photo-area">
-
-    <div class="polaroid p1" data-caption="you & me">
-
-      <div class="tape"></div>
-
-      <img src="1.jpeg" alt="Erinnerung">
+        <div class="signature">
+            für dich, immer.
+        </div>
 
     </div>
 
 
-    <div class="polaroid p2" data-caption="♡">
+    <!-- Papierstücke -->
 
-      <div class="tape"></div>
+    <div class="scrap one"></div>
+    <div class="scrap two"></div>
 
-      <img src="2.jpeg" alt="Erinnerung">
+
+    <!-- Bild 1 = Einfach so -->
+
+    <div class="polaroid hero-photo-1">
+
+        <div class="tape"></div>
+
+        <img src="1.jpg" alt="Einfach so">
 
     </div>
 
 
-    <div class="polaroid p3" data-caption="für dich">
+    <!-- Bild 6 = Vermissen -->
 
-      <div class="tape"></div>
+    <div class="polaroid hero-photo-2">
 
-      <img src="3.jpeg" alt="Erinnerung">
+        <div class="tape"></div>
+
+        <img src="6.jpg" alt="Wenn du mich vermisst">
 
     </div>
 
-  </div>
+
+    <!-- Bild 4 = Wiedersehen -->
+
+    <div class="polaroid hero-photo-3">
+
+        <div class="tape"></div>
+
+        <img src="4.jpg" alt="Bis wir uns wiedersehen">
+
+    </div>
+
+
+</div>
 
 </section>
 
 
+<!-- =====================================================
+     PLAYLIST
+===================================================== -->
 
-<!-- =========================
-     KARTEN
-========================= -->
+<section class="playlist-wrap">
 
-<section>
+<div class="playlist">
 
-  <div class="section-intro">
+    <div class="vinyl"></div>
 
-    <div class="section-number">
-      01 — 08
+    <div class="playlist-text">
+
+        <h3>
+            You & Me
+        </h3>
+
+        <p>
+            eine playlist für uns ♡
+        </p>
+
     </div>
 
+    <button
+        class="play"
+        aria-label="Spotify Playlist öffnen"
+        onclick="
+            window.open(
+                'https://open.spotify.com/playlist/0MQWfTlAiJbHLrfESSXRgn',
+                '_blank'
+            )
+        "
+    >
+        ▶
+    </button>
+
+    <button
+        class="spotify"
+        onclick="
+            window.open(
+                'https://open.spotify.com/playlist/0MQWfTlAiJbHLrfESSXRgn',
+                '_blank'
+            )
+        "
+    >
+        PLAYLIST ♡
+    </button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ERINNERUNGEN
+===================================================== -->
+
+<section class="memories">
+
+
+<div class="heading">
+
+    <small>
+        KLEINE NACHRICHTEN
+    </small>
+
     <h2>
-      Für dich.
+        Für dich, wenn ...
     </h2>
 
     <p>
-      KLEINE NACHRICHTEN FÜR DIE TAGE DAZWISCHEN
+        kleine Erinnerungen für die Momente,
+        in denen du sie gerade brauchst.
     </p>
 
-  </div>
+</div>
 
 
-  <div class="memory-grid">
+<div class="memory-grid">
 
 
-    <div class="memory-card" onclick="openCategory('birthday')">
+    <!-- 01 | Einfach so | Bild 1 -->
 
-      <div class="memory-number">01</div>
+    <article class="memory">
 
-      <h3>DEIN GEBURTSTAG</h3>
+        <div class="number">01</div>
 
-      <p>Für deinen besonderen Tag.</p>
+        <h3>
+            EINFACH<br>
+            SO
+        </h3>
 
-      <div class="memory-photo">
-        <img src="4.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="1.jpg" alt="Einfach so">
+        </div>
 
+    </article>
 
 
-    <div class="memory-card" onclick="openCategory('christmas')">
+    <!-- 02 | Für die Nacht | Bild 3 -->
 
-      <div class="memory-number">02</div>
+    <article class="memory">
 
-      <h3>WEIHNACHTEN</h3>
+        <div class="number">02</div>
 
-      <p>Für deinen Weihnachtsmorgen.</p>
+        <h3>
+            FÜR DIE<br>
+            NACHT
+        </h3>
 
-      <div class="memory-photo">
-        <img src="5.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="3.jpg" alt="Für die Nacht">
+        </div>
 
+    </article>
 
 
-    <div class="memory-card" onclick="openCategory('missyou')">
+    <!-- 03 | Bis wir uns wiedersehen | Bild 4 -->
 
-      <div class="memory-number">03</div>
+    <article class="memory">
 
-      <h3>WENN DU MICH VERMISST</h3>
+        <div class="number">03</div>
 
-      <p>Für die Tage dazwischen.</p>
+        <h3>
+            BIS WIR UNS<br>
+            WIEDERSEHEN
+        </h3>
 
-      <div class="memory-photo">
-        <img src="6.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="4.jpg" alt="Bis wir uns wiedersehen">
+        </div>
 
+    </article>
 
 
-    <div class="memory-card" onclick="openCategory('random')">
+    <!-- 04 | Wenn du mich vermisst | Bild 6 -->
 
-      <div class="memory-number">04</div>
+    <article class="memory">
 
-      <h3>EINFACH SO</h3>
+        <div class="number">04</div>
 
-      <p>Weil es keinen Grund braucht.</p>
+        <h3>
+            WENN DU MICH<br>
+            VERMISST
+        </h3>
 
-      <div class="memory-photo">
-        <img src="7.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="6.jpg" alt="Wenn du mich vermisst">
+        </div>
 
+    </article>
 
 
-    <div class="memory-card" onclick="openCategory('laugh')">
+    <!-- 05 | Wenn du lachen willst | Bild 10 -->
 
-      <div class="memory-number">05</div>
+    <article class="memory">
 
-      <h3>WENN DU LACHEN WILLST</h3>
+        <div class="number">05</div>
 
-      <p>Für ein kleines Grinsen.</p>
+        <h3>
+            WENN DU<br>
+            LACHEN WILLST
+        </h3>
 
-      <div class="memory-photo">
-        <img src="8.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="10.jpg" alt="Wenn du lachen willst">
+        </div>
 
+    </article>
 
 
-    <div class="memory-card" onclick="openCategory('night')">
+    <!-- 06 | Geburtstag | Bild 2 -->
 
-      <div class="memory-number">06</div>
+    <article class="memory">
 
-      <h3>FÜR DIE NACHT</h3>
+        <div class="number">06</div>
 
-      <p>Wenn der Tag ruhig wird.</p>
+        <h3>
+            DEIN<br>
+            GEBURTSTAG
+        </h3>
 
-      <div class="memory-photo">
-        <img src="9.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="2.jpg" alt="Geburtstag">
+        </div>
 
+    </article>
 
 
-    <div class="memory-card" onclick="openCategory('bad')">
+    <!-- 07 | Weihnachten | Bild 5 -->
 
-      <div class="memory-number">07</div>
+    <article class="memory">
 
-      <h3>WENN DU EINEN SCHLECHTEN TAG HAST</h3>
+        <div class="number">07</div>
 
-      <p>Ein kleines bisschen von mir.</p>
+        <h3>
+            FROHE<br>
+            WEIHNACHTEN
+        </h3>
 
-      <div class="memory-photo">
-        <img src="10.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="5.jpg" alt="Weihnachten">
+        </div>
 
+    </article>
 
 
-    <div class="memory-card" onclick="openCategory('again')">
+    <!-- 08 | Schlechter Tag | Bild 7 -->
 
-      <div class="memory-number">08</div>
+    <article class="memory">
 
-      <h3>BIS WIR UNS WIEDERSEHEN</h3>
+        <div class="number">08</div>
 
-      <p>Für die Tage dazwischen.</p>
+        <h3>
+            WENN DU EINEN<br>
+            SCHLECHTEN TAG HAST
+        </h3>
 
-      <div class="memory-photo">
-        <img src="11.jpeg" alt="">
-      </div>
+        <div class="memory-heart">♡</div>
 
-    </div>
+        <div class="memory-photo">
+            <img src="7.jpg" alt="Schlechter Tag">
+        </div>
 
+    </article>
 
-  </div>
+
+    <!-- 09 | weitere Erinnerung | Bild 8 -->
+
+    <article class="memory">
+
+        <div class="number">09</div>
+
+        <h3>
+            FÜR EINEN<br>
+            SCHÖNEN TAG
+        </h3>
+
+        <div class="memory-heart">♡</div>
+
+        <div class="memory-photo">
+            <img src="8.jpg" alt="Erinnerung">
+        </div>
+
+    </article>
+
+
+    <!-- 10 | weitere Erinnerung | Bild 9 -->
+
+    <article class="memory">
+
+        <div class="number">10</div>
+
+        <h3>
+            WENN DU<br>
+            RUHE BRAUCHST
+        </h3>
+
+        <div class="memory-heart">♡</div>
+
+        <div class="memory-photo">
+            <img src="9.jpg" alt="Erinnerung">
+        </div>
+
+    </article>
+
+
+    <!-- 11 | weitere Erinnerung | Bild 11 -->
+
+    <article class="memory">
+
+        <div class="number">11</div>
+
+        <h3>
+            NOCH EINE<br>
+            KLEINE ERINNERUNG
+        </h3>
+
+        <div class="memory-heart">♡</div>
+
+        <div class="memory-photo">
+            <img src="11.jpg" alt="Erinnerung">
+        </div>
+
+    </article>
+
+
+</div>
 
 </section>
 
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
-  für dich, immer. ♡
+
+<div>
+
+    <h2>
+        bis wir uns<br>
+        wiedersehen.
+    </h2>
+
+    <p>
+        UND BIS DAHIN BLEIBT DIESES KLEINE ALBUM HIER.
+    </p>
+
+    <div class="footer-heart">
+        ♡
+    </div>
+
+</div>
+
 </footer>
 
-
-</div>
-
-
-
-<!-- =========================
-     MODAL
-========================= -->
-
-<div class="overlay" id="overlay">
-
-  <div class="modal">
-
-    <button
-      class="modal-close"
-      onclick="closeModal()"
-      aria-label="Schließen"
-    >
-      ×
-    </button>
-
-
-    <!-- VIDEO-LISTE -->
-
-    <div id="listView">
-
-      <div
-        class="modal-number"
-        id="modalNumber"
-      ></div>
-
-      <h2 id="modalTitle"></h2>
-
-      <div
-        class="video-list"
-        id="videoList"
-      ></div>
-
-    </div>
-
-
-    <!-- VIDEO PLAYER -->
-
-    <div class="player" id="player">
-
-      <button
-        class="back"
-        onclick="backToList()"
-      >
-        ← zurück
-      </button>
-
-      <video
-        id="videoElement"
-        controls
-        playsinline
-      ></video>
-
-      <div
-        class="player-caption"
-        id="playerCaption"
-      ></div>
-
-    </div>
-
-
-    <!-- SPOTIFY -->
-
-    <div
-      class="spotify-box"
-      id="spotifyBox"
-      style="display:none;"
-    >
-
-      <div class="modal-number">
-        PLAYLIST
-      </div>
-
-      <h2>
-        You &amp; Me
-      </h2>
-
-      <p>
-        Ein paar Lieder für uns. ♡
-      </p>
-
-      <a
-        class="spotify-link"
-        href="https://open.spotify.com/playlist/0MQWfTlAiJbHLrfESSXRgn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ▶ &nbsp; AUF SPOTIFY ÖFFNEN
-      </a>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-<script>
-
-/* ==================================
-   VIDEO-DATEN
-================================== */
-
-const categories = {
-
-  birthday: {
-    number: "01",
-    title: "Dein Geburtstag",
-
-    videos: [
-      {
-        name: "Für deinen Geburtstag",
-        url: "DEIN-GEBURTSTAG-LINK",
-        image: "4.jpeg"
-      }
-    ]
-  },
-
-
-  christmas: {
-    number: "02",
-    title: "Weihnachten",
-
-    videos: [
-      {
-        name: "Für deinen Weihnachtsmorgen",
-        url: "DEIN-WEIHNACHTS-LINK",
-        image: "5.jpeg"
-      }
-    ]
-  },
-
-
-  missyou: {
-    number: "03",
-    title: "Wenn du mich vermisst",
-
-    videos: [
-      {
-        name: "Für heute",
-        url: "DEIN-VERMISSE-LINK-1",
-        image: "6.jpeg"
-      },
-
-      {
-        name: "Wenn du mich besonders vermisst",
-        url: "DEIN-VERMISSE-LINK-2",
-        image: "6.jpeg"
-      },
-
-      {
-        name: "Einfach weil ich dich vermisse",
-        url: "DEIN-VERMISSE-LINK-3",
-        image: "6.jpeg"
-      }
-    ]
-  },
-
-
-  random: {
-    number: "04",
-    title: "Einfach so",
-
-    videos: [
-      {
-        name: "Eine kleine Nachricht",
-        url: "DEIN-EINFACH-SO-LINK-1",
-        image: "7.jpeg"
-      },
-
-      {
-        name: "Einfach so",
-        url: "DEIN-EINFACH-SO-LINK-2",
-        image: "7.jpeg"
-      },
-
-      {
-        name: "Für irgendwann",
-        url: "DEIN-EINFACH-SO-LINK-3",
-        image: "7.jpeg"
-      }
-    ]
-  },
-
-
-  laugh: {
-    number: "05",
-    title: "Wenn du lachen willst",
-
-    videos: [
-      {
-        name: "Nummer 1",
-        url: "DEIN-LACHEN-LINK-1",
-        image: "8.jpeg"
-      },
-
-      {
-        name: "Nummer 2",
-        url: "DEIN-LACHEN-LINK-2",
-        image: "8.jpeg"
-      }
-    ]
-  },
-
-
-  night: {
-    number: "06",
-    title: "Für die Nacht",
-
-    videos: [
-      {
-        name: "Gute Nacht",
-        url: "DEIN-NACHT-LINK-1",
-        image: "9.jpeg"
-      },
-
-      {
-        name: "Noch wach?",
-        url: "DEIN-NACHT-LINK-2",
-        image: "9.jpeg"
-      }
-    ]
-  },
-
-
-  bad: {
-    number: "07",
-    title: "Wenn du einen schlechten Tag hast",
-
-    videos: [
-      {
-        name: "Für heute",
-        url: "DEIN-SCHLECHTER-TAG-LINK-1",
-        image: "10.jpeg"
-      },
-
-      {
-        name: "Für einen schweren Tag",
-        url: "DEIN-SCHLECHTER-TAG-LINK-2",
-        image: "10.jpeg"
-      }
-    ]
-  },
-
-
-  again: {
-    number: "08",
-    title: "Bis wir uns wiedersehen",
-
-    videos: [
-      {
-        name: "Für die Tage dazwischen",
-        url: "DEIN-WIEDERSEHEN-LINK-1",
-        image: "11.jpeg"
-      },
-
-      {
-        name: "Bis bald",
-        url: "DEIN-WIEDERSEHEN-LINK-2",
-        image: "11.jpeg"
-      }
-    ]
-  }
-
-};
-
-
-/* ==================================
-   KATEGORIE ÖFFNEN
-================================== */
-
-function openCategory(category) {
-
-  const data = categories[category];
-
-  document.getElementById("modalNumber").textContent =
-    data.number;
-
-  document.getElementById("modalTitle").textContent =
-    data.title;
-
-  const list =
-    document.getElementById("videoList");
-
-  list.innerHTML = "";
-
-
-  data.videos.forEach((video, index) => {
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "video-choice";
-
-
-    button.innerHTML = `
-
-      <div class="video-thumb">
-
-        <img
-          src="${video.image}"
-          alt=""
-        >
-
-      </div>
-
-      <div class="video-info">
-
-        <div class="video-number">
-          ${String(index + 1).padStart(2, "0")}
-        </div>
-
-        <div class="video-name">
-          ${video.name}
-        </div>
-
-      </div>
-
-      <div class="play">
-        ▶
-      </div>
-    `;
-
-
-    button.onclick =
-      () => openVideo(video);
-
-
-    list.appendChild(button);
-
-  });
-
-
-  document.getElementById("listView")
-    .style.display = "block";
-
-  document.getElementById("player")
-    .classList.remove("active");
-
-  document.getElementById("spotifyBox")
-    .style.display = "none";
-
-  document.getElementById("overlay")
-    .classList.add("active");
-}
-
-
-/* ==================================
-   VIDEO ÖFFNEN
-================================== */
-
-function openVideo(video) {
-
-  const element =
-    document.getElementById("videoElement");
-
-  element.src =
-    video.url;
-
-  element.load();
-
-
-  document.getElementById("playerCaption")
-    .textContent =
-    video.name;
-
-
-  document.getElementById("listView")
-    .style.display = "none";
-
-  document.getElementById("spotifyBox")
-    .style.display = "none";
-
-  document.getElementById("player")
-    .classList.add("active");
-}
-
-
-/* ==================================
-   ZURÜCK
-================================== */
-
-function backToList() {
-
-  const element =
-    document.getElementById("videoElement");
-
-  element.pause();
-
-  element.removeAttribute("src");
-
-  element.load();
-
-
-  document.getElementById("player")
-    .classList.remove("active");
-
-  document.getElementById("listView")
-    .style.display = "block";
-}
-
-
-/* ==================================
-   SPOTIFY
-================================== */
-
-function openSpotify() {
-
-  document.getElementById("listView")
-    .style.display = "none";
-
-  document.getElementById("player")
-    .classList.remove("active");
-
-  document.getElementById("spotifyBox")
-    .style.display = "block";
-
-  document.getElementById("overlay")
-    .classList.add("active");
-}
-
-
-/* ==================================
-   SCHLIESSEN
-================================== */
-
-function closeModal() {
-
-  const element =
-    document.getElementById("videoElement");
-
-  element.pause();
-
-  element.removeAttribute("src");
-
-  element.load();
-
-
-  document.getElementById("overlay")
-    .classList.remove("active");
-
-  document.getElementById("player")
-    .classList.remove("active");
-
-  document.getElementById("spotifyBox")
-    .style.display = "none";
-
-  document.getElementById("listView")
-    .style.display = "block";
-}
-
-
-/* ==================================
-   AUSSERHALB KLICKEN
-================================== */
-
-document
-  .getElementById("overlay")
-  .addEventListener("click", function(event) {
-
-    if (event.target === this) {
-      closeModal();
-    }
-
-  });
-
-
-/* ==================================
-   ESC
-================================== */
-
-document.addEventListener("keydown", function(event) {
-
-  if (event.key === "Escape") {
-    closeModal();
-  }
-
-});
-
-</script>
 
 </body>
 </html>

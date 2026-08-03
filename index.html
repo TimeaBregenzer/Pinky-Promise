@@ -1,1437 +1,1579 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Für dich ♡</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #f5ede6;
-      --paper: #fcf9f5;
-      --paper2: #f1e5dd;
-      --pink: #d2a5a6;
-      --pink-dark: #b98487;
-      --ink: #4e403b;
-      --muted: #806f68;
-      --shadow: rgba(65, 43, 37, .17);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      font-family: "DM Sans", sans-serif;
-      background:
-        radial-gradient(
-          circle at 15% 8%,
-          rgba(238, 202, 198, .65),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 88% 30%,
-          rgba(225, 194, 188, .5),
-          transparent 32%
-        ),
-        linear-gradient(
-          135deg,
-          #e9dcd5,
-          #f7eee8 48%,
-          #eadbd4
-        );
-      overflow-x: hidden;
-    }
-
-    /* Aquarelltextur */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -10;
-      pointer-events: none;
-      background-image: url("watercolor.png");
-      background-size: cover;
-      background-position: center;
-      opacity: .18;
-      mix-blend-mode: multiply;
-    }
-
-    /* weicher fotografischer Rand */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      pointer-events: none;
-      background:
-        radial-gradient(
-          ellipse at center,
-          transparent 45%,
-          rgba(65, 43, 37, .07)
-        );
-    }
-
-    /* =====================================================
-       ALLGEMEIN
-    ===================================================== */
-
-    .hand {
-      font-family: "Caveat", cursive;
-    }
-
-    /* =====================================================
-       HERO
-    ===================================================== */
-
-    .hero {
-      position: relative;
-      min-height: 900px;
-      padding: 80px 30px 130px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .hero-light {
-      position: absolute;
-      width: 1000px;
-      height: 700px;
-      left: 50%;
-      top: 45%;
-      transform: translate(-50%, -50%);
-      background:
-        radial-gradient(
-          ellipse,
-          rgba(255, 248, 241, .9),
-          rgba(236, 205, 201, .5) 45%,
-          transparent 72%
-        );
-      filter: blur(30px);
-      z-index: -1;
-    }
-
-    /* =====================================================
-       HAUPTPAPIER
-    ===================================================== */
-
-    .hero-paper {
-      position: relative;
-      width: min(850px, 70vw);
-      min-height: 600px;
-
-      padding: 90px 60px 70px;
-
-      background:
-        linear-gradient(
-          rgba(255,255,255,.25),
-          rgba(255,255,255,.1)
-        ),
-        url("watercolor.png");
-
-      background-size: cover;
-      background-position: center;
-
-      box-shadow:
-        0 35px 75px rgba(63, 42, 36, .18),
-        inset 0 0 50px rgba(95, 66, 58, .05);
-
-      transform: rotate(-.7deg);
-
-      clip-path: polygon(
-        1% 2%,
-        18% 1%,
-        36% 3%,
-        55% 0,
-        77% 2%,
-        98% 0,
-        100% 21%,
-        98% 43%,
-        100% 67%,
-        98% 97%,
-        80% 99%,
-        62% 97%,
-        45% 100%,
-        26% 98%,
-        8% 100%,
-        0 97%,
-        1% 76%,
-        0 52%,
-        1% 30%
-      );
-
-      text-align: center;
-      z-index: 3;
-    }
-
-    .hero-paper::after {
-      content: "";
-      position: absolute;
-      inset: 15px;
-      border: 1px solid rgba(87, 61, 54, .07);
-      pointer-events: none;
-    }
-
-    /* =====================================================
-       TITEL
-    ===================================================== */
-
-    .title {
-      margin: 0;
-
-      font-family: "Caveat", cursive;
-      font-size: clamp(82px, 9vw, 145px);
-      font-weight: 500;
-      line-height: .68;
-      letter-spacing: -4px;
-
-      transform: rotate(-3deg);
-    }
-
-    .title span {
-      display: block;
-    }
-
-    .heart {
-      position: absolute;
-      top: 140px;
-      right: 17%;
-
-      color: var(--pink);
-      font-family: "Caveat", cursive;
-      font-size: 58px;
-
-      transform: rotate(12deg);
-    }
-
-    .intro {
-      margin: 60px auto 25px;
-      max-width: 450px;
-
-      font-size: 10px;
-      line-height: 2.1;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-    }
-
-    .ornament {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-
-      color: var(--pink);
-      font-size: 21px;
-    }
-
-    .ornament::before,
-    .ornament::after {
-      content: "";
-      width: 115px;
-      height: 1px;
-      background: rgba(80, 59, 53, .2);
-    }
-
-    /* =====================================================
-       BLUMEN
-       Hinter den Polaroids!
-    ===================================================== */
-
-    .flowers {
-      position: absolute;
-      z-index: 1;
-      pointer-events: none;
-      opacity: .9;
-
-      filter:
-        drop-shadow(
-          3px 7px 8px rgba(58, 38, 33, .08)
-        );
-    }
-
-    .flowers img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .flowers-left {
-      width: 370px;
-      left: -100px;
-      bottom: 20px;
-      transform: rotate(-12deg);
-    }
-
-    .flowers-right {
-      width: 390px;
-      right: -110px;
-      top: 10px;
-      transform: rotate(8deg);
-    }
-
-    /* =====================================================
-       SPOTIFY
-    ===================================================== */
-
-    .spotify {
-      position: relative;
-      z-index: 15;
-
-      width: min(620px, 92%);
-      margin: 40px auto 0;
-
-      padding: 10px;
-
-      background: rgba(250, 244, 238, .8);
-
-      box-shadow:
-        0 15px 32px rgba(58, 38, 33, .13);
-
-      transform: rotate(.4deg);
-    }
-
-    .spotify iframe {
-      display: block;
-
-      width: 100%;
-      height: 152px;
-
-      border: 0;
-      border-radius: 12px;
-    }
-
-    /* =====================================================
-       POLAROIDS
-    ===================================================== */
-
-    .polaroid {
-      position: absolute;
-
-      background: #fffdf9;
-
-      padding: 10px 10px 43px;
-
-      box-shadow:
-        0 20px 35px rgba(54, 37, 32, .2),
-        0 3px 8px rgba(54, 37, 32, .1);
-
-      z-index: 8;
-
-      transition:
-        transform .35s ease,
-        box-shadow .35s ease;
-    }
-
-    .polaroid img {
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-    }
-
-    .polaroid:hover {
-      z-index: 50;
-
-      transform:
-        translateY(-12px)
-        rotate(0deg)
-        scale(1.04) !important;
-
-      box-shadow:
-        0 30px 50px rgba(54, 37, 32, .25);
-    }
-
-    .tape {
-      position: absolute;
-
-      top: -13px;
-      left: 50%;
-
-      width: 72px;
-      height: 24px;
-
-      transform:
-        translateX(-50%)
-        rotate(-3deg);
-
-      background: rgba(224, 188, 173, .57);
-
-      box-shadow:
-        0 1px 3px rgba(60, 38, 31, .08);
-    }
-
-    /* 1 */
-    .p1 {
-      width: 205px;
-      height: 260px;
-
-      left: 3%;
-      top: 180px;
-
-      transform: rotate(-9deg);
-    }
-
-    /* 2 */
-    .p2 {
-      width: 195px;
-      height: 250px;
-
-      left: 14%;
-      bottom: 55px;
-
-      transform: rotate(7deg);
-    }
-
-    /* 3 */
-    .p3 {
-      width: 205px;
-      height: 260px;
-
-      right: 14%;
-      top: 90px;
-
-      transform: rotate(8deg);
-    }
-
-    /* 4 */
-    .p4 {
-      width: 210px;
-      height: 265px;
-
-      right: 3%;
-      top: 290px;
-
-      transform: rotate(-8deg);
-    }
-
-    /* =====================================================
-       POST-IT
-    ===================================================== */
-
-    .postit {
-      position: absolute;
-
-      right: 8%;
-      bottom: 75px;
-
-      z-index: 14;
-
-      width: 165px;
-      min-height: 135px;
-
-      padding: 25px 18px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,.16),
-          transparent
-        ),
-        #e6c5c4;
-
-      box-shadow:
-        9px 17px 26px rgba(55, 37, 32, .16);
-
-      font-family: "Caveat", cursive;
-      font-size: 25px;
-      line-height: 1.05;
-
-      transform: rotate(6deg);
-    }
-
-    .postit::before {
-      content: "";
-
-      position: absolute;
-
-      top: -11px;
-      left: 34px;
-
-      width: 75px;
-      height: 23px;
-
-      background: rgba(224, 188, 173, .55);
-
-      transform: rotate(-4deg);
-    }
-
-    /* =====================================================
-       DOODLES
-    ===================================================== */
-
-    .doodle {
-      position: absolute;
-
-      font-family: "Caveat", cursive;
-      color: var(--pink);
-
-      pointer-events: none;
-      z-index: 20;
-    }
-
-    .doodle-heart {
-      font-size: 45px;
-      transform: rotate(-12deg);
-    }
-
-    .doodle-star {
-      font-size: 25px;
-      transform: rotate(15deg);
-    }
-
-    .doodle-arrow {
-      font-size: 45px;
-      transform: rotate(-15deg);
-    }
-
-    .d1 {
-      left: 8%;
-      top: 100px;
-    }
-
-    .d2 {
-      right: 10%;
-      bottom: 170px;
-    }
-
-    /* =====================================================
-       NEUE SEITE / MOODBOARD
-    ===================================================== */
-
-    .memories-section {
-      position: relative;
-
-      padding: 120px 6vw 150px;
-
-      background:
-        linear-gradient(
-          rgba(255,255,255,.34),
-          rgba(255,255,255,.34)
-        ),
-        url("watercolor.png");
-
-      background-size: cover;
-      background-position: center;
-    }
-
-    .paper-edge {
-      position: absolute;
-
-      top: -35px;
-      left: 0;
-
-      width: 100%;
-      height: 75px;
-
-      background: var(--cream);
-
-      clip-path: polygon(
-        0 38%,
-        8% 22%,
-        16% 39%,
-        25% 17%,
-        35% 40%,
-        44% 20%,
-        54% 37%,
-        64% 15%,
-        75% 36%,
-        85% 19%,
-        94% 38%,
-        100% 22%,
-        100% 100%,
-        0 100%
-      );
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 85px;
-    }
-
-    .section-title h2 {
-      margin: 0;
-
-      font-family: "Caveat", cursive;
-      font-size: 60px;
-      font-weight: 500;
-
-      transform: rotate(-2deg);
-    }
-
-    .section-title p {
-      margin-top: 8px;
-
-      font-size: 9px;
-      letter-spacing: .27em;
-      text-transform: uppercase;
-
-      color: var(--muted);
-    }
-
-    /* =====================================================
-       11 FOTOS
-    ===================================================== */
-
-    .photo-wall {
-      position: relative;
-
-      width: min(1150px, 100%);
-      min-height: 2050px;
-
-      margin: auto;
-    }
-
-    .wall-photo {
-      position: absolute;
-
-      padding: 11px 11px 45px;
-
-      background: #fffdfa;
-
-      box-shadow:
-        0 20px 38px rgba(58, 39, 34, .18),
-        0 2px 6px rgba(58, 39, 34, .1);
-
-      transition:
-        transform .35s ease,
-        z-index .1s;
-    }
-
-    .wall-photo img {
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-    }
-
-    .wall-photo:hover {
-      z-index: 50 !important;
-
-      transform:
-        translateY(-12px)
-        rotate(0deg)
-        scale(1.05) !important;
-    }
-
-    /* Tape */
-    .wall-photo::before {
-      content: "";
-
-      position: absolute;
-
-      width: 72px;
-      height: 23px;
-
-      top: -12px;
-      left: 50%;
-
-      transform:
-        translateX(-50%)
-        rotate(-3deg);
-
-      background: rgba(224, 188, 173, .55);
-
-      z-index: 5;
-    }
-
-    /* FOTO 1 */
-    .w1 {
-      width: 260px;
-      height: 320px;
-
-      left: 4%;
-      top: 40px;
-
-      transform: rotate(-7deg);
-      z-index: 5;
-    }
-
-    /* FOTO 2 */
-    .w2 {
-      width: 230px;
-      height: 290px;
-
-      left: 31%;
-      top: 5px;
-
-      transform: rotate(5deg);
-      z-index: 7;
-    }
-
-    /* FOTO 3 */
-    .w3 {
-      width: 255px;
-      height: 315px;
-
-      right: 4%;
-      top: 90px;
-
-      transform: rotate(8deg);
-      z-index: 6;
-    }
-
-    /* FOTO 4 */
-    .w4 {
-      width: 235px;
-      height: 295px;
-
-      left: 13%;
-      top: 410px;
-
-      transform: rotate(8deg);
-      z-index: 8;
-    }
-
-    /* FOTO 5 */
-    .w5 {
-      width: 250px;
-      height: 310px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Für dich ♡</title>
 
-      right: 28%;
-      top: 470px;
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-      transform: rotate(-6deg);
-      z-index: 10;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 
-    /* FOTO 6 */
-    .w6 {
-      width: 245px;
-      height: 305px;
+<style>
 
-      right: 2%;
-      top: 450px;
+:root {
+  --paper: #faf5ef;
+  --paper-soft: #f2e5dc;
+  --pink: #d5abad;
+  --pink-soft: #e6c8c7;
+  --ink: #564641;
+  --muted: #8b7770;
+  --green: #1ed760;
+  --shadow: rgba(66,45,39,.16);
+}
 
-      transform: rotate(-9deg);
-      z-index: 7;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    /* FOTO 7 */
-    .w7 {
-      width: 270px;
-      height: 330px;
+html {
+  scroll-behavior: smooth;
+}
 
-      left: 1%;
-      top: 800px;
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
 
-      transform: rotate(-5deg);
-      z-index: 8;
-    }
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(235,199,195,.7),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 35%,
+      rgba(224,193,187,.55),
+      transparent 34%
+    ),
+    #eee0d8;
+
+  overflow-x: hidden;
+}
+
+/* Aquarell */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: url("watercolor.png") center / cover no-repeat;
+
+  opacity: .17;
+  mix-blend-mode: multiply;
+
+  pointer-events: none;
+  z-index: -5;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+
+  min-height: 920px;
+
+  padding: 90px 20px 130px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
 
-    /* FOTO 8 */
-    .w8 {
-      width: 235px;
-      height: 295px;
+.hero-glow {
+  position: absolute;
 
-      left: 34%;
-      top: 850px;
+  width: 850px;
+  height: 700px;
 
-      transform: rotate(7deg);
-      z-index: 10;
-    }
+  left: 50%;
+  top: 48%;
 
-    /* FOTO 9 */
-    .w9 {
-      width: 255px;
-      height: 315px;
+  transform: translate(-50%,-50%);
 
-      right: 5%;
-      top: 790px;
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,248,242,.95),
+      rgba(239,209,205,.48) 45%,
+      transparent 72%
+    );
 
-      transform: rotate(-6deg);
-      z-index: 8;
-    }
+  filter: blur(25px);
 
-    /* FOTO 10 */
-    .w10 {
-      width: 245px;
-      height: 305px;
+  z-index: -1;
+}
 
-      left: 17%;
-      top: 1200px;
+/* =========================================================
+   HAUPTPAPIER
+========================================================= */
 
-      transform: rotate(8deg);
-      z-index: 9;
-    }
+.paper {
+  position: relative;
 
-    /* FOTO 11 */
-    .w11 {
-      width: 270px;
-      height: 330px;
+  width: min(820px, 72vw);
+  min-height: 620px;
 
-      right: 20%;
-      top: 1280px;
+  padding: 95px 55px 75px;
 
-      transform: rotate(-7deg);
-      z-index: 10;
-    }
+  background:
+    linear-gradient(
+      rgba(255,255,255,.3),
+      rgba(255,255,255,.08)
+    ),
+    url("watercolor.png");
 
-    /* =====================================================
-       PAPIERZETTEL ZWISCHEN FOTOS
-    ===================================================== */
+  background-size: cover;
 
-    .paper-note {
-      position: absolute;
+  box-shadow:
+    0 35px 75px rgba(63,42,36,.18);
 
-      z-index: 20;
+  transform: rotate(-.7deg);
 
-      width: 190px;
-      min-height: 130px;
+  clip-path: polygon(
+    1% 2%,
+    19% 0,
+    38% 2%,
+    56% 0,
+    78% 2%,
+    99% 0,
+    100% 25%,
+    98% 49%,
+    100% 76%,
+    98% 98%,
+    78% 100%,
+    59% 97%,
+    42% 100%,
+    22% 98%,
+    5% 100%,
+    0 97%,
+    1% 70%,
+    0 45%,
+    1% 23%
+  );
 
-      padding: 25px;
+  text-align: center;
 
-      background: #efe0d4;
+  z-index: 5;
+}
 
-      box-shadow:
-        8px 15px 24px rgba(60, 40, 34, .13);
+.paper::after {
+  content: "";
 
-      font-family: "Caveat", cursive;
-      font-size: 27px;
-      line-height: 1.05;
+  position: absolute;
+  inset: 16px;
 
-      text-align: center;
-    }
+  border: 1px solid rgba(80,55,48,.07);
 
-    .paper-note::before {
-      content: "";
+  pointer-events: none;
+}
 
-      position: absolute;
+/* =========================================================
+   TITEL
+========================================================= */
 
-      width: 65px;
-      height: 21px;
+.title {
+  margin: 0;
 
-      top: -11px;
-      left: 50%;
+  font-family: "Caveat", cursive;
 
-      transform:
-        translateX(-50%)
-        rotate(-4deg);
+  font-size: clamp(85px,9vw,140px);
 
-      background: rgba(224, 188, 173, .53);
-    }
+  font-weight: 500;
 
-    .note1 {
-      left: 49%;
-      top: 280px;
+  line-height: .68;
 
-      transform: rotate(-5deg);
-    }
+  letter-spacing: -4px;
 
-    .note2 {
-      right: 32%;
-      top: 730px;
+  transform: rotate(-3deg);
+}
 
-      transform: rotate(5deg);
-    }
+.title span {
+  display: block;
+}
 
-    .note3 {
-      left: 40%;
-      top: 1080px;
+.heart {
+  position: absolute;
 
-      transform: rotate(-4deg);
-    }
+  top: 135px;
+  right: 17%;
 
-    /* =====================================================
-       BLUMEN AUF DER MEMORY-SEITE
-    ===================================================== */
+  font-family: "Caveat", cursive;
 
-    .wall-flowers {
-      position: absolute;
+  font-size: 55px;
 
-      width: 320px;
+  color: var(--pink);
 
-      opacity: .6;
+  transform: rotate(12deg);
+}
 
-      pointer-events: none;
+.intro {
+  margin: 65px auto 25px;
 
-      z-index: 2;
-    }
+  max-width: 430px;
 
-    .wall-flowers img {
-      width: 100%;
-      display: block;
-    }
+  font-size: 10px;
 
-    .wf1 {
-      left: -80px;
-      top: 520px;
-      transform: rotate(-15deg);
-    }
+  line-height: 2.1;
 
-    .wf2 {
-      right: -90px;
-      top: 1120px;
-      transform: rotate(10deg);
-    }
+  letter-spacing: .27em;
 
-    .wf3 {
-      left: -80px;
-      top: 1550px;
-      transform: rotate(-8deg);
-    }
+  text-transform: uppercase;
+}
 
-    /* =====================================================
-       FOOTER
-    ===================================================== */
+.ornament {
+  display: flex;
 
-    footer {
-      padding: 80px 20px 110px;
+  align-items: center;
+  justify-content: center;
 
-      text-align: center;
+  gap: 14px;
 
-      background: #eadcd5;
-    }
+  color: var(--pink);
 
-    footer .hand {
-      font-size: 37px;
-    }
+  font-size: 22px;
+}
 
-    footer p {
-      margin-top: 8px;
+.ornament::before,
+.ornament::after {
+  content: "";
 
-      font-size: 9px;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-    }
+  width: 110px;
+  height: 1px;
 
-    /* =====================================================
-       MOBILE
-    ===================================================== */
+  background: rgba(80,55,48,.2);
+}
 
-    @media (max-width: 850px) {
+/* =========================================================
+   SPOTIFY FAKE PLAYER
+========================================================= */
 
-      .hero {
-        min-height: 780px;
-        padding: 45px 12px 90px;
-      }
+.spotify-card {
+  position: relative;
 
-      .hero-paper {
-        width: 94%;
-        min-height: 590px;
-        padding: 80px 20px 45px;
-      }
+  width: min(570px,92%);
 
-      .title {
-        font-size: clamp(75px, 18vw, 105px);
-      }
+  margin: 42px auto 0;
 
-      .intro {
-        max-width: 275px;
-        margin-top: 55px;
+  padding: 18px 20px 15px;
 
-        font-size: 9px;
-        letter-spacing: .2em;
-      }
+  background:
+    rgba(255,250,246,.88);
 
-      .ornament::before,
-      .ornament::after {
-        width: 48px;
-      }
+  border-radius: 8px;
 
-      /* Blumen bleiben hinten */
+  box-shadow:
+    0 14px 30px rgba(55,38,33,.13);
 
-      .flowers-left {
-        width: 230px;
-        left: -95px;
-        bottom: 20px;
-      }
+  text-align: left;
 
-      .flowers-right {
-        width: 240px;
-        right: -100px;
-        top: 0;
-      }
+  cursor: pointer;
 
-      .p1 {
-        width: 125px;
-        height: 160px;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
 
-        left: -4px;
-        top: 125px;
-      }
-
-      .p2 {
-        width: 125px;
-        height: 160px;
-
-        left: 38px;
-        bottom: 12px;
-      }
-
-      .p3 {
-        width: 125px;
-        height: 160px;
-
-        right: 28px;
-        top: 120px;
-      }
-
-      .p4 {
-        width: 125px;
-        height: 160px;
-
-        right: -5px;
-        top: 215px;
-      }
-
-      .postit {
-        width: 112px;
-        min-height: 100px;
-
-        right: 28px;
-        bottom: 170px;
-
-        font-size: 20px;
-      }
-
-      .spotify {
-        width: 90%;
-        margin-top: 35px;
-      }
-
-      .spotify iframe {
-        height: 152px;
-      }
-
-      /* ==================================================
-         MOBILE FOTO WALL
-      ================================================== */
-
-      .memories-section {
-        padding: 80px 12px 100px;
-      }
-
-      .section-title {
-        margin-bottom: 50px;
-      }
-
-      .section-title h2 {
-        font-size: 52px;
-      }
-
-      .photo-wall {
-        min-height: 2800px;
-        width: 100%;
-      }
-
-      .wall-photo {
-        width: 155px;
-        height: 195px;
-        padding: 7px 7px 30px;
-      }
-
-      .wall-photo::before {
-        width: 50px;
-        height: 17px;
-        top: -9px;
-      }
-
-      .w1 {
-        left: 4%;
-        top: 20px;
-        transform: rotate(-7deg);
-      }
-
-      .w2 {
-        left: auto;
-        right: 4%;
-        top: 65px;
-        transform: rotate(6deg);
-      }
-
-      .w3 {
-        right: 12%;
-        top: 300px;
-        transform: rotate(8deg);
-      }
-
-      .w4 {
-        left: 5%;
-        top: 390px;
-        transform: rotate(7deg);
-      }
-
-      .w5 {
-        right: 5%;
-        top: 650px;
-        transform: rotate(-6deg);
-      }
-
-      .w6 {
-        left: 4%;
-        top: 730px;
-        transform: rotate(-8deg);
-      }
-
-      .w7 {
-        right: 10%;
-        top: 970px;
-        transform: rotate(-5deg);
-      }
-
-      .w8 {
-        left: 3%;
-        top: 1100px;
-        transform: rotate(7deg);
-      }
-
-      .w9 {
-        right: 5%;
-        top: 1350px;
-        transform: rotate(-6deg);
-      }
-
-      .w10 {
-        left: 5%;
-        top: 1490px;
-        transform: rotate(8deg);
-      }
-
-      .w11 {
-        right: 9%;
-        top: 1730px;
-        transform: rotate(-7deg);
-      }
-
-      .paper-note {
-        width: 135px;
-        min-height: 100px;
-
-        padding: 20px;
-
-        font-size: 21px;
-      }
-
-      .note1 {
-        left: 30%;
-        top: 525px;
-      }
-
-      .note2 {
-        left: 10%;
-        top: 870px;
-      }
-
-      .note3 {
-        right: 12%;
-        top: 1250px;
-        left: auto;
-      }
-
-      .wall-flowers {
-        width: 220px;
-      }
-
-      .wf1 {
-        left: -90px;
-        top: 560px;
-      }
-
-      .wf2 {
-        right: -95px;
-        top: 1150px;
-      }
-
-      .wf3 {
-        left: -100px;
-        top: 1650px;
-      }
-    }
-
-    @media (max-width: 430px) {
-
-      .hero {
-        min-height: 750px;
-      }
-
-      .hero-paper {
-        min-height: 570px;
-      }
-
-      .title {
-        font-size: 76px;
-      }
-
-      .heart {
-        top: 140px;
-        right: 7%;
-        font-size: 45px;
-      }
-
-      .p1,
-      .p2,
-      .p3,
-      .p4 {
-        width: 115px;
-        height: 150px;
-      }
-
-      .photo-wall {
-        min-height: 2700px;
-      }
-
-      .wall-photo {
-        width: 145px;
-        height: 185px;
-      }
-    }
-  </style>
+  z-index: 20;
+}
+
+.spotify-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 19px 35px rgba(55,38,33,.17);
+}
+
+.spotify-top {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+.spotify-cover {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e8ceca,
+      #c99ea0
+    );
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+
+  box-shadow:
+    0 5px 12px rgba(60,40,35,.12);
+}
+
+.spotify-info {
+  flex: 1;
+}
+
+.spotify-label {
+  font-size: 8px;
+
+  text-transform: uppercase;
+
+  letter-spacing: .18em;
+
+  color: #7c6b65;
+}
+
+.spotify-name {
+  margin-top: 5px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 16px;
+}
+
+.spotify-sub {
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  color: #8d7c75;
+}
+
+.spotify-play {
+  width: 43px;
+  height: 43px;
+
+  border-radius: 50%;
+
+  background: #191414;
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+
+  padding-left: 2px;
+}
+
+.spotify-progress {
+  margin-top: 16px;
+
+  height: 3px;
+
+  background: #d7cec8;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.spotify-progress::before {
+  content: "";
+
+  display: block;
+
+  width: 35%;
+
+  height: 100%;
+
+  background: #6d5d57;
+}
+
+.spotify-bottom {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 7px;
+
+  font-size: 8px;
+
+  color: #9a8982;
+}
+
+.spotify-hint {
+  margin-top: 8px;
+
+  font-size: 8px;
+
+  letter-spacing: .08em;
+
+  color: #9a8982;
+}
+
+/* =========================================================
+   BLUMEN
+========================================================= */
+
+.flowers {
+  position: absolute;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  opacity: .82;
+
+  filter:
+    drop-shadow(
+      3px 8px 9px rgba(60,40,35,.08)
+    );
+}
+
+.flowers img {
+  width: 100%;
+
+  display: block;
+}
+
+.flowers-left {
+  width: 360px;
+
+  left: -100px;
+  bottom: 20px;
+
+  transform: rotate(-12deg);
+}
+
+.flowers-right {
+  width: 380px;
+
+  right: -110px;
+  top: 30px;
+
+  transform: rotate(8deg);
+}
+
+/* =========================================================
+   POLAROIDS HERO
+========================================================= */
+
+.polaroid {
+  position: absolute;
+
+  background: #fffdfa;
+
+  padding: 10px 10px 42px;
+
+  box-shadow:
+    0 20px 35px rgba(54,37,32,.19);
+
+  z-index: 10;
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.polaroid img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.polaroid:hover {
+  z-index: 50;
+
+  transform:
+    translateY(-10px)
+    rotate(0deg)
+    scale(1.04) !important;
+}
+
+.tape {
+  position: absolute;
+
+  top: -12px;
+  left: 50%;
+
+  width: 65px;
+  height: 22px;
+
+  transform:
+    translateX(-50%)
+    rotate(-4deg);
+
+  background:
+    rgba(224,188,173,.56);
+}
+
+.hero-p1 {
+  width: 190px;
+  height: 245px;
+
+  left: 3%;
+  top: 175px;
+
+  transform: rotate(-9deg);
+}
+
+.hero-p2 {
+  width: 185px;
+  height: 235px;
+
+  left: 14%;
+  bottom: 45px;
+
+  transform: rotate(7deg);
+}
+
+.hero-p3 {
+  width: 190px;
+  height: 245px;
+
+  right: 14%;
+  top: 105px;
+
+  transform: rotate(8deg);
+}
+
+.hero-p4 {
+  width: 195px;
+  height: 250px;
+
+  right: 3%;
+  bottom: 100px;
+
+  transform: rotate(-8deg);
+}
+
+/* =========================================================
+   KERZEN / LICHTER
+========================================================= */
+
+.candle {
+  position: absolute;
+
+  z-index: 12;
+
+  width: 38px;
+  height: 72px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #e8d8ce,
+      #fff9f2 45%,
+      #dfcfc5
+    );
+
+  border-radius:
+    5px 5px 3px 3px;
+
+  box-shadow:
+    5px 8px 16px rgba(55,37,32,.12);
+
+  pointer-events: none;
+}
+
+.candle::before {
+  content: "";
+
+  position: absolute;
+
+  top: -18px;
+  left: 50%;
+
+  width: 10px;
+  height: 18px;
+
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse at center bottom,
+      #f3b66b,
+      #e78d62 45%,
+      transparent 70%
+    );
+
+  filter: blur(.3px);
+}
+
+.candle::after {
+  content: "";
+
+  position: absolute;
+
+  top: -4px;
+  left: 50%;
+
+  width: 2px;
+  height: 8px;
+
+  transform: translateX(-50%);
+
+  background: #55433d;
+}
+
+.candle1 {
+  left: 23%;
+  bottom: 100px;
+
+  transform: rotate(-3deg);
+}
+
+.candle2 {
+  right: 23%;
+  bottom: 80px;
+
+  height: 58px;
+
+  transform: rotate(3deg);
+}
+
+.candle-glow {
+  position: absolute;
+
+  z-index: 1;
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,210,153,.28),
+      transparent 65%
+    );
+
+  filter: blur(8px);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   DOODLES
+========================================================= */
+
+.doodle {
+  position: absolute;
+
+  z-index: 18;
+
+  font-family: "Caveat", cursive;
+
+  color: var(--pink);
+
+  pointer-events: none;
+}
+
+.doodle1 {
+  left: 9%;
+  top: 105px;
+
+  font-size: 38px;
+
+  transform: rotate(-12deg);
+}
+
+.doodle2 {
+  right: 9%;
+  top: 390px;
+
+  font-size: 31px;
+
+  transform: rotate(14deg);
+}
+
+.doodle3 {
+  left: 9%;
+  bottom: 170px;
+
+  font-size: 43px;
+
+  transform: rotate(-8deg);
+}
+
+/* =========================================================
+   ZWEITER BEREICH
+========================================================= */
+
+.memories {
+  position: relative;
+
+  padding: 120px 30px 150px;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.32),
+      rgba(255,255,255,.32)
+    ),
+    url("watercolor.png");
+
+  background-size: cover;
+
+  overflow: hidden;
+}
+
+.edge {
+  position: absolute;
+
+  top: -35px;
+  left: 0;
+
+  width: 100%;
+  height: 70px;
+
+  background: #f5ede6;
+
+  clip-path: polygon(
+    0 35%,
+    9% 20%,
+    18% 38%,
+    28% 16%,
+    37% 39%,
+    47% 20%,
+    57% 38%,
+    67% 17%,
+    77% 37%,
+    88% 19%,
+    100% 35%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.section-heading {
+  position: relative;
+
+  text-align: center;
+
+  margin-bottom: 65px;
+
+  z-index: 5;
+}
+
+.section-heading h2 {
+  margin: 0;
+
+  font-family: "Caveat", cursive;
+
+  font-size: 61px;
+
+  font-weight: 500;
+
+  transform: rotate(-2deg);
+}
+
+.section-heading p {
+  margin-top: 8px;
+
+  font-size: 9px;
+
+  letter-spacing: .28em;
+
+  text-transform: uppercase;
+
+  color: var(--muted);
+}
+
+/* =========================================================
+   ORDNUNG STATT CHAOS
+========================================================= */
+
+.gallery {
+  width: min(1050px,100%);
+
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(12,1fr);
+
+  grid-auto-rows: 90px;
+
+  gap: 28px;
+
+  position: relative;
+
+  z-index: 5;
+}
+
+.gallery-card {
+  position: relative;
+
+  padding: 10px 10px 38px;
+
+  background: #fffdfa;
+
+  box-shadow:
+    0 18px 32px rgba(55,38,33,.15);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.gallery-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: -11px;
+  left: 50%;
+
+  width: 62px;
+  height: 20px;
+
+  transform:
+    translateX(-50%)
+    rotate(-3deg);
+
+  background:
+    rgba(224,188,173,.55);
+
+  z-index: 5;
+}
+
+/* Foto 5 */
+.g5 {
+  grid-column: 1 / span 4;
+  grid-row: 1 / span 4;
+
+  transform: rotate(-3deg);
+}
+
+/* Foto 6 */
+.g6 {
+  grid-column: 5 / span 4;
+  grid-row: 2 / span 4;
+
+  transform: rotate(3deg);
+}
+
+/* Foto 7 */
+.g7 {
+  grid-column: 9 / span 4;
+  grid-row: 1 / span 4;
+
+  transform: rotate(-4deg);
+}
+
+/* Foto 8 */
+.g8 {
+  grid-column: 2 / span 4;
+  grid-row: 6 / span 4;
+
+  transform: rotate(4deg);
+}
+
+/* Foto 9 */
+.g9 {
+  grid-column: 6 / span 4;
+  grid-row: 7 / span 4;
+
+  transform: rotate(-3deg);
+}
+
+/* Foto 10 */
+.g10 {
+  grid-column: 10 / span 3;
+  grid-row: 6 / span 4;
+
+  transform: rotate(5deg);
+}
+
+/* Foto 11 */
+.g11 {
+  grid-column: 4 / span 4;
+  grid-row: 11 / span 4;
+
+  transform: rotate(-4deg);
+}
+
+/* =========================================================
+   PAPIER NOTIZEN
+========================================================= */
+
+.note {
+  position: absolute;
+
+  z-index: 10;
+
+  width: 180px;
+  min-height: 125px;
+
+  padding: 24px;
+
+  background: #ead4cd;
+
+  box-shadow:
+    8px 14px 25px rgba(60,40,34,.12);
+
+  font-family: "Caveat", cursive;
+
+  font-size: 27px;
+
+  line-height: 1.05;
+
+  text-align: center;
+}
+
+.note::before {
+  content: "";
+
+  position: absolute;
+
+  top: -10px;
+  left: 50%;
+
+  width: 65px;
+  height: 20px;
+
+  transform:
+    translateX(-50%)
+    rotate(-4deg);
+
+  background:
+    rgba(224,188,173,.55);
+}
+
+.note1 {
+  left: 39%;
+  top: 400px;
+
+  transform: rotate(-4deg);
+}
+
+.note2 {
+  right: 10%;
+  top: 880px;
+
+  transform: rotate(5deg);
+}
+
+/* =========================================================
+   BLUMEN UNTEN
+========================================================= */
+
+.bottom-flower {
+  position: absolute;
+
+  width: 290px;
+
+  opacity: .58;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+.bottom-flower img {
+  width: 100%;
+}
+
+.bf1 {
+  left: -80px;
+  top: 500px;
+
+  transform: rotate(-13deg);
+}
+
+.bf2 {
+  right: -90px;
+  top: 1000px;
+
+  transform: rotate(10deg);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  padding: 80px 20px 110px;
+
+  text-align: center;
+
+  background: #e9dad3;
+}
+
+footer .hand {
+  font-family: "Caveat", cursive;
+
+  font-size: 38px;
+}
+
+footer p {
+  margin-top: 8px;
+
+  font-size: 9px;
+
+  letter-spacing: .25em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px) {
+
+  .hero {
+    min-height: 820px;
+
+    padding: 45px 10px 90px;
+  }
+
+  .paper {
+    width: 94%;
+
+    min-height: 620px;
+
+    padding:
+      80px 18px 45px;
+  }
+
+  .title {
+    font-size: 78px;
+  }
+
+  .heart {
+    top: 135px;
+    right: 8%;
+
+    font-size: 45px;
+  }
+
+  .intro {
+    max-width: 280px;
+
+    margin-top: 55px;
+
+    font-size: 8px;
+
+    letter-spacing: .2em;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    width: 45px;
+  }
+
+  /* Spotify bleibt frei */
+
+  .spotify-card {
+    width: 90%;
+    margin-top: 35px;
+
+    padding: 14px;
+  }
+
+  .spotify-cover {
+    width: 50px;
+    height: 50px;
+  }
+
+  .spotify-name {
+    font-size: 14px;
+  }
+
+  /* Blumen */
+
+  .flowers-left {
+    width: 220px;
+
+    left: -90px;
+    bottom: 25px;
+  }
+
+  .flowers-right {
+    width: 230px;
+
+    right: -95px;
+    top: 10px;
+  }
+
+  /* Fotos */
+
+  .hero-p1 {
+    width: 120px;
+    height: 155px;
+
+    left: -3px;
+    top: 135px;
+  }
+
+  .hero-p2 {
+    width: 120px;
+    height: 155px;
+
+    left: 25px;
+    bottom: 20px;
+  }
+
+  .hero-p3 {
+    width: 120px;
+    height: 155px;
+
+    right: 22px;
+    top: 130px;
+  }
+
+  .hero-p4 {
+    width: 120px;
+    height: 155px;
+
+    right: -4px;
+    bottom: 120px;
+  }
+
+  .candle1 {
+    left: 28%;
+    bottom: 70px;
+  }
+
+  .candle2 {
+    right: 28%;
+    bottom: 60px;
+  }
+
+  /* =====================================================
+     MOBILE GALLERY
+  ===================================================== */
+
+  .memories {
+    padding:
+      90px 14px 120px;
+  }
+
+  .section-heading h2 {
+    font-size: 53px;
+  }
+
+  .gallery {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+    grid-auto-rows: auto;
+
+    gap: 38px 20px;
+
+    align-items: start;
+  }
+
+  .gallery-card {
+    width: 100%;
+
+    aspect-ratio: .78;
+
+    padding:
+      7px 7px 28px;
+  }
+
+  .g5,
+  .g6,
+  .g7,
+  .g8,
+  .g9,
+  .g10,
+  .g11 {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .g5 {
+    transform: rotate(-4deg);
+  }
+
+  .g6 {
+    transform: rotate(4deg) translateY(20px);
+  }
+
+  .g7 {
+    transform: rotate(-3deg);
+  }
+
+  .g8 {
+    transform: rotate(4deg) translateY(12px);
+  }
+
+  .g9 {
+    transform: rotate(-4deg);
+  }
+
+  .g10 {
+    transform: rotate(5deg) translateY(18px);
+  }
+
+  .g11 {
+    grid-column: 1 / -1;
+
+    width: 62%;
+
+    justify-self: center;
+
+    transform: rotate(-4deg);
+  }
+
+  .note {
+    display: none;
+  }
+
+  .bottom-flower {
+    width: 190px;
+  }
+
+  .bf1 {
+    left: -80px;
+    top: 520px;
+  }
+
+  .bf2 {
+    right: -80px;
+    top: 1100px;
+  }
+}
+
+@media(max-width:430px) {
+
+  .hero {
+    min-height: 790px;
+  }
+
+  .paper {
+    min-height: 600px;
+  }
+
+  .title {
+    font-size: 74px;
+  }
+
+  .spotify-play {
+    width: 39px;
+    height: 39px;
+  }
+
+  .spotify-sub {
+    font-size: 9px;
+  }
+
+  .gallery {
+    gap: 30px 14px;
+  }
+
+  .gallery-card {
+    padding-bottom: 26px;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- =====================================================
-       HERO
-  ===================================================== -->
 
-  <section class="hero">
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-    <div class="hero-light"></div>
+<section class="hero">
 
-    <!-- Blumen hinter den Fotos -->
-    <div class="flowers flowers-left">
-      <img src="flowers.png" alt="">
+  <div class="hero-glow"></div>
+
+
+  <!-- Blumen -->
+
+  <div class="flowers flowers-left">
+    <img src="flowers.png" alt="">
+  </div>
+
+  <div class="flowers flowers-right">
+    <img src="flowers.png" alt="">
+  </div>
+
+
+  <!-- ===================================================
+       HAUPTPAPIER
+  ==================================================== -->
+
+  <div class="paper">
+
+    <h1 class="title">
+      <span>Pinky</span>
+      <span>Promise</span>
+    </h1>
+
+    <div class="heart">
+      ♡
     </div>
 
-    <div class="flowers flowers-right">
-      <img src="flowers.png" alt="">
-    </div>
+
+    <p class="intro">
+      Für all die kleinen Momente,<br>
+      in denen du mich vermisst.
+    </p>
 
 
-    <!-- Hauptpapier -->
-
-    <div class="hero-paper">
-
-      <h1 class="title">
-        <span>Pinky</span>
-        <span>Promise</span>
-      </h1>
-
-      <div class="heart">♡</div>
-
-      <p class="intro">
-        Für all die kleinen Momente,<br>
-        in denen du mich vermisst.
-      </p>
-
-      <div class="ornament">
-        ♡
-      </div>
-
-
-      <!-- =================================================
-           DEINE SPOTIFY-PLAYLIST
-      ================================================== -->
-
-      <div class="spotify">
-
-        <iframe
-          src="https://open.spotify.com/embed/playlist/0MQWfTlAiJbHLrfESSXRgn"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
-
-      </div>
-
+    <div class="ornament">
+      ♡
     </div>
 
 
     <!-- =================================================
-         HERO POLAROIDS
-         1-4
+         SPOTIFY LOOK
+         
+         Kein echter Player.
+         Klick öffnet Spotify.
     ================================================== -->
 
-    <div class="polaroid p1">
-      <div class="tape"></div>
-      <img src="1.jpeg" alt="Foto 1">
-    </div>
+    <a
+      class="spotify-card"
+      href="https://open.spotify.com/playlist/0MQWfTlAiJbHLrfESSXRgn"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Playlist in Spotify öffnen"
+    >
 
-    <div class="polaroid p2">
-      <div class="tape"></div>
-      <img src="2.jpeg" alt="Foto 2">
-    </div>
+      <div class="spotify-top">
 
-    <div class="polaroid p3">
-      <div class="tape"></div>
-      <img src="3.jpeg" alt="Foto 3">
-    </div>
+        <div class="spotify-cover">
+          ♡
+        </div>
 
-    <div class="polaroid p4">
-      <div class="tape"></div>
-      <img src="4.jpeg" alt="Foto 4">
-    </div>
+        <div class="spotify-info">
 
+          <div class="spotify-label">
+            Spotify Playlist
+          </div>
 
-    <!-- Post-it -->
+          <div class="spotify-name">
+            für dich ♡
+          </div>
 
-    <div class="postit">
-      Für dich.<br>
-      Immer. ♡
-    </div>
+          <div class="spotify-sub">
+            Öffnet in Spotify
+          </div>
 
+        </div>
 
-    <!-- Doodles -->
+        <div class="spotify-play">
+          ▶
+        </div>
 
-    <div class="doodle doodle-heart d1">
-      ♡
-    </div>
-
-    <div class="doodle doodle-star d2">
-      ✦
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       FOTO-MOODBOARD
-       5-11
-  ===================================================== -->
-
-  <section class="memories-section">
-
-    <div class="paper-edge"></div>
-
-
-    <div class="section-title">
-
-      <h2>
-        Für dich, immer.
-      </h2>
-
-      <p>
-        kleine Erinnerungen
-      </p>
-
-    </div>
-
-
-    <div class="photo-wall">
-
-      <!-- Blumen hinter dem Moodboard -->
-
-      <div class="wall-flowers wf1">
-        <img src="flowers.png" alt="">
-      </div>
-
-      <div class="wall-flowers wf2">
-        <img src="flowers.png" alt="">
-      </div>
-
-      <div class="wall-flowers wf3">
-        <img src="flowers.png" alt="">
       </div>
 
 
-      <!-- FOTO 5 -->
+      <div class="spotify-progress"></div>
 
-      <div class="wall-photo w5">
-        <img src="5.jpeg" alt="Foto 5">
+      <div class="spotify-bottom">
+        <span>0:00</span>
+        <span>♡</span>
+        <span>3:42</span>
       </div>
 
-
-      <!-- FOTO 6 -->
-
-      <div class="wall-photo w6">
-        <img src="6.jpeg" alt="Foto 6">
+      <div class="spotify-hint">
+        Tippen, um die Playlist in Spotify zu öffnen
       </div>
 
+    </a>
 
-      <!-- FOTO 7 -->
-
-      <div class="wall-photo w7">
-        <img src="7.jpeg" alt="Foto 7">
-      </div>
+  </div>
 
 
-      <!-- FOTO 8 -->
+  <!-- ===================================================
+       HERO FOTOS
+  ==================================================== -->
 
-      <div class="wall-photo w8">
-        <img src="8.jpeg" alt="Foto 8">
-      </div>
+  <div class="polaroid hero-p1">
+    <div class="tape"></div>
+    <img src="1.jpeg" alt="Foto 1">
+  </div>
 
+  <div class="polaroid hero-p2">
+    <div class="tape"></div>
+    <img src="2.jpeg" alt="Foto 2">
+  </div>
 
-      <!-- FOTO 9 -->
+  <div class="polaroid hero-p3">
+    <div class="tape"></div>
+    <img src="3.jpeg" alt="Foto 3">
+  </div>
 
-      <div class="wall-photo w9">
-        <img src="9.jpeg" alt="Foto 9">
-      </div>
-
-
-      <!-- FOTO 10 -->
-
-      <div class="wall-photo w10">
-        <img src="10.jpeg" alt="Foto 10">
-      </div>
-
-
-      <!-- FOTO 11 -->
-
-      <div class="wall-photo w11">
-        <img src="11.jpeg" alt="Foto 11">
-      </div>
+  <div class="polaroid hero-p4">
+    <div class="tape"></div>
+    <img src="4.jpeg" alt="Foto 4">
+  </div>
 
 
-      <!-- Kleine Papiernotizen -->
+  <!-- ===================================================
+       KERZEN
+  ==================================================== -->
 
-      <div class="paper-note note1">
-        ein kleines<br>
-        Stück von uns ♡
-      </div>
+  <div class="candle-glow"
+       style="left:18%;bottom:65px;"></div>
 
-      <div class="paper-note note2">
-        Erinnerst du<br>
-        dich noch?
-      </div>
+  <div class="candle-glow"
+       style="right:18%;bottom:50px;"></div>
 
-      <div class="paper-note note3">
-        manche Momente<br>
-        bleiben.
-      </div>
-
-    </div>
-
-  </section>
+  <div class="candle candle1"></div>
+  <div class="candle candle2"></div>
 
 
-  <!-- =====================================================
-       FOOTER
-  ===================================================== -->
+  <!-- Doodles -->
 
-  <footer>
+  <div class="doodle doodle1">
+    ♡
+  </div>
 
-    <div class="hand">
-      für dich, immer. ♡
-    </div>
+  <div class="doodle doodle2">
+    ✦
+  </div>
+
+  <div class="doodle doodle3">
+    ↝ ♡
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WEITERES MOODBOARD
+===================================================== -->
+
+<section class="memories">
+
+  <div class="edge"></div>
+
+
+  <div class="section-heading">
+
+    <h2>
+      Kleine Erinnerungen
+    </h2>
 
     <p>
-      made with love
+      die bleiben
     </p>
 
-  </footer>
+  </div>
+
+
+  <!-- Blumen im Hintergrund -->
+
+  <div class="bottom-flower bf1">
+    <img src="flowers.png" alt="">
+  </div>
+
+  <div class="bottom-flower bf2">
+    <img src="flowers.png" alt="">
+  </div>
+
+
+  <!-- ===================================================
+       FOTO-GRID
+       
+       Fotos 5-11 genau EINMAL
+  ==================================================== -->
+
+  <div class="gallery">
+
+
+    <div class="gallery-card g5">
+      <img src="5.jpeg" alt="Foto 5">
+    </div>
+
+
+    <div class="gallery-card g6">
+      <img src="6.jpeg" alt="Foto 6">
+    </div>
+
+
+    <div class="gallery-card g7">
+      <img src="7.jpeg" alt="Foto 7">
+    </div>
+
+
+    <div class="gallery-card g8">
+      <img src="8.jpeg" alt="Foto 8">
+    </div>
+
+
+    <div class="gallery-card g9">
+      <img src="9.jpeg" alt="Foto 9">
+    </div>
+
+
+    <div class="gallery-card g10">
+      <img src="10.jpeg" alt="Foto 10">
+    </div>
+
+
+    <div class="gallery-card g11">
+      <img src="11.jpeg" alt="Foto 11">
+    </div>
+
+
+    <!-- Papiernotizen -->
+
+    <div class="note note1">
+      manche Momente<br>
+      bleiben. ♡
+    </div>
+
+    <div class="note note2">
+      Erinnerst du<br>
+      dich noch?
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <div class="hand">
+    für dich, immer. ♡
+  </div>
+
+  <p>
+    made with love
+  </p>
+
+</footer>
+
 
 </body>
 </html>

@@ -4,27 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Für dich ♡</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<title>Pinky Promise</title>
 
 <style>
-
-:root {
-  --paper: #faf5ef;
-  --paper-soft: #f2e5dc;
-  --pink: #d5abad;
-  --pink-soft: #e6c8c7;
-  --ink: #564641;
-  --muted: #8b7770;
-  --shadow: rgba(66,45,39,.16);
-}
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --paper: #f8f0eb;
+  --paper-light: #fffaf7;
+  --rose: #bd9293;
+  --rose-light: #ead1d0;
+  --ink: #302b2a;
+  --muted: #756b68;
+  --line: rgba(48,42,41,.16);
 }
 
 html {
@@ -34,1082 +30,378 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  font-family: "DM Sans", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
   background:
-    radial-gradient(
-      circle at 15% 10%,
-      rgba(235,199,195,.7),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 85% 35%,
-      rgba(224,193,187,.55),
-      transparent 34%
-    ),
-    #eee0d8;
-
-  overflow-x: hidden;
+    radial-gradient(circle at 15% 10%, rgba(220,180,180,.20), transparent 25%),
+    radial-gradient(circle at 90% 30%, rgba(210,190,160,.16), transparent 28%),
+    linear-gradient(135deg, #eee2da, #faf1ec 45%, #eaded7);
 }
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-
-  background: url("watercolor.png") center / cover no-repeat;
-
-  opacity: .17;
-  mix-blend-mode: multiply;
-
   pointer-events: none;
-  z-index: -5;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-  position: relative;
-
-  min-height: 920px;
-
-  padding: 90px 20px 130px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  overflow: hidden;
-}
-
-.hero-glow {
-  position: absolute;
-
-  width: 850px;
-  height: 700px;
-
-  left: 50%;
-  top: 48%;
-
-  transform: translate(-50%,-50%);
-
-  background:
-    radial-gradient(
-      ellipse,
-      rgba(255,248,242,.95),
-      rgba(239,209,205,.48) 45%,
-      transparent 72%
+  opacity: .16;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(80,50,40,.035) 0px,
+      rgba(80,50,40,.035) 1px,
+      transparent 1px,
+      transparent 4px
     );
-
-  filter: blur(25px);
-
   z-index: -1;
 }
 
-
-/* =========================================================
-   HAUPTPAPIER
-========================================================= */
-
-.paper {
-  position: relative;
-
-  width: min(820px, 72vw);
-  min-height: 620px;
-
-  padding: 95px 55px 75px;
-
-  background:
-    linear-gradient(
-      rgba(255,255,255,.3),
-      rgba(255,255,255,.08)
-    ),
-    url("watercolor.png");
-
-  background-size: cover;
-
-  box-shadow:
-    0 35px 75px rgba(63,42,36,.18);
-
-  transform: rotate(-.7deg);
-
-  clip-path: polygon(
-    1% 2%,
-    19% 0,
-    38% 2%,
-    56% 0,
-    78% 2%,
-    99% 0,
-    100% 25%,
-    98% 49%,
-    100% 76%,
-    98% 98%,
-    78% 100%,
-    59% 97%,
-    42% 100%,
-    22% 98%,
-    5% 100%,
-    0 97%,
-    1% 70%,
-    0 45%,
-    1% 23%
-  );
-
-  text-align: center;
-
-  z-index: 5;
-}
-
-.paper::after {
-  content: "";
-
-  position: absolute;
-  inset: 16px;
-
-  border: 1px solid rgba(80,55,48,.07);
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   TITEL
-========================================================= */
-
-.title {
-  margin: 0;
-
-  font-family: "Caveat", cursive;
-
-  font-size: clamp(85px,9vw,140px);
-
-  font-weight: 500;
-
-  line-height: .68;
-
-  letter-spacing: -4px;
-
-  transform: rotate(-3deg);
-}
-
-.title span {
-  display: block;
-}
-
-.heart {
-  position: absolute;
-
-  top: 135px;
-  right: 17%;
-
-  font-family: "Caveat", cursive;
-
-  font-size: 55px;
-
-  color: var(--pink);
-
-  transform: rotate(12deg);
-}
-
-.intro {
-  margin: 65px auto 25px;
-
-  max-width: 430px;
-
-  font-size: 10px;
-
-  line-height: 2.1;
-
-  letter-spacing: .27em;
-
-  text-transform: uppercase;
-}
-
-.ornament {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 14px;
-
-  color: var(--pink);
-
-  font-size: 22px;
-}
-
-.ornament::before,
-.ornament::after {
-  content: "";
-
-  width: 110px;
-  height: 1px;
-
-  background: rgba(80,55,48,.2);
-}
-
-
-/* =========================================================
-   SPOTIFY
-========================================================= */
-
-.spotify-card {
-  position: relative;
-
-  display: block;
-
-  width: min(570px,92%);
-
-  margin: 42px auto 0;
-
-  padding: 18px 20px 15px;
-
-  background:
-    rgba(255,250,246,.88);
-
-  border-radius: 8px;
-
-  box-shadow:
-    0 14px 30px rgba(55,38,33,.13);
-
-  text-align: left;
-
-  cursor: pointer;
-
-  text-decoration: none;
-
-  color: inherit;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-
-  z-index: 20;
-}
-
-.spotify-card:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 19px 35px rgba(55,38,33,.17);
-}
-
-.spotify-top {
-  display: flex;
-
-  align-items: center;
-
-  gap: 14px;
-}
-
-.spotify-cover {
-  width: 58px;
-  height: 58px;
-
-  flex-shrink: 0;
-
-  border-radius: 4px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #e8ceca,
-      #c99ea0
-    );
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  font-size: 27px;
-
-  box-shadow:
-    0 5px 12px rgba(60,40,35,.12);
-}
-
-.spotify-info {
-  flex: 1;
-}
-
-.spotify-label {
-  font-size: 8px;
-
-  text-transform: uppercase;
-
-  letter-spacing: .18em;
-
-  color: #7c6b65;
-}
-
-.spotify-name {
-  margin-top: 5px;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 16px;
-}
-
-.spotify-sub {
-  margin-top: 3px;
-
-  font-size: 10px;
-
-  color: #8d7c75;
-}
-
-.spotify-play {
-  width: 43px;
-  height: 43px;
-
-  border-radius: 50%;
-
-  background: #191414;
-
-  color: white;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  font-size: 17px;
-
-  padding-left: 2px;
-}
-
-.spotify-progress {
-  margin-top: 16px;
-
-  height: 3px;
-
-  background: #d7cec8;
-
-  border-radius: 10px;
-
-  overflow: hidden;
-}
-
-.spotify-progress::before {
-  content: "";
-
-  display: block;
-
-  width: 35%;
-
-  height: 100%;
-
-  background: #6d5d57;
-}
-
-.spotify-bottom {
-  display: flex;
-
-  justify-content: space-between;
-
-  margin-top: 7px;
-
-  font-size: 8px;
-
-  color: #9a8982;
-}
-
-.spotify-hint {
-  margin-top: 8px;
-
-  font-size: 8px;
-
-  letter-spacing: .08em;
-
-  color: #9a8982;
-}
-
-
-/* =========================================================
-   BLUMEN
-========================================================= */
-
-.flowers {
-  position: absolute;
-
-  z-index: 2;
-
-  pointer-events: none;
-
-  opacity: .82;
-
-  filter:
-    drop-shadow(
-      3px 8px 9px rgba(60,40,35,.08)
-    );
-}
-
-.flowers img {
-  width: 100%;
-
-  display: block;
-}
-
-.flowers-left {
-  width: 360px;
-
-  left: -100px;
-  bottom: 20px;
-
-  transform: rotate(-12deg);
-}
-
-.flowers-right {
-  width: 380px;
-
-  right: -110px;
-  top: 30px;
-
-  transform: rotate(8deg);
-}
-
-
-/* =========================================================
-   POLAROIDS HERO
-========================================================= */
-
-.polaroid {
-  position: absolute;
-
-  background: #fffdfa;
-
-  padding: 10px 10px 42px;
-
-  box-shadow:
-    0 20px 35px rgba(54,37,32,.19);
-
-  z-index: 10;
-
-  transition:
-    transform .3s ease,
-    box-shadow .3s ease;
-}
-
-.polaroid img {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-.polaroid:hover {
-  z-index: 50;
-
-  transform:
-    translateY(-10px)
-    rotate(0deg)
-    scale(1.04) !important;
-}
-
-.tape {
-  position: absolute;
-
-  top: -12px;
-  left: 50%;
-
-  width: 65px;
-  height: 22px;
-
-  transform:
-    translateX(-50%)
-    rotate(-4deg);
-
-  background:
-    rgba(224,188,173,.56);
-}
-
-.hero-p1 {
-  width: 190px;
-  height: 245px;
-
-  left: 3%;
-  top: 175px;
-
-  transform: rotate(-9deg);
-}
-
-.hero-p2 {
-  width: 185px;
-  height: 235px;
-
-  left: 14%;
-  bottom: 45px;
-
-  transform: rotate(7deg);
-}
-
-.hero-p3 {
-  width: 190px;
-  height: 245px;
-
-  right: 14%;
-  top: 105px;
-
-  transform: rotate(8deg);
-}
-
-.hero-p4 {
-  width: 195px;
-  height: 250px;
-
-  right: 3%;
-  bottom: 100px;
-
-  transform: rotate(-8deg);
-}
-
-
-/* =========================================================
-   KERZEN
-========================================================= */
-
-.candle {
-  position: absolute;
-
-  z-index: 12;
-
-  width: 38px;
-  height: 72px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #e8d8ce,
-      #fff9f2 45%,
-      #dfcfc5
-    );
-
-  border-radius:
-    5px 5px 3px 3px;
-
-  box-shadow:
-    5px 8px 16px rgba(55,37,32,.12);
-
-  pointer-events: none;
-}
-
-.candle::before {
-  content: "";
-
-  position: absolute;
-
-  top: -18px;
-  left: 50%;
-
-  width: 10px;
-  height: 18px;
-
-  transform: translateX(-50%);
-
-  background:
-    radial-gradient(
-      ellipse at center bottom,
-      #f3b66b,
-      #e78d62 45%,
-      transparent 70%
-    );
-
-  filter: blur(.3px);
-}
-
-.candle::after {
-  content: "";
-
-  position: absolute;
-
-  top: -4px;
-  left: 50%;
-
-  width: 2px;
-  height: 8px;
-
-  transform: translateX(-50%);
-
-  background: #55433d;
-}
-
-.candle1 {
-  left: 23%;
-  bottom: 100px;
-
-  transform: rotate(-3deg);
-}
-
-.candle2 {
-  right: 23%;
-  bottom: 80px;
-
-  height: 58px;
-
-  transform: rotate(3deg);
-}
-
-.candle-glow {
-  position: absolute;
-
-  z-index: 1;
-
-  width: 130px;
-  height: 130px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,210,153,.28),
-      transparent 65%
-    );
-
-  filter: blur(8px);
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   DOODLES
-========================================================= */
-
-.doodle {
-  position: absolute;
-
-  z-index: 18;
-
-  font-family: "Caveat", cursive;
-
-  color: var(--pink);
-
-  pointer-events: none;
-}
-
-.doodle1 {
-  left: 9%;
-  top: 105px;
-
-  font-size: 38px;
-
-  transform: rotate(-12deg);
-}
-
-.doodle2 {
-  right: 9%;
-  top: 390px;
-
-  font-size: 31px;
-
-  transform: rotate(14deg);
-}
-
-.doodle3 {
-  left: 9%;
-  bottom: 170px;
-
-  font-size: 43px;
-
-  transform: rotate(-8deg);
-}
-
-
-/* =========================================================
-   ERINNERUNGEN
-========================================================= */
-
-.memories {
-  position: relative;
-
-  padding: 120px 30px 150px;
-
-  background:
-    linear-gradient(
-      rgba(255,255,255,.32),
-      rgba(255,255,255,.32)
-    ),
-    url("watercolor.png");
-
-  background-size: cover;
-
-  overflow: hidden;
-}
-
-.edge {
-  position: absolute;
-
-  top: -35px;
-  left: 0;
-
-  width: 100%;
-  height: 70px;
-
-  background: #f5ede6;
-
-  clip-path: polygon(
-    0 35%,
-    9% 20%,
-    18% 38%,
-    28% 16%,
-    37% 39%,
-    47% 20%,
-    57% 38%,
-    67% 17%,
-    77% 37%,
-    88% 19%,
-    100% 35%,
-    100% 100%,
-    0 100%
-  );
-}
-
-.section-heading {
-  position: relative;
-
-  text-align: center;
-
-  margin-bottom: 65px;
-
-  z-index: 5;
-}
-
-.section-heading h2 {
-  margin: 0;
-
-  font-family: "Caveat", cursive;
-
-  font-size: 61px;
-
-  font-weight: 500;
-
-  transform: rotate(-2deg);
-}
-
-.section-heading p {
-  margin-top: 8px;
-
-  font-size: 9px;
-
-  letter-spacing: .28em;
-
-  text-transform: uppercase;
-
-  color: var(--muted);
-}
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-.gallery {
-  width: min(1050px,100%);
-
+.page {
+  width: min(1100px, calc(100% - 32px));
   margin: auto;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(12,1fr);
-
-  grid-auto-rows: 90px;
-
-  gap: 28px;
-
-  position: relative;
-
-  z-index: 5;
+  padding: 45px 0 70px;
 }
 
-.gallery-card {
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  min-height: 560px;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 35px;
+  align-items: center;
+  margin-bottom: 65px;
+}
+
+.hero-paper {
   position: relative;
+  background: rgba(255,250,247,.93);
+  padding: 70px 55px 50px;
+  box-shadow: 0 25px 60px rgba(65,45,40,.14);
+  transform: rotate(-.6deg);
+}
 
-  padding: 10px 10px 38px;
+.hero-paper::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(150,110,105,.15);
+  pointer-events: none;
+}
 
-  background: #fffdfa;
+.hero-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(65px, 9vw, 110px);
+  font-weight: 500;
+  line-height: .78;
+  margin: 0 0 30px;
+}
 
-  box-shadow:
-    0 18px 32px rgba(55,38,33,.15);
+.hero-subtitle {
+  font-size: 11px;
+  letter-spacing: 4px;
+  line-height: 1.9;
+  font-weight: 500;
+}
+
+.small-heart {
+  color: var(--rose);
+  font-size: 28px;
+  margin-top: 22px;
+}
+
+/* =========================
+   SPOTIFY
+========================= */
+
+.music-card {
+  margin-top: 45px;
+  padding: 15px 0;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
 
   cursor: pointer;
 
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
+  transition: transform .2s ease;
 }
 
-.gallery-card:hover {
-  z-index: 30;
-
-  transform:
-    translateY(-7px)
-    rotate(0deg)
-    scale(1.025) !important;
-
-  box-shadow:
-    0 25px 40px rgba(55,38,33,.21);
+.music-card:hover {
+  transform: translateX(4px);
 }
 
-.gallery-card img {
-  width: 100%;
-  height: 100%;
+.music-dot {
+  width: 34px;
+  height: 34px;
 
-  display: block;
-
-  object-fit: cover;
-}
-
-.gallery-card::before {
-  content: "";
-
-  position: absolute;
-
-  top: -11px;
-  left: 50%;
-
-  width: 62px;
-  height: 20px;
-
-  transform:
-    translateX(-50%)
-    rotate(-3deg);
-
-  background:
-    rgba(224,188,173,.55);
-
-  z-index: 5;
-}
-
-/* Klick-Hinweis */
-.gallery-card::after {
-  content: "▶";
-
-  position: absolute;
-
-  right: 17px;
-  bottom: 10px;
-
-  width: 25px;
-  height: 25px;
-
+  border: 1px solid var(--ink);
   border-radius: 50%;
 
   display: grid;
   place-items: center;
 
-  background: rgba(86,70,65,.85);
-
-  color: white;
-
-  font-size: 9px;
-
-  opacity: .75;
+  font-size: 11px;
+  flex-shrink: 0;
 }
 
-/* Fotos */
-
-.g5 {
-  grid-column: 1 / span 4;
-  grid-row: 1 / span 4;
-
-  transform: rotate(-3deg);
+.music-text {
+  flex: 1;
 }
 
-.g6 {
-  grid-column: 5 / span 4;
-  grid-row: 2 / span 4;
-
-  transform: rotate(3deg);
+.music-title {
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
 
-.g7 {
-  grid-column: 9 / span 4;
-  grid-row: 1 / span 4;
-
-  transform: rotate(-4deg);
+.music-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
 }
 
-.g8 {
-  grid-column: 2 / span 4;
-  grid-row: 6 / span 4;
+.music-line {
+  width: 65px;
+  height: 18px;
 
-  transform: rotate(4deg);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 8%,
+      var(--rose) 8% 11%,
+      transparent 11% 18%,
+      var(--rose) 18% 22%,
+      transparent 22% 29%,
+      var(--rose) 29% 32%,
+      transparent 32% 42%,
+      var(--rose) 42% 45%,
+      transparent 45% 55%,
+      var(--rose) 55% 59%,
+      transparent 59% 70%,
+      var(--rose) 70% 73%,
+      transparent 73%
+    );
 }
 
-.g9 {
-  grid-column: 6 / span 4;
-  grid-row: 7 / span 4;
+/* =========================
+   POLAROIDS
+========================= */
 
-  transform: rotate(-3deg);
+.photo-area {
+  position: relative;
+  height: 470px;
 }
 
-.g10 {
-  grid-column: 10 / span 3;
-  grid-row: 6 / span 4;
-
-  transform: rotate(5deg);
-}
-
-.g11 {
-  grid-column: 4 / span 4;
-  grid-row: 11 / span 4;
-
-  transform: rotate(-4deg);
-}
-
-
-/* =========================================================
-   NOTIZEN
-========================================================= */
-
-.note {
+.polaroid {
   position: absolute;
 
-  z-index: 10;
+  width: 220px;
+  padding: 10px 10px 42px;
 
-  width: 180px;
-  min-height: 125px;
+  background: #fff;
 
-  padding: 24px;
-
-  background: #ead4cd;
-
-  box-shadow:
-    8px 14px 25px rgba(60,40,34,.12);
-
-  font-family: "Caveat", cursive;
-
-  font-size: 27px;
-
-  line-height: 1.05;
-
-  text-align: center;
+  box-shadow: 0 16px 35px rgba(55,40,35,.18);
 }
 
-.note::before {
-  content: "";
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  display: block;
+  object-fit: cover;
+}
+
+.polaroid::after {
+  content: attr(data-caption);
 
   position: absolute;
+  bottom: 11px;
+  left: 14px;
+
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+}
+
+.tape {
+  position: absolute;
+
+  width: 65px;
+  height: 22px;
+
+  background: rgba(213,181,155,.62);
 
   top: -10px;
   left: 50%;
 
-  width: 65px;
-  height: 20px;
-
-  transform:
-    translateX(-50%)
-    rotate(-4deg);
-
-  background:
-    rgba(224,188,173,.55);
-}
-
-.note1 {
-  left: 39%;
-  top: 400px;
-
-  transform: rotate(-4deg);
-}
-
-.note2 {
-  right: 10%;
-  top: 880px;
-
-  transform: rotate(5deg);
-}
-
-
-/* =========================================================
-   BLUMEN UNTEN
-========================================================= */
-
-.bottom-flower {
-  position: absolute;
-
-  width: 290px;
-
-  opacity: .58;
+  transform: translateX(-50%) rotate(-2deg);
 
   z-index: 2;
-
-  pointer-events: none;
 }
 
-.bottom-flower img {
-  width: 100%;
+.p1 {
+  top: 25px;
+  left: 25px;
+  transform: rotate(-8deg);
 }
 
-.bf1 {
-  left: -80px;
-  top: 500px;
-
-  transform: rotate(-13deg);
+.p2 {
+  top: 150px;
+  right: 5px;
+  transform: rotate(7deg);
 }
 
-.bf2 {
-  right: -90px;
-  top: 1000px;
-
-  transform: rotate(10deg);
+.p3 {
+  bottom: 0;
+  left: 85px;
+  transform: rotate(-3deg);
 }
 
+/* =========================
+   SECTION
+========================= */
 
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-  padding: 80px 20px 110px;
-
+.section-intro {
   text-align: center;
-
-  background: #e9dad3;
+  margin: 35px 0;
 }
 
-footer .hand {
-  font-family: "Caveat", cursive;
-
-  font-size: 38px;
+.section-number {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--rose);
 }
 
-footer p {
-  margin-top: 8px;
-
-  font-size: 9px;
-
-  letter-spacing: .25em;
-
-  text-transform: uppercase;
+.section-intro h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 46px;
+  font-weight: 500;
+  margin: 3px 0 5px;
 }
 
+.section-intro p {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
 
-/* =========================================================
-   VIDEO MODAL
-========================================================= */
+/* =========================
+   MEMORY CARDS
+========================= */
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.memory-card {
+  position: relative;
+
+  min-height: 245px;
+  padding: 25px;
+
+  background: rgba(255,249,245,.84);
+
+  border: 1px solid rgba(90,65,58,.10);
+
+  box-shadow: 0 12px 30px rgba(65,45,40,.09);
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
+  overflow: hidden;
+}
+
+.memory-card:nth-child(odd) {
+  transform: rotate(-.7deg);
+}
+
+.memory-card:nth-child(even) {
+  transform: rotate(.7deg);
+}
+
+.memory-card:hover {
+  transform: translateY(-5px) rotate(0);
+  box-shadow: 0 20px 40px rgba(65,45,40,.14);
+}
+
+.memory-number {
+  font-family: 'Caveat', cursive;
+  font-size: 31px;
+  color: var(--rose);
+}
+
+.memory-card h3 {
+  margin: 8px 0;
+
+  font-size: 17px;
+  letter-spacing: 2px;
+  font-weight: 500;
+
+  max-width: 230px;
+}
+
+.memory-card p {
+  margin: 0;
+
+  max-width: 220px;
+
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+
+  color: var(--muted);
+}
+
+.memory-photo {
+  position: absolute;
+
+  width: 115px;
+  height: 115px;
+
+  right: 20px;
+  bottom: 22px;
+
+  padding: 7px;
+
+  background: white;
+
+  box-shadow: 0 8px 20px rgba(50,35,30,.14);
+
+  transform: rotate(6deg);
+}
+
+.memory-photo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+  object-fit: cover;
+}
+
+/* =========================
+   MODAL
+========================= */
 
 .overlay {
   display: none;
 
   position: fixed;
-
   inset: 0;
 
-  z-index: 100;
+  z-index: 50;
 
   padding: 18px;
 
-  background:
-    rgba(38,29,27,.52);
+  background: rgba(38,29,27,.48);
 
-  backdrop-filter: blur(9px);
+  backdrop-filter: blur(8px);
 
   align-items: center;
   justify-content: center;
@@ -1120,39 +412,18 @@ footer p {
 }
 
 .modal {
-  position: relative;
-
-  width: min(700px,100%);
-
+  width: min(700px, 100%);
   max-height: 90vh;
 
   overflow-y: auto;
 
-  padding: 38px;
+  position: relative;
 
-  background:
-    linear-gradient(
-      rgba(255,255,255,.25),
-      rgba(255,255,255,.08)
-    ),
-    #fff9f5;
+  padding: 35px;
 
-  box-shadow:
-    0 30px 80px rgba(20,15,13,.3);
+  background: #fff9f5;
 
-  transform: rotate(-.3deg);
-}
-
-.modal::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 12px;
-
-  border: 1px solid rgba(80,55,48,.10);
-
-  pointer-events: none;
+  box-shadow: 0 30px 80px rgba(20,15,13,.3);
 }
 
 .modal-close {
@@ -1160,8 +431,6 @@ footer p {
 
   top: 17px;
   right: 18px;
-
-  z-index: 5;
 
   width: 38px;
   height: 38px;
@@ -1171,61 +440,39 @@ footer p {
 
   background: #ead9d5;
 
-  color: var(--ink);
-
   cursor: pointer;
 
   font-size: 21px;
-
-  transition: transform .2s ease;
-}
-
-.modal-close:hover {
-  transform: rotate(8deg) scale(1.05);
 }
 
 .modal-number {
-  position: relative;
+  color: var(--rose);
 
-  color: var(--pink);
-
-  font-size: 9px;
-
+  font-size: 11px;
   letter-spacing: 3px;
 }
 
 .modal h2 {
-  position: relative;
-
-  font-family: "Caveat", cursive;
-
-  font-size: 50px;
-
+  font-family: 'Caveat', cursive;
+  font-size: 48px;
   font-weight: 500;
 
   margin: 4px 0 25px;
 }
 
-
-/* =========================================================
-   VIDEO LISTE
-========================================================= */
+/* =========================
+   VIDEOS
+========================= */
 
 .video-list {
-  position: relative;
-
   display: flex;
-
   flex-direction: column;
-
   gap: 12px;
 }
 
 .video-choice {
   display: flex;
-
   align-items: center;
-
   gap: 16px;
 
   width: 100%;
@@ -1234,9 +481,7 @@ footer p {
 
   border: 1px solid rgba(70,50,45,.13);
 
-  background: rgba(255,255,255,.72);
-
-  color: var(--ink);
+  background: rgba(255,255,255,.7);
 
   cursor: pointer;
 
@@ -1244,22 +489,17 @@ footer p {
 
   transition:
     background .2s ease,
-    transform .2s ease,
-    box-shadow .2s ease;
+    transform .2s ease;
 }
 
 .video-choice:hover {
   background: #f7e7e7;
-
-  transform: translateX(4px);
-
-  box-shadow:
-    0 8px 18px rgba(60,40,35,.08);
+  transform: translateX(3px);
 }
 
 .video-thumb {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
 
   flex-shrink: 0;
 
@@ -1271,7 +511,6 @@ footer p {
 .video-thumb img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
 }
 
@@ -1280,45 +519,34 @@ footer p {
 }
 
 .video-number {
-  font-size: 9px;
-
+  font-size: 10px;
   letter-spacing: 2px;
-
-  color: var(--pink);
+  color: var(--rose);
 }
 
 .video-name {
-  font-family: "Caveat", cursive;
-
-  font-size: 24px;
-
-  line-height: 1.05;
+  font-family: 'Caveat', cursive;
+  font-size: 23px;
 }
 
 .play {
-  width: 34px;
-  height: 34px;
-
-  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
 
   border: 1px solid var(--ink);
-
   border-radius: 50%;
 
   display: grid;
   place-items: center;
 
-  font-size: 10px;
+  font-size: 11px;
 }
 
-
-/* =========================================================
+/* =========================
    VIDEO PLAYER
-========================================================= */
+========================= */
 
 .player {
-  position: relative;
-
   display: none;
 }
 
@@ -1327,17 +555,11 @@ footer p {
 }
 
 .back {
-  position: relative;
-
   border: 0;
-
   background: transparent;
 
   padding: 0;
-
   margin-bottom: 15px;
-
-  font-family: "DM Sans", sans-serif;
 
   font-size: 13px;
 
@@ -1346,628 +568,399 @@ footer p {
   color: var(--muted);
 }
 
-.back:hover {
-  color: var(--ink);
-}
-
 .player video {
-  position: relative;
-
   width: 100%;
-
   max-height: 65vh;
 
-  display: block;
-
   background: #111;
-
   border-radius: 3px;
 }
 
 .player-caption {
-  position: relative;
-
-  font-family: "Caveat", cursive;
-
-  font-size: 27px;
+  font-family: 'Caveat', cursive;
+  font-size: 25px;
 
   margin-top: 12px;
 }
 
+/* =========================
+   SPOTIFY BUTTON
+========================= */
 
-/* =========================================================
+.spotify-box {
+  padding: 10px 0 5px;
+}
+
+.spotify-box p {
+  font-family: 'Caveat', cursive;
+  font-size: 23px;
+  color: var(--muted);
+}
+
+.spotify-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 10px;
+  padding: 13px 20px;
+
+  color: var(--ink);
+  text-decoration: none;
+
+  border: 1px solid var(--ink);
+
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.spotify-link:hover {
+  background: var(--ink);
+  color: white;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  text-align: center;
+
+  margin-top: 65px;
+
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+
+  color: var(--muted);
+}
+
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
-@media(max-width:850px) {
+@media (max-width: 760px) {
+
+  .page {
+    width: min(100% - 22px, 600px);
+    padding-top: 25px;
+  }
 
   .hero {
-    min-height: 820px;
-
-    padding: 45px 10px 90px;
+    display: block;
+    min-height: auto;
+    margin-bottom: 45px;
   }
 
-  .paper {
-    width: 94%;
-
-    min-height: 620px;
-
-    padding:
-      80px 18px 45px;
+  .hero-paper {
+    padding: 55px 28px 45px;
   }
 
-  .title {
-    font-size: 78px;
+  .hero-title {
+    font-size: 72px;
   }
 
-  .heart {
-    top: 135px;
-    right: 8%;
-
-    font-size: 45px;
-  }
-
-  .intro {
-    max-width: 280px;
-
-    margin-top: 55px;
-
-    font-size: 8px;
-
-    letter-spacing: .2em;
-  }
-
-  .ornament::before,
-  .ornament::after {
-    width: 45px;
-  }
-
-  .spotify-card {
-    width: 90%;
-
+  .photo-area {
+    height: 390px;
     margin-top: 35px;
-
-    padding: 14px;
   }
 
-  .spotify-cover {
-    width: 50px;
-    height: 50px;
+  .polaroid {
+    width: 185px;
   }
 
-  .spotify-name {
-    font-size: 14px;
+  .p1 {
+    left: 5%;
   }
 
-  .flowers-left {
-    width: 220px;
-
-    left: -90px;
-    bottom: 25px;
+  .p2 {
+    right: 2%;
+    top: 125px;
   }
 
-  .flowers-right {
-    width: 230px;
-
-    right: -95px;
-    top: 10px;
+  .p3 {
+    left: 25%;
+    bottom: 0;
   }
 
-  .hero-p1 {
-    width: 120px;
-    height: 155px;
-
-    left: -3px;
-    top: 135px;
+  .memory-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .hero-p2 {
-    width: 120px;
-    height: 155px;
-
-    left: 25px;
-    bottom: 20px;
-  }
-
-  .hero-p3 {
-    width: 120px;
-    height: 155px;
-
-    right: 22px;
-    top: 130px;
-  }
-
-  .hero-p4 {
-    width: 120px;
-    height: 155px;
-
-    right: -4px;
-    bottom: 120px;
-  }
-
-  .candle1 {
-    left: 28%;
-    bottom: 70px;
-  }
-
-  .candle2 {
-    right: 28%;
-    bottom: 60px;
-  }
-
-  .memories {
-    padding:
-      90px 14px 120px;
-  }
-
-  .section-heading h2 {
-    font-size: 53px;
-  }
-
-  .gallery {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns:
-      repeat(2,1fr);
-
-    grid-auto-rows: auto;
-
-    gap: 38px 20px;
-
-    align-items: start;
-  }
-
-  .gallery-card {
-    width: 100%;
-
-    aspect-ratio: .78;
-
-    padding:
-      7px 7px 28px;
-  }
-
-  .g5,
-  .g6,
-  .g7,
-  .g8,
-  .g9,
-  .g10,
-  .g11 {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .g5 {
-    transform: rotate(-4deg);
-  }
-
-  .g6 {
-    transform: rotate(4deg) translateY(20px);
-  }
-
-  .g7 {
-    transform: rotate(-3deg);
-  }
-
-  .g8 {
-    transform: rotate(4deg) translateY(12px);
-  }
-
-  .g9 {
-    transform: rotate(-4deg);
-  }
-
-  .g10 {
-    transform: rotate(5deg) translateY(18px);
-  }
-
-  .g11 {
-    grid-column: 1 / -1;
-
-    width: 62%;
-
-    justify-self: center;
-
-    transform: rotate(-4deg);
-  }
-
-  .note {
-    display: none;
-  }
-
-  .bottom-flower {
-    width: 190px;
-  }
-
-  .bf1 {
-    left: -80px;
-    top: 520px;
-  }
-
-  .bf2 {
-    right: -80px;
-    top: 1100px;
+  .memory-card {
+    min-height: 210px;
   }
 
   .modal {
-    padding: 32px 20px 25px;
+    padding: 25px 20px;
   }
 
   .modal h2 {
-    font-size: 43px;
-  }
-
-  .video-choice {
-    padding: 11px;
-
-    gap: 12px;
-  }
-
-  .video-thumb {
-    width: 58px;
-    height: 58px;
-  }
-
-  .video-name {
-    font-size: 21px;
+    font-size: 42px;
   }
 }
 
-@media(max-width:430px) {
+@media (max-width: 420px) {
 
-  .hero {
-    min-height: 790px;
+  .hero-title {
+    font-size: 61px;
   }
 
-  .paper {
-    min-height: 600px;
+  .photo-area {
+    height: 330px;
   }
 
-  .title {
-    font-size: 74px;
+  .polaroid {
+    width: 155px;
+    padding-bottom: 32px;
   }
 
-  .spotify-play {
-    width: 39px;
-    height: 39px;
+  .polaroid::after {
+    font-size: 17px;
   }
 
-  .spotify-sub {
-    font-size: 9px;
-  }
-
-  .gallery {
-    gap: 30px 14px;
-  }
-
-  .gallery-card {
-    padding-bottom: 26px;
-  }
-
-  .modal {
-    padding:
-      30px 14px 20px;
-  }
-
-  .video-thumb {
-    width: 52px;
-    height: 52px;
-  }
-
-  .video-name {
-    font-size: 19px;
-  }
-
-  .play {
-    width: 30px;
-    height: 30px;
+  .p3 {
+    left: 23%;
   }
 }
-
 </style>
 </head>
 
-
 <body>
 
+<div class="page">
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- =========================
+     START
+========================= -->
 
 <section class="hero">
 
-  <div class="hero-glow"></div>
+  <div class="hero-paper">
 
-
-  <!-- BLUMEN -->
-
-  <div class="flowers flowers-left">
-    <img src="flowers.png" alt="">
-  </div>
-
-  <div class="flowers flowers-right">
-    <img src="flowers.png" alt="">
-  </div>
-
-
-  <!-- HAUPTPAPIER -->
-
-  <div class="paper">
-
-    <h1 class="title">
-      <span>Pinky</span>
-      <span>Promise</span>
+    <h1 class="hero-title">
+      Pinky<br>
+      Promise
     </h1>
 
-    <div class="heart">
-      ♡
+    <div class="hero-subtitle">
+      FÜR DIE TAGE, AN DENEN DU<br>
+      MICH VERMISST.
     </div>
 
-    <p class="intro">
-      Für all die kleinen Momente,<br>
-      in denen du mich vermisst.
-    </p>
-
-    <div class="ornament">
-      ♡
-    </div>
-
+    <div class="small-heart">♡</div>
 
     <!-- SPOTIFY -->
 
-    <a
-      class="spotify-card"
-      href="https://open.spotify.com/playlist/0MQWfTlAiJbHLrfESSXRgn"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Playlist in Spotify öffnen"
-    >
+    <div class="music-card" onclick="openSpotify()">
 
-      <div class="spotify-top">
+      <div class="music-dot">▶</div>
 
-        <div class="spotify-cover">
-          ♡
+      <div class="music-text">
+
+        <div class="music-title">
+          YOU &amp; ME
         </div>
 
-        <div class="spotify-info">
-
-          <div class="spotify-label">
-            Spotify Playlist
-          </div>
-
-          <div class="spotify-name">
-            für dich ♡
-          </div>
-
-          <div class="spotify-sub">
-            Öffnet in Spotify
-          </div>
-
-        </div>
-
-        <div class="spotify-play">
-          ▶
+        <div class="music-sub">
+          a little playlist for you
         </div>
 
       </div>
 
-      <div class="spotify-progress"></div>
+      <div class="music-line"></div>
 
-      <div class="spotify-bottom">
-        <span>0:00</span>
-        <span>♡</span>
-        <span>3:42</span>
-      </div>
-
-      <div class="spotify-hint">
-        Tippen, um die Playlist in Spotify zu öffnen
-      </div>
-
-    </a>
+    </div>
 
   </div>
 
+  <!-- POLAROIDS -->
 
-  <!-- HERO FOTOS -->
+  <div class="photo-area">
 
-  <div class="polaroid hero-p1">
-    <div class="tape"></div>
-    <img src="1.jpeg" alt="Foto 1">
-  </div>
+    <div class="polaroid p1" data-caption="you & me">
 
-  <div class="polaroid hero-p2">
-    <div class="tape"></div>
-    <img src="2.jpeg" alt="Foto 2">
-  </div>
+      <div class="tape"></div>
 
-  <div class="polaroid hero-p3">
-    <div class="tape"></div>
-    <img src="3.jpeg" alt="Foto 3">
-  </div>
+      <img src="1.jpeg" alt="Erinnerung">
 
-  <div class="polaroid hero-p4">
-    <div class="tape"></div>
-    <img src="4.jpeg" alt="Foto 4">
-  </div>
+    </div>
 
+    <div class="polaroid p2" data-caption="♡">
 
-  <!-- KERZEN -->
+      <div class="tape"></div>
 
-  <div
-    class="candle-glow"
-    style="left:18%;bottom:65px;"
-  ></div>
+      <img src="2.jpeg" alt="Erinnerung">
 
-  <div
-    class="candle-glow"
-    style="right:18%;bottom:50px;"
-  ></div>
+    </div>
 
-  <div class="candle candle1"></div>
-  <div class="candle candle2"></div>
+    <div class="polaroid p3" data-caption="für dich">
 
+      <div class="tape"></div>
 
-  <!-- DOODLES -->
+      <img src="3.jpeg" alt="Erinnerung">
 
-  <div class="doodle doodle1">
-    ♡
-  </div>
+    </div>
 
-  <div class="doodle doodle2">
-    ✦
-  </div>
-
-  <div class="doodle doodle3">
-    ↝ ♡
   </div>
 
 </section>
 
+<!-- =========================
+     KARTEN
+========================= -->
 
-<!-- =====================================================
-     ERINNERUNGEN
-===================================================== -->
+<section>
 
-<section class="memories">
+  <div class="section-intro">
 
-  <div class="edge"></div>
-
-
-  <div class="section-heading">
+    <div class="section-number">
+      01 — 08
+    </div>
 
     <h2>
-      Kleine Erinnerungen
+      Für dich.
     </h2>
 
     <p>
-      die bleiben
+      KLEINE NACHRICHTEN FÜR DIE TAGE DAZWISCHEN
     </p>
 
   </div>
 
+  <div class="memory-grid">
 
-  <!-- BLUMEN -->
+    <div class="memory-card" onclick="openCategory('birthday')">
 
-  <div class="bottom-flower bf1">
-    <img src="flowers.png" alt="">
-  </div>
+      <div class="memory-number">01</div>
 
-  <div class="bottom-flower bf2">
-    <img src="flowers.png" alt="">
-  </div>
+      <h3>DEIN GEBURTSTAG</h3>
 
+      <p>Für deinen besonderen Tag.</p>
 
-  <!-- ===================================================
-       FOTO-GRID
+      <div class="memory-photo">
+        <img src="4.jpeg" alt="">
+      </div>
 
-       JEDES FOTO IST JETZT ANKLICKBAR
-  ==================================================== -->
-
-  <div class="gallery">
-
-
-    <div
-      class="gallery-card g5"
-      onclick="openCategory('birthday')"
-    >
-      <img src="5.jpeg" alt="Foto 5">
     </div>
 
+    <div class="memory-card" onclick="openCategory('christmas')">
 
-    <div
-      class="gallery-card g6"
-      onclick="openCategory('christmas')"
-    >
-      <img src="6.jpeg" alt="Foto 6">
+      <div class="memory-number">02</div>
+
+      <h3>WEIHNACHTEN</h3>
+
+      <p>Für deinen Weihnachtsmorgen.</p>
+
+      <div class="memory-photo">
+        <img src="5.jpeg" alt="">
+      </div>
+
     </div>
 
+    <div class="memory-card" onclick="openCategory('missyou')">
 
-    <div
-      class="gallery-card g7"
-      onclick="openCategory('missyou')"
-    >
-      <img src="7.jpeg" alt="Foto 7">
+      <div class="memory-number">03</div>
+
+      <h3>WENN DU MICH VERMISST</h3>
+
+      <p>Für die Tage dazwischen.</p>
+
+      <div class="memory-photo">
+        <img src="6.jpeg" alt="">
+      </div>
+
     </div>
 
+    <div class="memory-card" onclick="openCategory('random')">
 
-    <div
-      class="gallery-card g8"
-      onclick="openCategory('random')"
-    >
-      <img src="8.jpeg" alt="Foto 8">
+      <div class="memory-number">04</div>
+
+      <h3>EINFACH SO</h3>
+
+      <p>Weil es keinen Grund braucht.</p>
+
+      <div class="memory-photo">
+        <img src="7.jpeg" alt="">
+      </div>
+
     </div>
 
+    <div class="memory-card" onclick="openCategory('laugh')">
 
-    <div
-      class="gallery-card g9"
-      onclick="openCategory('laugh')"
-    >
-      <img src="9.jpeg" alt="Foto 9">
+      <div class="memory-number">05</div>
+
+      <h3>WENN DU LACHEN WILLST</h3>
+
+      <p>Für ein kleines Grinsen.</p>
+
+      <div class="memory-photo">
+        <img src="8.jpeg" alt="">
+      </div>
+
     </div>
 
+    <div class="memory-card" onclick="openCategory('night')">
 
-    <div
-      class="gallery-card g10"
-      onclick="openCategory('night')"
-    >
-      <img src="10.jpeg" alt="Foto 10">
+      <div class="memory-number">06</div>
+
+      <h3>FÜR DIE NACHT</h3>
+
+      <p>Wenn der Tag ruhig wird.</p>
+
+      <div class="memory-photo">
+        <img src="9.jpeg" alt="">
+      </div>
+
     </div>
 
+    <div class="memory-card" onclick="openCategory('bad')">
 
-    <div
-      class="gallery-card g11"
-      onclick="openCategory('bad')"
-    >
-      <img src="11.jpeg" alt="Foto 11">
+      <div class="memory-number">07</div>
+
+      <h3>WENN DU EINEN SCHLECHTEN TAG HAST</h3>
+
+      <p>Ein kleines bisschen von mir.</p>
+
+      <div class="memory-photo">
+        <img src="10.jpeg" alt="">
+      </div>
+
     </div>
 
+    <div class="memory-card" onclick="openCategory('again')">
 
-    <!-- NOTIZEN -->
+      <div class="memory-number">08</div>
 
-    <div class="note note1">
-      manche Momente<br>
-      bleiben. ♡
-    </div>
+      <h3>BIS WIR UNS WIEDERSEHEN</h3>
 
-    <div class="note note2">
-      Erinnerst du<br>
-      dich noch?
+      <p>Für die Tage dazwischen.</p>
+
+      <div class="memory-photo">
+        <img src="11.jpeg" alt="">
+      </div>
+
     </div>
 
   </div>
 
 </section>
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <footer>
-
-  <div class="hand">
-    für dich, immer. ♡
-  </div>
-
-  <p>
-    made with love
-  </p>
-
+  für dich, immer. ♡
 </footer>
 
+</div>
 
+<!-- =========================
+     MODAL
+========================= -->
 
-<!-- =====================================================
-     VIDEO MODAL
-===================================================== -->
-
-<div
-  class="overlay"
-  id="overlay"
->
+<div class="overlay" id="overlay">
 
   <div class="modal">
 
@@ -1978,7 +971,6 @@ footer p {
     >
       ×
     </button>
-
 
     <!-- VIDEO-LISTE -->
 
@@ -1998,13 +990,9 @@ footer p {
 
     </div>
 
-
     <!-- VIDEO PLAYER -->
 
-    <div
-      class="player"
-      id="player"
-    >
+    <div class="player" id="player">
 
       <button
         class="back"
@@ -2026,266 +1014,229 @@ footer p {
 
     </div>
 
+    <!-- SPOTIFY -->
+
+    <div
+      class="spotify-box"
+      id="spotifyBox"
+      style="display:none;"
+    >
+
+      <div class="modal-number">
+        PLAYLIST
+      </div>
+
+      <h2>
+        You &amp; Me
+      </h2>
+
+      <p>
+        Ein paar Lieder für uns. ♡
+      </p>
+
+      <a
+        class="spotify-link"
+        href="https://open.spotify.com/playlist/0MQWfTlAiJbHLrfESSXRgn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ▶ &nbsp; AUF SPOTIFY ÖFFNEN
+      </a>
+
+    </div>
+
   </div>
 
 </div>
 
-
-
 <script>
 
-/* =====================================================
+/* ==================================
    VIDEO-DATEN
-
-   HIER TRÄGST DU DEINE VIDEOS EIN
-===================================================== */
+================================== */
 
 const categories = {
 
   birthday: {
-
     number: "01",
-
     title: "Dein Geburtstag",
 
     videos: [
-
       {
         name: "Für deinen Geburtstag",
-
-        url: "videos/geburtstag.mp4",
-
-        image: "5.jpeg"
+        url: "DEIN-GEBURTSTAG-LINK",
+        image: "4.jpeg"
       }
-
     ]
-
   },
 
-
   christmas: {
-
     number: "02",
-
     title: "Weihnachten",
 
     videos: [
-
       {
         name: "Für deinen Weihnachtsmorgen",
-
-        url: "videos/weihnachten.mp4",
-
-        image: "6.jpeg"
+        url: "DEIN-WEIHNACHTS-LINK",
+        image: "5.jpeg"
       }
-
     ]
-
   },
 
-
   missyou: {
-
     number: "03",
-
     title: "Wenn du mich vermisst",
 
     videos: [
-
       {
         name: "Für heute",
-
-        url: "videos/vermissen-1.mp4",
-
-        image: "7.jpeg"
+        url: "DEIN-VERMISSE-LINK-1",
+        image: "6.jpeg"
       },
 
       {
         name: "Wenn du mich besonders vermisst",
-
-        url: "videos/vermissen-2.mp4",
-
-        image: "7.jpeg"
+        url: "DEIN-VERMISSE-LINK-2",
+        image: "6.jpeg"
       },
 
       {
         name: "Einfach weil ich dich vermisse",
-
-        url: "videos/vermissen-3.mp4",
-
-        image: "7.jpeg"
+        url: "DEIN-VERMISSE-LINK-3",
+        image: "6.jpeg"
       }
-
     ]
-
   },
 
-
   random: {
-
     number: "04",
-
     title: "Einfach so",
 
     videos: [
-
       {
         name: "Eine kleine Nachricht",
-
-        url: "videos/einfach-so-1.mp4",
-
-        image: "8.jpeg"
+        url: "DEIN-EINFACH-SO-LINK-1",
+        image: "7.jpeg"
       },
 
       {
         name: "Einfach so",
-
-        url: "videos/einfach-so-2.mp4",
-
-        image: "8.jpeg"
+        url: "DEIN-EINFACH-SO-LINK-2",
+        image: "7.jpeg"
       },
 
       {
         name: "Für irgendwann",
-
-        url: "videos/einfach-so-3.mp4",
-
-        image: "8.jpeg"
+        url: "DEIN-EINFACH-SO-LINK-3",
+        image: "7.jpeg"
       }
-
     ]
-
   },
 
-
   laugh: {
-
     number: "05",
-
     title: "Wenn du lachen willst",
 
     videos: [
-
       {
         name: "Nummer 1",
-
-        url: "videos/lachen-1.mp4",
-
-        image: "9.jpeg"
+        url: "DEIN-LACHEN-LINK-1",
+        image: "8.jpeg"
       },
 
       {
         name: "Nummer 2",
-
-        url: "videos/lachen-2.mp4",
-
-        image: "9.jpeg"
+        url: "DEIN-LACHEN-LINK-2",
+        image: "8.jpeg"
       }
-
     ]
-
   },
 
-
   night: {
-
     number: "06",
-
     title: "Für die Nacht",
 
     videos: [
-
       {
         name: "Gute Nacht",
-
-        url: "videos/nacht-1.mp4",
-
-        image: "10.jpeg"
+        url: "DEIN-NACHT-LINK-1",
+        image: "9.jpeg"
       },
 
       {
         name: "Noch wach?",
-
-        url: "videos/nacht-2.mp4",
-
-        image: "10.jpeg"
+        url: "DEIN-NACHT-LINK-2",
+        image: "9.jpeg"
       }
-
     ]
-
   },
 
-
   bad: {
-
     number: "07",
-
     title: "Wenn du einen schlechten Tag hast",
 
     videos: [
-
       {
         name: "Für heute",
-
-        url: "videos/schlechter-tag-1.mp4",
-
-        image: "11.jpeg"
+        url: "DEIN-SCHLECHTER-TAG-LINK-1",
+        image: "10.jpeg"
       },
 
       {
         name: "Für einen schweren Tag",
+        url: "DEIN-SCHLECHTER-TAG-LINK-2",
+        image: "10.jpeg"
+      }
+    ]
+  },
 
-        url: "videos/schlechter-tag-2.mp4",
+  again: {
+    number: "08",
+    title: "Bis wir uns wiedersehen",
 
+    videos: [
+      {
+        name: "Für die Tage dazwischen",
+        url: "DEIN-WIEDERSEHEN-LINK-1",
+        image: "11.jpeg"
+      },
+
+      {
+        name: "Bis bald",
+        url: "DEIN-WIEDERSEHEN-LINK-2",
         image: "11.jpeg"
       }
-
     ]
-
   }
 
 };
 
-
-
-/* =====================================================
+/* ==================================
    KATEGORIE ÖFFNEN
-===================================================== */
+================================== */
 
 function openCategory(category) {
 
   const data = categories[category];
 
-  if (!data) {
-    console.error("Kategorie nicht gefunden:", category);
-    return;
-  }
-
-
   document.getElementById("modalNumber").textContent =
     data.number;
-
 
   document.getElementById("modalTitle").textContent =
     data.title;
 
-
   const list =
     document.getElementById("videoList");
 
-
   list.innerHTML = "";
-
 
   data.videos.forEach((video, index) => {
 
     const button =
       document.createElement("button");
 
-
     button.className =
       "video-choice";
-
 
     button.innerHTML = `
 
@@ -2298,201 +1249,165 @@ function openCategory(category) {
 
       </div>
 
-
       <div class="video-info">
 
         <div class="video-number">
-
           ${String(index + 1).padStart(2, "0")}
-
         </div>
-
 
         <div class="video-name">
-
           ${video.name}
-
         </div>
 
       </div>
 
-
       <div class="play">
-
         ▶
-
       </div>
-
     `;
-
 
     button.onclick =
       () => openVideo(video);
-
 
     list.appendChild(button);
 
   });
 
-
   document.getElementById("listView")
     .style.display = "block";
-
 
   document.getElementById("player")
     .classList.remove("active");
 
+  document.getElementById("spotifyBox")
+    .style.display = "none";
 
   document.getElementById("overlay")
     .classList.add("active");
-
-
-  document.body.style.overflow = "hidden";
-
 }
 
-
-
-/* =====================================================
+/* ==================================
    VIDEO ÖFFNEN
-===================================================== */
+================================== */
 
 function openVideo(video) {
 
   const element =
     document.getElementById("videoElement");
 
-
   element.src =
     video.url;
 
-
   element.load();
-
 
   document.getElementById("playerCaption")
     .textContent =
     video.name;
 
-
   document.getElementById("listView")
     .style.display = "none";
 
+  document.getElementById("spotifyBox")
+    .style.display = "none";
 
   document.getElementById("player")
     .classList.add("active");
-
-
-  /*
-     NICHT automatisch abspielen.
-     Dadurch entscheidet die Person selbst,
-     wann das Video startet.
-  */
-
 }
 
-
-
-/* =====================================================
-   ZURÜCK ZUR VIDEO-LISTE
-===================================================== */
+/* ==================================
+   ZURÜCK
+================================== */
 
 function backToList() {
 
   const element =
     document.getElementById("videoElement");
 
-
   element.pause();
 
   element.removeAttribute("src");
 
   element.load();
 
+  document.getElementById("player")
+    .classList.remove("active");
+
+  document.getElementById("listView")
+    .style.display = "block";
+}
+
+/* ==================================
+   SPOTIFY
+================================== */
+
+function openSpotify() {
+
+  document.getElementById("listView")
+    .style.display = "none";
 
   document.getElementById("player")
     .classList.remove("active");
 
-
-  document.getElementById("listView")
+  document.getElementById("spotifyBox")
     .style.display = "block";
 
+  document.getElementById("overlay")
+    .classList.add("active");
 }
 
-
-
-/* =====================================================
-   MODAL SCHLIESSEN
-===================================================== */
+/* ==================================
+   SCHLIESSEN
+================================== */
 
 function closeModal() {
 
   const element =
     document.getElementById("videoElement");
 
-
   element.pause();
 
   element.removeAttribute("src");
 
   element.load();
 
-
   document.getElementById("overlay")
     .classList.remove("active");
-
 
   document.getElementById("player")
     .classList.remove("active");
 
+  document.getElementById("spotifyBox")
+    .style.display = "none";
 
   document.getElementById("listView")
     .style.display = "block";
-
-
-  document.body.style.overflow = "";
-
 }
 
-
-
-/* =====================================================
-   KLICK AUF DEN HINTERGRUND
-===================================================== */
+/* ==================================
+   AUSSERHALB KLICKEN
+================================== */
 
 document
   .getElementById("overlay")
-  .addEventListener(
-    "click",
-    function(event) {
+  .addEventListener("click", function(event) {
 
-      if (event.target === this) {
-
-        closeModal();
-
-      }
-
-    }
-  );
-
-
-
-/* =====================================================
-   ESC-TASTE
-===================================================== */
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (event.key === "Escape") {
-
+    if (event.target === this) {
       closeModal();
-
     }
 
+  });
+
+/* ==================================
+   ESC
+================================== */
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "Escape") {
+    closeModal();
   }
-);
+
+});
 
 </script>
 

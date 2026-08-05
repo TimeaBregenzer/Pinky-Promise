@@ -136,15 +136,16 @@ body::before {
 }
 
 .music-dot {
-  width: auto;
-  height: auto;
+  width: 34px;
+  height: 34px;
 
-  border: none;
-  border-radius: 0;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
 
-  display: block;
+  display: grid;
+  place-items: center;
 
-  font-size: 14px;
+  font-size: 11px;
   flex-shrink: 0;
 }
 
@@ -460,40 +461,67 @@ body::before {
 }
 
 /* =========================
-   LOCK SCREEN
+   LOCK MESSAGE
 ========================= */
 
-.lock-box {
+.locked-message {
+  padding: 35px 25px;
   text-align: center;
-  padding: 35px 15px 25px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
-.lock-date {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--rose);
-  margin-bottom: 15px;
-}
-
-.lock-title {
+.locked-message .lock-small {
   font-family: 'Caveat', cursive;
-  font-size: 38px;
-  margin-bottom: 12px;
+  font-size: 24px;
+  color: var(--rose);
+  margin-bottom: 8px;
 }
 
-.lock-message {
-  max-width: 500px;
-  margin: auto;
+.locked-message .lock-text {
+  font-family: 'Caveat', cursive;
+  font-size: 27px;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+.locked-message .lock-date {
+  margin-top: 14px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--rose);
+}
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote-box {
+  margin: 0 0 28px;
+  padding: 22px 24px;
+
+  background: rgba(234,209,208,.35);
+
+  border-left: 2px solid var(--rose);
 
   font-family: 'Caveat', cursive;
   font-size: 25px;
-  line-height: 1.35;
+  line-height: 1.25;
 
   color: var(--muted);
 }
 
+.quote-author {
+  margin-top: 9px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--rose);
+}
+
 /* =========================
-   VIDEO-LISTE
+   VIDEOS
 ========================= */
 
 .video-list {
@@ -559,6 +587,13 @@ body::before {
 .video-name {
   font-family: 'Caveat', cursive;
   font-size: 23px;
+}
+
+.video-status {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  color: var(--rose);
+  margin-top: 2px;
 }
 
 /* =========================
@@ -643,29 +678,6 @@ body::before {
 }
 
 /* =========================
-   SCHLECHTER TAG
-========================= */
-
-.quote-box {
-  margin-bottom: 28px;
-  padding: 25px;
-
-  background: rgba(234,209,208,.38);
-
-  border-left: 2px solid var(--rose);
-}
-
-.quote-box p {
-  margin: 0;
-
-  font-family: 'Caveat', cursive;
-  font-size: 27px;
-  line-height: 1.35;
-
-  color: var(--muted);
-}
-
-/* =========================
    FOOTER
 ========================= */
 
@@ -743,10 +755,6 @@ footer {
 
   .modal h2 {
     font-size: 42px;
-  }
-
-  .lock-message {
-    font-size: 23px;
   }
 }
 
@@ -847,9 +855,7 @@ footer {
       01 — 08
     </div>
 
-    <h2>
-      Für dich.
-    </h2>
+    <h2>Für dich.</h2>
 
     <p>
       KLEINE NACHRICHTEN FÜR DIE TAGE DAZWISCHEN
@@ -957,9 +963,7 @@ footer {
       class="modal-close"
       onclick="closeModal()"
       aria-label="Schließen"
-    >
-      ×
-    </button>
+    >×</button>
 
     <div id="listView">
 
@@ -970,7 +974,7 @@ footer {
 
       <h2 id="modalTitle"></h2>
 
-      <div id="quoteBox"></div>
+      <div id="quoteContainer"></div>
 
       <div
         class="video-list"
@@ -1037,228 +1041,425 @@ footer {
 <script>
 
 /* =========================================================
-   KATEGORIEN
+   EINSTELLUNGEN
+========================================================= */
+
+/*
+   GEBURTSTAG:
+   ABSICHTLICH 2027!
+
+   Dadurch bleibt die Karte jetzt gesperrt und öffnet
+   exakt am 01.07.2027 um 00:00 Uhr.
+
+   Wenn du später ein anderes Jahr brauchst, musst du
+   NUR diese eine Zahl ändern.
+*/
+
+const BIRTHDAY_UNLOCK = new Date(
+  2027,
+  6,
+  1,
+  0, 0, 0, 0
+);
+
+/*
+   WEIHNACHTEN:
+   24.12.2026 um 00:00 Uhr.
+*/
+
+const CHRISTMAS_UNLOCK = new Date(
+  2026,
+  11,
+  24,
+  0, 0, 0, 0
+);
+
+
+/* =========================================================
+   VIDEO-DATEN
 ========================================================= */
 
 const categories = {
 
   birthday: {
+
     number: "01",
     title: "Dein Geburtstag",
 
-    unlock: {
-      jear:2027
-      month: 7,
-      day: 1
-    },
+    lockedText:
+      "Nanana … da musst du dich noch ein bisschen gedulden. " +
+      "Aber ich verspreche dir: Das Warten lohnt sich. ♡",
+
+    unlockDate: BIRTHDAY_UNLOCK,
 
     videos: [
+
       {
+        id: "birthday-1",
         name: "Für deinen Geburtstag",
         url: "DEIN-GEBURTSTAG-LINK",
-        image: "4.jpeg"
+        image: "4.jpeg",
+
+        /*
+          Das erste Video wird automatisch am Datum freigeschaltet.
+        */
+        unlockWithCategory: true
+      },
+
+      {
+        id: "birthday-2",
+        name: "Noch eine kleine Überraschung",
+        url: "DEIN-GEBURTSTAG-LINK-2",
+        image: "4.jpeg",
+
+        /*
+          Neue Videos kannst du selbst sperren.
+          false = zunächst gesperrt.
+        */
+        manualLocked: true
       }
+
     ]
+
   },
 
+
   christmas: {
+
     number: "02",
     title: "Weihnachten",
 
-    unlock: {
-      month: 12,
-      day: 24
-    },
+    lockedText:
+      "Nanana … da musst du dich noch ein bisschen gedulden. " +
+      "Aber ich verspreche dir: Das Warten lohnt sich. ♡",
+
+    unlockDate: CHRISTMAS_UNLOCK,
 
     videos: [
+
       {
+        id: "christmas-1",
         name: "Für deinen Weihnachtsmorgen",
         url: "DEIN-WEIHNACHTS-LINK",
-        image: "5.jpeg"
+        image: "5.jpeg",
+
+        unlockWithCategory: true
+      },
+
+      {
+        id: "christmas-2",
+        name: "Noch eine kleine Überraschung",
+        url: "DEIN-WEIHNACHTS-LINK-2",
+        image: "5.jpeg",
+
+        manualLocked: true
       }
+
     ]
+
   },
 
+
   missyou: {
+
     number: "03",
     title: "Wenn du mich vermisst",
 
     videos: [
+
       {
+        id: "missyou-1",
         name: "Für heute",
         url: "DEIN-VERMISSE-LINK-1",
         image: "6.jpeg"
       },
 
       {
+        id: "missyou-2",
         name: "Wenn du mich besonders vermisst",
         url: "DEIN-VERMISSE-LINK-2",
         image: "6.jpeg"
       },
 
       {
+        id: "missyou-3",
         name: "Einfach weil ich dich vermisse",
         url: "DEIN-VERMISSE-LINK-3",
         image: "6.jpeg"
       }
+
     ]
+
   },
 
+
   random: {
+
     number: "04",
     title: "Einfach so",
 
     videos: [
+
       {
+        id: "random-1",
         name: "Eine kleine Nachricht",
         url: "DEIN-EINFACH-SO-LINK-1",
         image: "7.jpeg"
       },
 
       {
+        id: "random-2",
         name: "Einfach so",
         url: "DEIN-EINFACH-SO-LINK-2",
         image: "7.jpeg"
       },
 
       {
+        id: "random-3",
         name: "Für irgendwann",
         url: "DEIN-EINFACH-SO-LINK-3",
         image: "7.jpeg"
       }
+
     ]
+
   },
 
+
   laugh: {
+
     number: "05",
     title: "Wenn du lachen willst",
 
     videos: [
+
       {
+        id: "laugh-1",
         name: "Nummer 1",
         url: "DEIN-LACHEN-LINK-1",
         image: "8.jpeg"
       },
 
       {
+        id: "laugh-2",
         name: "Nummer 2",
         url: "DEIN-LACHEN-LINK-2",
         image: "8.jpeg"
       }
+
     ]
+
   },
 
+
   night: {
+
     number: "06",
     title: "Für die Nacht",
 
     videos: [
+
       {
+        id: "night-1",
         name: "Gute Nacht",
         url: "DEIN-NACHT-LINK-1",
         image: "9.jpeg"
       },
 
       {
+        id: "night-2",
         name: "Noch wach?",
         url: "DEIN-NACHT-LINK-2",
         image: "9.jpeg"
       }
+
     ]
+
   },
 
+
   bad: {
+
     number: "07",
     title: "Wenn du einen schlechten Tag hast",
 
     quote:
-      "Und es ist okay, wenn du gerade nicht okay bist. Wir kriegen das hin. Wenn du dich grad nicht so lieb hast, lieb ich dich für dich mit. 💕 – Tom Twers",
+      "Und es ist okay, wenn du gerade nicht okay bist. " +
+      "Wir kriegen das hin. Wenn du dich grad nicht so lieb hast, " +
+      "lieb ich dich für dich mit. 💕",
+
+    quoteAuthor:
+      "– Tom Twers",
 
     videos: [
+
       {
+        id: "bad-1",
         name: "Für heute",
         url: "DEIN-SCHLECHTER-TAG-LINK-1",
         image: "10.jpeg"
       },
 
       {
+        id: "bad-2",
         name: "Für einen schweren Tag",
         url: "DEIN-SCHLECHTER-TAG-LINK-2",
         image: "10.jpeg"
       }
+
     ]
+
   },
 
+
   again: {
+
     number: "08",
     title: "Bis wir uns wiedersehen",
 
     videos: [
+
       {
+        id: "again-1",
         name: "Für die Tage dazwischen",
         url: "DEIN-WIEDERSEHEN-LINK-1",
         image: "11.jpeg"
       },
 
       {
+        id: "again-2",
         name: "Bis bald",
         url: "DEIN-WIEDERSEHEN-LINK-2",
         image: "11.jpeg"
       }
+
     ]
+
   }
 
 };
 
 
 /* =========================================================
-   PRÜFEN, OB EINE KATEGORIE FREIGESCHALTET IST
+   LOCAL STORAGE
 ========================================================= */
 
-function isUnlocked(category) {
+function getWatchedVideos() {
 
-  if (!category.unlock) {
+  try {
+
+    return JSON.parse(
+      localStorage.getItem("pinkyPromiseWatched") || "[]"
+    );
+
+  } catch {
+
+    return [];
+
+  }
+
+}
+
+
+function markVideoWatched(videoId) {
+
+  const watched = getWatchedVideos();
+
+  if (!watched.includes(videoId)) {
+
+    watched.push(videoId);
+
+    localStorage.setItem(
+      "pinkyPromiseWatched",
+      JSON.stringify(watched)
+    );
+
+  }
+
+}
+
+
+function wasVideoWatched(videoId) {
+
+  return getWatchedVideos().includes(videoId);
+
+}
+
+
+/* =========================================================
+   KATEGORIE IST FREIGESCHALTET?
+========================================================= */
+
+function isCategoryUnlocked(data) {
+
+  /*
+    Normale Kategorien haben keine Sperre.
+  */
+
+  if (!data.unlockDate) {
     return true;
   }
 
   const now = new Date();
 
-  const currentMonth = now.getMonth() + 1;
-  const currentDay = now.getDate();
+  return now >= data.unlockDate;
 
-  const unlockMonth = category.unlock.month;
-  const unlockDay = category.unlock.day;
-
-  if (currentMonth > unlockMonth) {
-    return true;
-  }
-
-  if (
-    currentMonth === unlockMonth &&
-    currentDay >= unlockDay
-  ) {
-    return true;
-  }
-
-  return false;
 }
 
 
 /* =========================================================
-   NÄCHSTES UNLOCK-DATUM
+   EINZELNES VIDEO IST FREIGESCHALTET?
 ========================================================= */
 
-function getUnlockText(categoryKey) {
+function isVideoUnlocked(data, video) {
 
-  if (categoryKey === "birthday") {
-    return "01. JULI · 00:00 UHR";
+  /*
+    Normale Videos sind frei.
+  */
+
+  if (!data.unlockDate && !video.manualLocked) {
+    return true;
   }
 
-  if (categoryKey === "christmas") {
-    return "24. DEZEMBER · 00:00 UHR";
+
+  /*
+    Geburtstag / Weihnachten:
+    Vor dem großen Datum bleibt das erste Video gesperrt.
+  */
+
+  if (video.unlockWithCategory) {
+
+    return isCategoryUnlocked(data);
+
   }
 
-  return "";
+
+  /*
+    Ein Video, das bereits angesehen wurde,
+    bleibt auf diesem Gerät verfügbar.
+  */
+
+  if (wasVideoWatched(video.id)) {
+    return true;
+  }
+
+
+  /*
+    Manuell gesperrte neue Videos bleiben gesperrt.
+  */
+
+  if (video.manualLocked) {
+    return false;
+  }
+
+
+  /*
+    Falls die Kategorie bereits freigeschaltet wurde,
+    normale Videos öffnen.
+  */
+
+  return isCategoryUnlocked(data);
+
 }
 
 
@@ -1266,13 +1467,12 @@ function getUnlockText(categoryKey) {
    KATEGORIE ÖFFNEN
 ========================================================= */
 
-function openCategory(categoryKey) {
+function openCategory(category) {
 
-  const data = categories[categoryKey];
+  const data = categories[category];
 
-  if (!data) {
-    return;
-  }
+  if (!data) return;
+
 
   document.getElementById("modalNumber").textContent =
     data.number;
@@ -1280,92 +1480,132 @@ function openCategory(categoryKey) {
   document.getElementById("modalTitle").textContent =
     data.title;
 
-  const quoteBox =
-    document.getElementById("quoteBox");
+
+  /*
+    Zitat anzeigen, falls vorhanden.
+    Das Zitat ersetzt NICHT die Videos.
+  */
+
+  const quoteContainer =
+    document.getElementById("quoteContainer");
+
+  quoteContainer.innerHTML = "";
+
+
+  if (data.quote) {
+
+    const quoteBox =
+      document.createElement("div");
+
+    quoteBox.className = "quote-box";
+
+    quoteBox.innerHTML = `
+      ${data.quote}
+      <div class="quote-author">
+        ${data.quoteAuthor || ""}
+      </div>
+    `;
+
+    quoteContainer.appendChild(quoteBox);
+
+  }
+
 
   const list =
     document.getElementById("videoList");
 
-  quoteBox.innerHTML = "";
   list.innerHTML = "";
 
 
-  /* =========================================
-     GESPERRTE KATEGORIE
-  ========================================= */
+  /*
+    Wenn die gesamte Kategorie noch gesperrt ist,
+    zeigen wir den schönen Geduldsspruch.
+  */
 
-  if (!isUnlocked(data)) {
+  if (!isCategoryUnlocked(data)) {
 
-    const unlockText =
-      getUnlockText(categoryKey);
+    const locked =
+      document.createElement("div");
 
-    quoteBox.innerHTML = `
+    locked.className = "locked-message";
 
-      <div class="lock-box">
+    const dateText =
+      data.unlockDate.toLocaleDateString(
+        "de-DE",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        }
+      );
 
-        <div class="lock-date">
-          NOCH EIN KLEINES BISSCHEN GEDULD
-        </div>
-
-        <div class="lock-title">
-          Nanana… ♡
-        </div>
-
-        <div class="lock-message">
-          Da musst du dich noch ein kleines
-          bisschen gedulden. Aber glaub mir:
-          Das Warten lohnt sich. Ich hab da
-          etwas ganz Besonderes für dich.
-          <br><br>
-          <span style="font-size:18px;">
-            Ab ${unlockText}.
-          </span>
-        </div>
-
+    locked.innerHTML = `
+      <div class="lock-small">
+        Noch ein kleines bisschen …
       </div>
 
+      <div class="lock-text">
+        ${data.lockedText}
+      </div>
+
+      <div class="lock-date">
+        FREIGESCHALTET AM ${dateText}
+      </div>
     `;
 
-    document.getElementById("overlay")
-      .classList.add("active");
+    list.appendChild(locked);
 
-    document.getElementById("listView")
-      .style.display = "block";
-
-    document.getElementById("player")
-      .classList.remove("active");
-
-    document.getElementById("spotifyBox")
-      .style.display = "none";
-
-    return;
   }
 
 
-  /* =========================================
-     NORMALE KATEGORIE
-  ========================================= */
-
-  if (data.quote) {
-
-    quoteBox.innerHTML = `
-
-      <div class="quote-box">
-        <p>${data.quote}</p>
-      </div>
-
-    `;
-
-  }
-
+  /*
+    Videos trotzdem anzeigen, wenn:
+    - Kategorie frei ist
+    - oder einzelne Videos bereits angesehen wurden
+  */
 
   data.videos.forEach((video, index) => {
+
+    const unlocked =
+      isVideoUnlocked(data, video);
+
 
     const button =
       document.createElement("button");
 
     button.className =
       "video-choice";
+
+
+    /*
+      GESPERRTES VIDEO
+    */
+
+    if (!unlocked) {
+
+      button.onclick = () => {
+
+        showLockedMessage(
+          "Nanana … da musst du dich noch ein bisschen gedulden. " +
+          "Aber das Warten lohnt sich. ♡"
+        );
+
+      };
+
+    }
+
+
+    /*
+      FREIGESCHALTETES VIDEO
+    */
+
+    else {
+
+      button.onclick =
+        () => openVideo(video);
+
+    }
+
 
     button.innerHTML = `
 
@@ -1388,12 +1628,22 @@ function openCategory(categoryKey) {
           ${video.name}
         </div>
 
+        ${
+          unlocked
+            ? `<div class="video-status">
+                 ${wasVideoWatched(video.id)
+                   ? "schon für dich da ♡"
+                   : "für dich ♡"}
+               </div>`
+            : `<div class="video-status">
+                 noch ein bisschen gedulden …
+               </div>`
+        }
+
       </div>
 
     `;
 
-    button.onclick =
-      () => openVideo(video);
 
     list.appendChild(button);
 
@@ -1411,6 +1661,43 @@ function openCategory(categoryKey) {
 
   document.getElementById("overlay")
     .classList.add("active");
+
+}
+
+
+/* =========================================================
+   GESPERRTE NACHRICHT
+========================================================= */
+
+function showLockedMessage(text) {
+
+  const list =
+    document.getElementById("videoList");
+
+  const old =
+    list.querySelector(".temporary-message");
+
+  if (old) old.remove();
+
+
+  const message =
+    document.createElement("div");
+
+  message.className =
+    "locked-message temporary-message";
+
+  message.innerHTML = `
+    <div class="lock-small">
+      ♡
+    </div>
+
+    <div class="lock-text">
+      ${text}
+    </div>
+  `;
+
+  list.prepend(message);
+
 }
 
 
@@ -1420,6 +1707,14 @@ function openCategory(categoryKey) {
 
 function openVideo(video) {
 
+  /*
+    Sobald das Video geöffnet wurde,
+    wird es auf diesem Gerät als angesehen gespeichert.
+  */
+
+  markVideoWatched(video.id);
+
+
   const element =
     document.getElementById("videoElement");
 
@@ -1428,9 +1723,11 @@ function openVideo(video) {
 
   element.load();
 
+
   document.getElementById("playerCaption")
     .textContent =
     video.name;
+
 
   document.getElementById("listView")
     .style.display = "none";
@@ -1440,6 +1737,7 @@ function openVideo(video) {
 
   document.getElementById("player")
     .classList.add("active");
+
 }
 
 
@@ -1463,6 +1761,7 @@ function backToList() {
 
   document.getElementById("listView")
     .style.display = "block";
+
 }
 
 
@@ -1483,6 +1782,7 @@ function openSpotify() {
 
   document.getElementById("overlay")
     .classList.add("active");
+
 }
 
 
@@ -1513,8 +1813,6 @@ function closeModal() {
   document.getElementById("listView")
     .style.display = "block";
 
-  document.getElementById("quoteBox")
-    .innerHTML = "";
 }
 
 

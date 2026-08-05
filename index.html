@@ -7,7 +7,6 @@
 <title>Pinky Promise</title>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
 
 * {
@@ -64,17 +63,15 @@ body::before {
   padding: 45px 0 70px;
 }
 
-
-/* ==================================================
+/* =========================
    HERO
-================================================== */
+========================= */
 
 .hero {
   min-height: 560px;
 
   display: grid;
   grid-template-columns: 1.15fr .85fr;
-
   gap: 35px;
   align-items: center;
 
@@ -134,10 +131,9 @@ body::before {
   margin-top: 22px;
 }
 
-
-/* ==================================================
+/* =========================
    SPOTIFY
-================================================== */
+========================= */
 
 .music-card {
   margin-top: 45px;
@@ -174,7 +170,7 @@ body::before {
 
   place-items: center;
 
-  font-size: 15px;
+  font-size: 10px;
 
   flex-shrink: 0;
 }
@@ -220,10 +216,9 @@ body::before {
     );
 }
 
-
-/* ==================================================
+/* =========================
    POLAROIDS
-================================================== */
+========================= */
 
 .photo-area {
   position: relative;
@@ -305,10 +300,9 @@ body::before {
   transform: rotate(-3deg);
 }
 
-
-/* ==================================================
+/* =========================
    SECTION
-================================================== */
+========================= */
 
 .section-intro {
   text-align: center;
@@ -342,10 +336,9 @@ body::before {
   color: var(--muted);
 }
 
-
-/* ==================================================
+/* =========================
    MEMORY CARDS
-================================================== */
+========================= */
 
 .memory-grid {
   display: grid;
@@ -439,8 +432,7 @@ body::before {
 
   background: white;
 
-  box-shadow:
-    0 8px 20px rgba(50,35,30,.14);
+  box-shadow: 0 8px 20px rgba(50,35,30,.14);
 
   transform: rotate(6deg);
 }
@@ -454,10 +446,9 @@ body::before {
   object-fit: cover;
 }
 
-
-/* ==================================================
+/* =========================
    MODAL
-================================================== */
+========================= */
 
 .overlay {
   display: none;
@@ -475,7 +466,6 @@ body::before {
   backdrop-filter: blur(8px);
 
   align-items: center;
-
   justify-content: center;
 }
 
@@ -498,22 +488,6 @@ body::before {
 
   box-shadow:
     0 30px 80px rgba(20,15,13,.3);
-
-  animation: modalIn .25s ease;
-}
-
-@keyframes modalIn {
-
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(.98);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
 }
 
 .modal-close {
@@ -556,10 +530,44 @@ body::before {
   margin: 4px 0 25px;
 }
 
+/* =========================
+   BAD DAY MESSAGE
+========================= */
 
-/* ==================================================
+.bad-day-message {
+  margin-bottom: 30px;
+
+  padding: 25px 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(234,209,208,.45),
+      rgba(255,250,247,.7)
+    );
+
+  border-top: 1px solid rgba(189,146,147,.35);
+
+  border-bottom: 1px solid rgba(189,146,147,.35);
+
+  text-align: center;
+}
+
+.bad-day-message p {
+  margin: 0;
+
+  font-family: 'Caveat', cursive;
+
+  font-size: 25px;
+
+  line-height: 1.35;
+
+  color: var(--muted);
+}
+
+/* =========================
    VIDEO LIST
-================================================== */
+========================= */
 
 .video-list {
   display: flex;
@@ -588,32 +596,15 @@ body::before {
 
   text-align: left;
 
-  color: var(--ink);
-
   transition:
     background .2s ease,
-    transform .2s ease,
-    border-color .2s ease;
+    transform .2s ease;
 }
 
 .video-choice:hover {
   background: #f7e7e7;
 
   transform: translateX(3px);
-
-  border-color: rgba(189,146,147,.4);
-}
-
-.video-choice.locked {
-  cursor: pointer;
-
-  background: rgba(249,244,241,.7);
-
-  opacity: .72;
-}
-
-.video-choice.locked:hover {
-  background: #f3e6e2;
 }
 
 .video-thumb {
@@ -644,8 +635,6 @@ body::before {
   letter-spacing: 2px;
 
   color: var(--rose);
-
-  margin-bottom: 2px;
 }
 
 .video-name {
@@ -655,19 +644,74 @@ body::before {
 }
 
 .video-status {
-  margin-top: 4px;
+  font-family: 'Caveat', cursive;
 
-  font-size: 9px;
-
-  letter-spacing: 1.5px;
+  font-size: 18px;
 
   color: var(--muted);
 }
 
+/* =========================
+   LOCKED MESSAGE
+========================= */
 
-/* ==================================================
+.locked-view {
+  display: none;
+
+  text-align: center;
+
+  padding: 30px 10px 15px;
+}
+
+.locked-view.active {
+  display: block;
+}
+
+.locked-number {
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  color: var(--rose);
+
+  margin-bottom: 10px;
+}
+
+.locked-title {
+  font-family: 'Caveat', cursive;
+
+  font-size: 48px;
+
+  margin-bottom: 20px;
+}
+
+.locked-text {
+  font-family: 'Caveat', cursive;
+
+  font-size: 27px;
+
+  line-height: 1.35;
+
+  color: var(--muted);
+
+  max-width: 500px;
+
+  margin: auto;
+}
+
+.locked-date {
+  margin-top: 25px;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  color: var(--rose);
+}
+
+/* =========================
    VIDEO PLAYER
-================================================== */
+========================= */
 
 .player {
   display: none;
@@ -711,108 +755,9 @@ body::before {
   margin-top: 12px;
 }
 
-
-/* ==================================================
-   LOCKED MESSAGE
-================================================== */
-
-.locked-message {
-  text-align: center;
-
-  padding: 35px 15px 20px;
-}
-
-.locked-message .little-heart {
-  font-family: 'Caveat', cursive;
-
-  font-size: 34px;
-
-  color: var(--rose);
-
-  margin-bottom: 8px;
-}
-
-.locked-message h3 {
-  font-family: 'Caveat', cursive;
-
-  font-size: 32px;
-
-  font-weight: 500;
-
-  margin: 0 0 10px;
-}
-
-.locked-message p {
-  font-family: 'Caveat', cursive;
-
-  font-size: 22px;
-
-  line-height: 1.35;
-
-  color: var(--muted);
-
-  max-width: 450px;
-
-  margin: auto;
-}
-
-.locked-date {
-  margin-top: 18px;
-
-  font-size: 9px;
-
-  letter-spacing: 2px;
-
-  color: var(--rose);
-}
-
-
-/* ==================================================
-   BAD DAY MESSAGE
-================================================== */
-
-.bad-day-message {
-  padding: 20px 5px 10px;
-
-  text-align: center;
-}
-
-.bad-day-message .quote-mark {
-  font-family: 'Caveat', cursive;
-
-  font-size: 45px;
-
-  color: var(--rose);
-
-  line-height: 1;
-}
-
-.bad-day-message .quote {
-  font-family: 'Caveat', cursive;
-
-  font-size: 28px;
-
-  line-height: 1.4;
-
-  color: var(--ink);
-
-  margin: 8px auto 18px;
-
-  max-width: 570px;
-}
-
-.bad-day-message .quote-author {
-  font-family: 'Caveat', cursive;
-
-  font-size: 20px;
-
-  color: var(--muted);
-}
-
-
-/* ==================================================
+/* =========================
    SPOTIFY
-================================================== */
+========================= */
 
 .spotify-box {
   padding: 10px 0 5px;
@@ -858,10 +803,9 @@ body::before {
   color: white;
 }
 
-
-/* ==================================================
+/* =========================
    FOOTER
-================================================== */
+========================= */
 
 footer {
   text-align: center;
@@ -875,10 +819,9 @@ footer {
   color: var(--muted);
 }
 
-
-/* ==================================================
+/* =========================
    MOBILE
-================================================== */
+========================= */
 
 @media (max-width: 760px) {
 
@@ -948,10 +891,13 @@ footer {
     font-size: 42px;
   }
 
-  .bad-day-message .quote {
-    font-size: 25px;
+  .locked-title {
+    font-size: 42px;
   }
 
+  .locked-text {
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -978,20 +924,27 @@ footer {
     left: 23%;
   }
 
-}
+  .video-choice {
+    gap: 11px;
 
+    padding: 11px;
+  }
+
+  .video-thumb {
+    width: 58px;
+    height: 58px;
+  }
+}
 </style>
 </head>
-
 
 <body>
 
 <div class="page">
 
-
-<!-- ==================================================
+<!-- =========================
      START
-================================================== -->
+========================= -->
 
 <section class="hero">
 
@@ -1007,12 +960,7 @@ footer {
       MICH VERMISST.
     </div>
 
-    <div class="small-heart">
-      ♡
-    </div>
-
-
-    <!-- SPOTIFY -->
+    <div class="small-heart">♡</div>
 
     <div
       class="music-card"
@@ -1041,7 +989,6 @@ footer {
 
   </div>
 
-
   <!-- POLAROIDS -->
 
   <div class="photo-area">
@@ -1060,7 +1007,6 @@ footer {
 
     </div>
 
-
     <div
       class="polaroid p2"
       data-caption="♡"
@@ -1074,7 +1020,6 @@ footer {
       >
 
     </div>
-
 
     <div
       class="polaroid p3"
@@ -1094,11 +1039,9 @@ footer {
 
 </section>
 
-
-
-<!-- ==================================================
+<!-- =========================
      KARTEN
-================================================== -->
+========================= -->
 
 <section>
 
@@ -1118,11 +1061,7 @@ footer {
 
   </div>
 
-
   <div class="memory-grid">
-
-
-    <!-- 01 -->
 
     <div
       class="memory-card"
@@ -1142,19 +1081,10 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="4.jpeg"
-          alt=""
-        >
-
+        <img src="4.jpeg" alt="">
       </div>
 
     </div>
-
-
-
-    <!-- 02 -->
 
     <div
       class="memory-card"
@@ -1174,19 +1104,10 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="5.jpeg"
-          alt=""
-        >
-
+        <img src="5.jpeg" alt="">
       </div>
 
     </div>
-
-
-
-    <!-- 03 -->
 
     <div
       class="memory-card"
@@ -1206,19 +1127,10 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="6.jpeg"
-          alt=""
-        >
-
+        <img src="6.jpeg" alt="">
       </div>
 
     </div>
-
-
-
-    <!-- 04 -->
 
     <div
       class="memory-card"
@@ -1238,19 +1150,10 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="7.jpeg"
-          alt=""
-        >
-
+        <img src="7.jpeg" alt="">
       </div>
 
     </div>
-
-
-
-    <!-- 05 -->
 
     <div
       class="memory-card"
@@ -1270,19 +1173,10 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="8.jpeg"
-          alt=""
-        >
-
+        <img src="8.jpeg" alt="">
       </div>
 
     </div>
-
-
-
-    <!-- 06 -->
 
     <div
       class="memory-card"
@@ -1302,19 +1196,10 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="9.jpeg"
-          alt=""
-        >
-
+        <img src="9.jpeg" alt="">
       </div>
 
     </div>
-
-
-
-    <!-- 07 -->
 
     <div
       class="memory-card"
@@ -1334,19 +1219,10 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="10.jpeg"
-          alt=""
-        >
-
+        <img src="10.jpeg" alt="">
       </div>
 
     </div>
-
-
-
-    <!-- 08 -->
 
     <div
       class="memory-card"
@@ -1366,12 +1242,7 @@ footer {
       </p>
 
       <div class="memory-photo">
-
-        <img
-          src="11.jpeg"
-          alt=""
-        >
-
+        <img src="11.jpeg" alt="">
       </div>
 
     </div>
@@ -1380,19 +1251,15 @@ footer {
 
 </section>
 
-
-
 <footer>
   für dich, immer. ♡
 </footer>
 
 </div>
 
-
-
-<!-- ==================================================
+<!-- =========================
      MODAL
-================================================== -->
+========================= -->
 
 <div
   class="overlay"
@@ -1400,7 +1267,6 @@ footer {
 >
 
   <div class="modal">
-
 
     <button
       class="modal-close"
@@ -1410,8 +1276,9 @@ footer {
       ×
     </button>
 
-
-    <!-- VIDEO-LISTE -->
+    <!-- =========================
+         LISTE
+    ========================= -->
 
     <div id="listView">
 
@@ -1422,6 +1289,26 @@ footer {
 
       <h2 id="modalTitle"></h2>
 
+      <!-- BAD DAY MESSAGE -->
+
+      <div
+        class="bad-day-message"
+        id="badDayMessage"
+        style="display:none;"
+      >
+
+        <p>
+          „Und es ist okay, wenn du gerade nicht okay bist.
+          Wir kriegen das hin.
+          Wenn du dich grad nicht so lieb hast,
+          lieb ich dich für dich mit.💕
+          – Tom Twers“
+        </p>
+
+      </div>
+
+      <!-- VIDEO LIST -->
+
       <div
         class="video-list"
         id="videoList"
@@ -1429,41 +1316,43 @@ footer {
 
     </div>
 
-
-
-    <!-- LOCKED VIEW -->
+    <!-- =========================
+         LOCKED VIEW
+    ========================= -->
 
     <div
+      class="locked-view"
       id="lockedView"
-      style="display:none;"
     >
 
-      <div class="locked-message">
+      <div
+        class="locked-number"
+        id="lockedNumber"
+      ></div>
 
-        <div class="little-heart">
-          ♡
-        </div>
-
-        <h3 id="lockedTitle">
-          Ganz langsam.
-        </h3>
-
-        <p id="lockedText">
-          Diese kleine Nachricht wartet noch auf ihren Moment.
-        </p>
-
-        <div
-          class="locked-date"
-          id="lockedDate"
-        ></div>
-
+      <div class="locked-title">
+        Nanana …
       </div>
+
+      <div class="locked-text">
+        da musst du dich noch ein
+        kleines bisschen gedulden.
+        <br><br>
+        Aber glaub mir:
+        <br>
+        Das Warten lohnt sich. ♡
+      </div>
+
+      <div
+        class="locked-date"
+        id="lockedDate"
+      ></div>
 
     </div>
 
-
-
-    <!-- VIDEO PLAYER -->
+    <!-- =========================
+         VIDEO PLAYER
+    ========================= -->
 
     <div
       class="player"
@@ -1490,36 +1379,9 @@ footer {
 
     </div>
 
-
-
-    <!-- BAD DAY MESSAGE -->
-
-    <div
-      class="bad-day-message"
-      id="badDayMessage"
-      style="display:none;"
-    >
-
-      <div class="quote-mark">
-        “
-      </div>
-
-      <div class="quote">
-        Und es ist okay, wenn du gerade nicht okay bist.
-        Wir kriegen das hin.
-        Wenn du dich grad nicht so lieb hast,
-        lieb ich dich für dich mit.💕
-      </div>
-
-      <div class="quote-author">
-        – Tom Twers
-      </div>
-
-    </div>
-
-
-
-    <!-- SPOTIFY -->
+    <!-- =========================
+         SPOTIFY
+    ========================= -->
 
     <div
       class="spotify-box"
@@ -1554,174 +1416,87 @@ footer {
 
 </div>
 
-
-
 <script>
 
-
-/* ==================================================
+/* =====================================================
    EINSTELLUNGEN
-================================================== */
+===================================================== */
 
 /*
-   Hier werden die bereits angesehenen Videos gespeichert.
-
-   Dadurch gilt:
-
-   Video angesehen
-        ↓
-   bleibt freigeschaltet
-
-   Auch wenn später ein neues Video dazukommt,
-   bleibt das alte verfügbar.
+   Diese beiden Daten sind die einzigen
+   zeitgesteuerten Kategorien.
 */
 
-const WATCHED_KEY = "pinkyPromiseWatchedVideos";
+const unlockDates = {
 
-
-function getWatchedVideos() {
-
-  try {
-
-    return JSON.parse(
-      localStorage.getItem(WATCHED_KEY)
-    ) || {};
-
-  } catch {
-
-    return {};
-
-  }
-
-}
-
-
-function saveWatchedVideo(id) {
-
-  const watched = getWatchedVideos();
-
-  watched[id] = true;
-
-  localStorage.setItem(
-    WATCHED_KEY,
-    JSON.stringify(watched)
-  );
-
-}
-
-
-function hasWatchedVideo(id) {
-
-  const watched = getWatchedVideos();
-
-  return watched[id] === true;
-
-}
-
-
-/* ==================================================
-   DATUMSPRÜFUNG
-================================================== */
-
-/*
-   Geburtstag:
-   JEDES JAHR am 01.06. um 00:00 Uhr
-
-   Weihnachten:
-   JEDES JAHR am 24.12. um 00:00 Uhr
-*/
-
-
-function getRecurringDate(month, day) {
-
-  const now = new Date();
-
-  return new Date(
-    now.getFullYear(),
-    month,
-    day,
-    0,
+  birthday: new Date(
+    new Date().getFullYear(),
+    6,
+    1,
     0,
     0,
     0
-  );
+  ),
 
-}
+  christmas: new Date(
+    new Date().getFullYear(),
+    11,
+    24,
+    0,
+    0,
+    0
+  )
+
+};
 
 
-function isUnlocked(unlockDate) {
+/*
+   Prüft, ob eine Kategorie geöffnet ist.
 
-  if (!unlockDate) {
+   Geburtstag:
+   01.07. um 00:00
+
+   Weihnachten:
+   24.12. um 00:00
+*/
+
+function isCategoryUnlocked(category) {
+
+  if (!unlockDates[category]) {
     return true;
   }
 
   const now = new Date();
 
-  return now >= new Date(unlockDate);
+  const date = unlockDates[category];
 
+  return now >= date;
 }
 
 
 /*
-   Für wiederkehrende besondere Tage.
+   Formatiert das Datum schön.
 */
 
-function isBirthdayUnlocked() {
+function formatUnlockDate(category) {
 
-  const now = new Date();
-
-  const birthday = getRecurringDate(5, 1);
-
-  return now >= birthday;
-
-}
-
-
-function isChristmasUnlocked() {
-
-  const now = new Date();
-
-  const christmas = getRecurringDate(11, 24);
-
-  return now >= christmas;
-
-}
-
-
-/* ==================================================
-   SCHÖNES DATUM
-================================================== */
-
-function formatDate(dateString) {
-
-  if (!dateString) {
-    return "";
+  if (category === "birthday") {
+    return "ÖFFNET SICH AM 01. JULI UM 00:00";
   }
 
-  const date = new Date(dateString);
+  if (category === "christmas") {
+    return "ÖFFNET SICH AM 24. DEZEMBER UM 00:00";
+  }
 
-  return date.toLocaleDateString(
-    "de-DE",
-    {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    }
-  );
-
+  return "";
 }
 
 
-/* ==================================================
+/* =====================================================
    VIDEO-DATEN
-================================================== */
+===================================================== */
 
 const categories = {
-
-
-  /* ================================================
-     GEBURTSTAG
-  ================================================ */
 
   birthday: {
 
@@ -1729,13 +1504,9 @@ const categories = {
 
     title: "Dein Geburtstag",
 
-    type: "birthday",
-
     videos: [
 
       {
-        id: "birthday-01",
-
         name: "Für deinen Geburtstag",
 
         url: "DEIN-GEBURTSTAG-LINK",
@@ -1743,21 +1514,17 @@ const categories = {
         image: "4.jpeg",
 
         /*
-           Der erste Geburtstagseintrag wird
-           automatisch am 01.06. freigeschaltet.
+           Dieses Video wird durch das
+           Geburtstagsdatum gesperrt.
         */
 
-        specialUnlock: "birthday"
+        locked: true
       }
 
     ]
 
   },
 
-
-  /* ================================================
-     WEIHNACHTEN
-  ================================================ */
 
   christmas: {
 
@@ -1765,13 +1532,9 @@ const categories = {
 
     title: "Weihnachten",
 
-    type: "christmas",
-
     videos: [
 
       {
-        id: "christmas-01",
-
         name: "Für deinen Weihnachtsmorgen",
 
         url: "DEIN-WEIHNACHTS-LINK",
@@ -1779,21 +1542,17 @@ const categories = {
         image: "5.jpeg",
 
         /*
-           Der erste Weihnachtseintrag wird
-           automatisch am 24.12. um 00:00 freigeschaltet.
+           Dieses Video wird durch das
+           Weihnachtsdatum gesperrt.
         */
 
-        specialUnlock: "christmas"
+        locked: true
       }
 
     ]
 
   },
 
-
-  /* ================================================
-     VERMISSEN
-  ================================================ */
 
   missyou: {
 
@@ -1804,49 +1563,39 @@ const categories = {
     videos: [
 
       {
-        id: "missyou-01",
-
         name: "Für heute",
 
         url: "DEIN-VERMISSE-LINK-1",
 
         image: "6.jpeg",
 
-        unlockDate: null
+        locked: false
       },
 
       {
-        id: "missyou-02",
-
         name: "Wenn du mich besonders vermisst",
 
         url: "DEIN-VERMISSE-LINK-2",
 
         image: "6.jpeg",
 
-        unlockDate: null
+        locked: false
       },
 
       {
-        id: "missyou-03",
-
         name: "Einfach weil ich dich vermisse",
 
         url: "DEIN-VERMISSE-LINK-3",
 
         image: "6.jpeg",
 
-        unlockDate: null
+        locked: false
       }
 
     ]
 
   },
 
-
-  /* ================================================
-     EINFACH SO
-  ================================================ */
 
   random: {
 
@@ -1857,49 +1606,39 @@ const categories = {
     videos: [
 
       {
-        id: "random-01",
-
         name: "Eine kleine Nachricht",
 
         url: "DEIN-EINFACH-SO-LINK-1",
 
         image: "7.jpeg",
 
-        unlockDate: null
+        locked: false
       },
 
       {
-        id: "random-02",
-
         name: "Einfach so",
 
         url: "DEIN-EINFACH-SO-LINK-2",
 
         image: "7.jpeg",
 
-        unlockDate: null
+        locked: false
       },
 
       {
-        id: "random-03",
-
         name: "Für irgendwann",
 
         url: "DEIN-EINFACH-SO-LINK-3",
 
         image: "7.jpeg",
 
-        unlockDate: null
+        locked: false
       }
 
     ]
 
   },
 
-
-  /* ================================================
-     LACHEN
-  ================================================ */
 
   laugh: {
 
@@ -1910,37 +1649,29 @@ const categories = {
     videos: [
 
       {
-        id: "laugh-01",
-
         name: "Nummer 1",
 
         url: "DEIN-LACHEN-LINK-1",
 
         image: "8.jpeg",
 
-        unlockDate: null
+        locked: false
       },
 
       {
-        id: "laugh-02",
-
         name: "Nummer 2",
 
         url: "DEIN-LACHEN-LINK-2",
 
         image: "8.jpeg",
 
-        unlockDate: null
+        locked: false
       }
 
     ]
 
   },
 
-
-  /* ================================================
-     NACHT
-  ================================================ */
 
   night: {
 
@@ -1951,27 +1682,23 @@ const categories = {
     videos: [
 
       {
-        id: "night-01",
-
         name: "Gute Nacht",
 
         url: "DEIN-NACHT-LINK-1",
 
         image: "9.jpeg",
 
-        unlockDate: null
+        locked: false
       },
 
       {
-        id: "night-02",
-
         name: "Noch wach?",
 
         url: "DEIN-NACHT-LINK-2",
 
         image: "9.jpeg",
 
-        unlockDate: null
+        locked: false
       }
 
     ]
@@ -1979,26 +1706,38 @@ const categories = {
   },
 
 
-  /* ================================================
-     SCHLECHTER TAG
-  ================================================ */
-
   bad: {
 
     number: "07",
 
     title: "Wenn du einen schlechten Tag hast",
 
-    type: "bad",
+    videos: [
 
-    videos: []
+      {
+        name: "Für heute",
+
+        url: "DEIN-SCHLECHTER-TAG-LINK-1",
+
+        image: "10.jpeg",
+
+        locked: false
+      },
+
+      {
+        name: "Für einen schweren Tag",
+
+        url: "DEIN-SCHLECHTER-TAG-LINK-2",
+
+        image: "10.jpeg",
+
+        locked: false
+      }
+
+    ]
 
   },
 
-
-  /* ================================================
-     WIEDERSEHEN
-  ================================================ */
 
   again: {
 
@@ -2009,27 +1748,23 @@ const categories = {
     videos: [
 
       {
-        id: "again-01",
-
         name: "Für die Tage dazwischen",
 
         url: "DEIN-WIEDERSEHEN-LINK-1",
 
         image: "11.jpeg",
 
-        unlockDate: null
+        locked: false
       },
 
       {
-        id: "again-02",
-
         name: "Bis bald",
 
         url: "DEIN-WIEDERSEHEN-LINK-2",
 
         image: "11.jpeg",
 
-        unlockDate: null
+        locked: false
       }
 
     ]
@@ -2039,150 +1774,78 @@ const categories = {
 };
 
 
-/* ==================================================
-   SPEZIELLE FREIGABE
-================================================== */
+/* =====================================================
+   GERÄTESPEICHER
+===================================================== */
 
-function checkSpecialUnlock(video) {
+const STORAGE_KEY = "pinkyPromiseUnlockedVideos";
 
-  if (video.specialUnlock === "birthday") {
 
-    return isBirthdayUnlocked();
+function getUnlockedVideos() {
+
+  try {
+
+    return JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    ) || [];
+
+  } catch {
+
+    return [];
 
   }
-
-  if (video.specialUnlock === "christmas") {
-
-    return isChristmasUnlocked();
-
-  }
-
-  return null;
 
 }
 
 
-/* ==================================================
-   VIDEO IST FREIGESCHALTET?
-================================================== */
+function saveUnlockedVideo(category, index) {
 
-function videoIsAvailable(video) {
+  const unlocked =
+    getUnlockedVideos();
 
-  /*
-     Bereits angesehen = IMMER verfügbar.
-  */
+  const id =
+    category + "_" + index;
 
-  if (hasWatchedVideo(video.id)) {
-    return true;
+  if (!unlocked.includes(id)) {
+
+    unlocked.push(id);
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(unlocked)
+    );
+
   }
-
-
-  /*
-     Spezieller Tag.
-  */
-
-  const special = checkSpecialUnlock(video);
-
-  if (special !== null) {
-    return special;
-  }
-
-
-  /*
-     Normales Freigabedatum.
-  */
-
-  if (video.unlockDate) {
-    return isUnlocked(video.unlockDate);
-  }
-
-
-  /*
-     Wenn kein Datum angegeben wurde,
-     ist das Video sofort verfügbar.
-  */
-
-  return true;
 
 }
 
 
-/* ==================================================
-   SPERRTEXT
-================================================== */
+function hasUnlockedVideo(category, index) {
 
-function getLockText(video, category) {
+  const unlocked =
+    getUnlockedVideos();
 
-  if (category.type === "birthday") {
-
-    return {
-      title: "Noch ein kleines bisschen Geduld.",
-      text:
-        "Dein besonderer Tag ist noch nicht ganz da. Aber ich hab dir schon etwas aufgehoben. ♡",
-      date:
-        "ÖFFNET SICH AM 01. JUNI UM 00:00 UHR"
-    };
-
-  }
-
-
-  if (category.type === "christmas") {
-
-    return {
-      title: "Noch ein kleines bisschen Geduld.",
-      text:
-        "Dieses kleine Weihnachtsgeschenk wartet noch auf seinen Moment. ♡",
-      date:
-        "ÖFFNET SICH AM 24. DEZEMBER UM 00:00 UHR"
-    };
-
-  }
-
-
-  if (video.unlockDate) {
-
-    return {
-      title: "Nanana … noch nicht.",
-      text:
-        "Das hier wartet noch ein kleines bisschen auf dich. Alles zu seiner Zeit. ♡",
-      date:
-        "ÖFFNET SICH AM " + formatDate(video.unlockDate)
-    };
-
-  }
-
-
-  return {
-
-    title: "Nanana … noch nicht.",
-
-    text:
-      "Diese kleine Nachricht wartet noch auf ihren Moment. Hab ein bisschen Geduld mit mir. ♡",
-
-    date: ""
-
-  };
+  return unlocked.includes(
+    category + "_" + index
+  );
 
 }
 
 
-/* ==================================================
+/* =====================================================
    KATEGORIE ÖFFNEN
-================================================== */
+===================================================== */
 
-function openCategory(categoryKey) {
+function openCategory(category) {
 
-  const data = categories[categoryKey];
-
+  const data =
+    categories[category];
 
   /*
-     Alles erstmal zurücksetzen.
+     Alles zuerst zurücksetzen.
   */
 
   document.getElementById("listView")
-    .style.display = "block";
-
-  document.getElementById("lockedView")
     .style.display = "none";
 
   document.getElementById("player")
@@ -2191,23 +1854,28 @@ function openCategory(categoryKey) {
   document.getElementById("spotifyBox")
     .style.display = "none";
 
+  document.getElementById("lockedView")
+    .classList.remove("active");
+
   document.getElementById("badDayMessage")
     .style.display = "none";
 
 
   /*
-     BAD DAY:
-     Kein Tresor.
-     Direkt der Spruch.
+     Kategorie selbst gesperrt?
   */
 
-  if (data.type === "bad") {
+  if (!isCategoryUnlocked(category)) {
 
-    document.getElementById("listView")
-      .style.display = "none";
+    document.getElementById("lockedNumber")
+      .textContent = data.number;
 
-    document.getElementById("badDayMessage")
-      .style.display = "block";
+    document.getElementById("lockedDate")
+      .textContent =
+      formatUnlockDate(category);
+
+    document.getElementById("lockedView")
+      .classList.add("active");
 
     document.getElementById("overlay")
       .classList.add("active");
@@ -2218,7 +1886,7 @@ function openCategory(categoryKey) {
 
 
   /*
-     Überschrift.
+     Kategorie ist frei.
   */
 
   document.getElementById("modalNumber")
@@ -2226,6 +1894,19 @@ function openCategory(categoryKey) {
 
   document.getElementById("modalTitle")
     .textContent = data.title;
+
+
+  /*
+     Besonderer Spruch für
+     "schlechter Tag".
+  */
+
+  if (category === "bad") {
+
+    document.getElementById("badDayMessage")
+      .style.display = "block";
+
+  }
 
 
   const list =
@@ -2238,92 +1919,122 @@ function openCategory(categoryKey) {
      Videos erstellen.
   */
 
-  data.videos.forEach((video, index) => {
+  data.videos.forEach(
+    (video, index) => {
 
-    const available =
-      videoIsAvailable(video);
+      const button =
+        document.createElement("button");
 
-
-    const button =
-      document.createElement("button");
-
-
-    button.className =
-      "video-choice" +
-      (available ? "" : " locked");
+      button.className =
+        "video-choice";
 
 
-    /*
-       Unterschiedliche Darstellung,
-       aber bewusst ohne hässliche Icons.
-    */
+      /*
+         Prüfen, ob das Video gesperrt ist.
+      */
 
-    const statusText =
-      available
-        ? ""
-        : "NOCH NICHT FREIGESCHALTET";
+      let videoLocked =
+        video.locked === true;
 
 
-    button.innerHTML = `
+      /*
+         Bereits freigeschaltete Videos
+         bleiben auf diesem Gerät frei.
+      */
 
-      <div class="video-thumb">
+      if (
+        hasUnlockedVideo(
+          category,
+          index
+        )
+      ) {
 
-        <img
-          src="${video.image}"
-          alt=""
-        >
-
-      </div>
-
-
-      <div class="video-info">
-
-        <div class="video-number">
-          ${String(index + 1).padStart(2, "0")}
-        </div>
-
-        <div class="video-name">
-          ${video.name}
-        </div>
-
-        ${
-          statusText
-          ? `
-            <div class="video-status">
-              ${statusText}
-            </div>
-          `
-          : ""
-        }
-
-      </div>
-
-    `;
-
-
-    /*
-       Klick auf Video.
-    */
-
-    button.onclick = () => {
-
-      if (videoIsAvailable(video)) {
-
-        openVideo(video);
-
-      } else {
-
-        showLocked(video, data);
+        videoLocked = false;
 
       }
 
-    };
+
+      /*
+         Wenn die Kategorie Geburtstag
+         oder Weihnachten ist und das
+         Datum erreicht wurde, ist das
+         Video automatisch frei.
+      */
+
+      if (
+        isCategoryUnlocked(category)
+      ) {
+
+        videoLocked = false;
+
+      }
 
 
-    list.appendChild(button);
+      /*
+         HTML der Video-Karte.
+      */
 
-  });
+      button.innerHTML = `
 
+        <div class="video-thumb">
+
+          <img
+            src="${video.image}"
+            alt=""
+          >
+
+        </div>
+
+        <div class="video-info">
+
+          <div class="video-number">
+            ${String(index + 1).padStart(2, "0")}
+          </div>
+
+          <div class="video-name">
+            ${video.name}
+          </div>
+
+        </div>
+
+      `;
+
+
+      /*
+         Klick.
+      */
+
+      button.onclick = () => {
+
+        if (videoLocked) {
+
+          showVideoLocked(
+            category,
+            index,
+            video
+          );
+
+          return;
+
+        }
+
+        openVideo(
+          category,
+          index,
+          video
+        );
+
+      };
+
+
+      list.appendChild(button);
+
+    }
+  );
+
+
+  document.getElementById("listView")
+    .style.display = "block";
 
   document.getElementById("overlay")
     .classList.add("active");
@@ -2331,15 +2042,20 @@ function openCategory(categoryKey) {
 }
 
 
-/* ==================================================
+/* =====================================================
    GESPERRTES VIDEO
-================================================== */
+===================================================== */
 
-function showLocked(video, category) {
+function showVideoLocked(
+  category,
+  index,
+  video
+) {
 
-  const lock =
-    getLockText(video, category);
-
+  /*
+     Wir zeigen den schönen
+     Geduldstext direkt im Modal.
+  */
 
   document.getElementById("listView")
     .style.display = "none";
@@ -2350,45 +2066,49 @@ function showLocked(video, category) {
   document.getElementById("spotifyBox")
     .style.display = "none";
 
-  document.getElementById("badDayMessage")
-    .style.display = "none";
-
-
-  document.getElementById("lockedTitle")
-    .textContent = lock.title;
-
-
-  document.getElementById("lockedText")
-    .textContent = lock.text;
-
+  document.getElementById("lockedNumber")
+    .textContent =
+    categories[category].number;
 
   document.getElementById("lockedDate")
-    .textContent = lock.date;
-
+    .textContent =
+    category === "birthday"
+      ? "ÖFFNET SICH AM 01. JULI UM 00:00"
+      : category === "christmas"
+      ? "ÖFFNET SICH AM 24. DEZEMBER UM 00:00"
+      : "BALD ♡";
 
   document.getElementById("lockedView")
-    .style.display = "block";
+    .classList.add("active");
 
 }
 
 
-/* ==================================================
+/* =====================================================
    VIDEO ÖFFNEN
-================================================== */
+===================================================== */
 
-function openVideo(video) {
+function openVideo(
+  category,
+  index,
+  video
+) {
+
+  /*
+     Video als angesehen/freigeschaltet
+     auf diesem Gerät speichern.
+
+     Dadurch bleibt es später verfügbar.
+  */
+
+  saveUnlockedVideo(
+    category,
+    index
+  );
+
 
   const element =
     document.getElementById("videoElement");
-
-
-  /*
-     Sobald das Video geöffnet wurde,
-     wird es dauerhaft gespeichert.
-  */
-
-  saveWatchedVideo(video.id);
-
 
   element.src =
     video.url;
@@ -2405,14 +2125,10 @@ function openVideo(video) {
     .style.display = "none";
 
   document.getElementById("lockedView")
-    .style.display = "none";
+    .classList.remove("active");
 
   document.getElementById("spotifyBox")
     .style.display = "none";
-
-  document.getElementById("badDayMessage")
-    .style.display = "none";
-
 
   document.getElementById("player")
     .classList.add("active");
@@ -2420,16 +2136,15 @@ function openVideo(video) {
 }
 
 
-/* ==================================================
-   ZURÜCK ZUR LISTE
-================================================== */
+/* =====================================================
+   ZURÜCK
+===================================================== */
 
 function backToList() {
 
   const element =
     document.getElementById("videoElement");
 
-
   element.pause();
 
   element.removeAttribute("src");
@@ -2441,7 +2156,7 @@ function backToList() {
     .classList.remove("active");
 
   document.getElementById("lockedView")
-    .style.display = "none";
+    .classList.remove("active");
 
   document.getElementById("listView")
     .style.display = "block";
@@ -2449,23 +2164,20 @@ function backToList() {
 }
 
 
-/* ==================================================
+/* =====================================================
    SPOTIFY
-================================================== */
+===================================================== */
 
 function openSpotify() {
 
   document.getElementById("listView")
     .style.display = "none";
 
-  document.getElementById("lockedView")
-    .style.display = "none";
-
   document.getElementById("player")
     .classList.remove("active");
 
-  document.getElementById("badDayMessage")
-    .style.display = "none";
+  document.getElementById("lockedView")
+    .classList.remove("active");
 
   document.getElementById("spotifyBox")
     .style.display = "block";
@@ -2476,15 +2188,14 @@ function openSpotify() {
 }
 
 
-/* ==================================================
+/* =====================================================
    SCHLIESSEN
-================================================== */
+===================================================== */
 
 function closeModal() {
 
   const element =
     document.getElementById("videoElement");
-
 
   element.pause();
 
@@ -2500,7 +2211,7 @@ function closeModal() {
     .classList.remove("active");
 
   document.getElementById("lockedView")
-    .style.display = "none";
+    .classList.remove("active");
 
   document.getElementById("spotifyBox")
     .style.display = "none";
@@ -2514,9 +2225,9 @@ function closeModal() {
 }
 
 
-/* ==================================================
+/* =====================================================
    AUSSERHALB KLICKEN
-================================================== */
+===================================================== */
 
 document
   .getElementById("overlay")
@@ -2534,9 +2245,9 @@ document
   );
 
 
-/* ==================================================
+/* =====================================================
    ESC
-================================================== */
+===================================================== */
 
 document.addEventListener(
   "keydown",

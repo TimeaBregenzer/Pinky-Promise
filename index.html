@@ -44,6 +44,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   opacity: .16;
+
   background-image:
     repeating-linear-gradient(
       0deg,
@@ -52,6 +53,7 @@ body::before {
       transparent 1px,
       transparent 4px
     );
+
   z-index: -1;
 }
 
@@ -67,47 +69,66 @@ body::before {
 
 .hero {
   min-height: 560px;
+
   display: grid;
   grid-template-columns: 1.15fr .85fr;
+
   gap: 35px;
   align-items: center;
+
   margin-bottom: 65px;
 }
 
 .hero-paper {
   position: relative;
+
   background: rgba(255,250,247,.93);
+
   padding: 70px 55px 50px;
+
   box-shadow: 0 25px 60px rgba(65,45,40,.14);
+
   transform: rotate(-.6deg);
 }
 
 .hero-paper::before {
   content: "";
+
   position: absolute;
   inset: 10px;
+
   border: 1px solid rgba(150,110,105,.15);
+
   pointer-events: none;
 }
 
 .hero-title {
   font-family: 'Caveat', cursive;
+
   font-size: clamp(65px, 9vw, 110px);
+
   font-weight: 500;
+
   line-height: .78;
+
   margin: 0 0 30px;
 }
 
 .hero-subtitle {
   font-size: 11px;
+
   letter-spacing: 4px;
+
   line-height: 1.9;
+
   font-weight: 500;
 }
 
 .small-heart {
   color: var(--rose);
+
   font-size: 28px;
+
   margin-top: 22px;
 }
 
@@ -117,6 +138,7 @@ body::before {
 
 .music-card {
   margin-top: 45px;
+
   padding: 15px 0;
 
   border-top: 1px solid var(--line);
@@ -124,6 +146,7 @@ body::before {
 
   display: flex;
   align-items: center;
+
   gap: 15px;
 
   cursor: pointer;
@@ -140,12 +163,14 @@ body::before {
   height: 34px;
 
   border: 1px solid var(--ink);
+
   border-radius: 50%;
 
   display: grid;
   place-items: center;
 
   font-size: 11px;
+
   flex-shrink: 0;
 }
 
@@ -155,12 +180,15 @@ body::before {
 
 .music-title {
   font-size: 11px;
+
   letter-spacing: 2px;
+
   font-weight: 600;
 }
 
 .music-sub {
   font-family: 'Caveat', cursive;
+
   font-size: 18px;
 }
 
@@ -193,6 +221,7 @@ body::before {
 
 .photo-area {
   position: relative;
+
   height: 470px;
 }
 
@@ -200,6 +229,7 @@ body::before {
   position: absolute;
 
   width: 220px;
+
   padding: 10px 10px 42px;
 
   background: #fff;
@@ -209,9 +239,11 @@ body::before {
 
 .polaroid img {
   width: 100%;
+
   aspect-ratio: 1 / 1;
 
   display: block;
+
   object-fit: cover;
 }
 
@@ -219,10 +251,12 @@ body::before {
   content: attr(data-caption);
 
   position: absolute;
+
   bottom: 11px;
   left: 14px;
 
   font-family: 'Caveat', cursive;
+
   font-size: 21px;
 }
 
@@ -245,18 +279,21 @@ body::before {
 .p1 {
   top: 25px;
   left: 25px;
+
   transform: rotate(-8deg);
 }
 
 .p2 {
   top: 150px;
   right: 5px;
+
   transform: rotate(7deg);
 }
 
 .p3 {
   bottom: 0;
   left: 85px;
+
   transform: rotate(-3deg);
 }
 
@@ -266,25 +303,33 @@ body::before {
 
 .section-intro {
   text-align: center;
+
   margin: 35px 0;
 }
 
 .section-number {
   font-size: 11px;
+
   letter-spacing: 4px;
+
   color: var(--rose);
 }
 
 .section-intro h2 {
   font-family: 'Caveat', cursive;
+
   font-size: 46px;
+
   font-weight: 500;
+
   margin: 3px 0 5px;
 }
 
 .section-intro p {
   font-size: 10px;
+
   letter-spacing: 2px;
+
   color: var(--muted);
 }
 
@@ -294,7 +339,9 @@ body::before {
 
 .memory-grid {
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
+
   gap: 22px;
 }
 
@@ -302,6 +349,7 @@ body::before {
   position: relative;
 
   min-height: 245px;
+
   padding: 25px;
 
   background: rgba(255,249,245,.84);
@@ -329,12 +377,31 @@ body::before {
 
 .memory-card:hover {
   transform: translateY(-5px) rotate(0);
+
   box-shadow: 0 20px 40px rgba(65,45,40,.14);
+}
+
+.memory-card.locked {
+  cursor: not-allowed;
+
+  opacity: .72;
+}
+
+.memory-card.locked:hover {
+  transform: rotate(-.7deg);
+
+  box-shadow: 0 12px 30px rgba(65,45,40,.09);
+}
+
+.memory-card:nth-child(even).locked:hover {
+  transform: rotate(.7deg);
 }
 
 .memory-number {
   font-family: 'Caveat', cursive;
+
   font-size: 31px;
+
   color: var(--rose);
 }
 
@@ -342,7 +409,9 @@ body::before {
   margin: 8px 0;
 
   font-size: 17px;
+
   letter-spacing: 2px;
+
   font-weight: 500;
 
   max-width: 230px;
@@ -354,9 +423,20 @@ body::before {
   max-width: 220px;
 
   font-family: 'Caveat', cursive;
+
   font-size: 21px;
 
   color: var(--muted);
+}
+
+.lock-text {
+  margin-top: 12px;
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
+
+  color: var(--rose);
 }
 
 .memory-photo {
@@ -382,6 +462,7 @@ body::before {
   height: 100%;
 
   display: block;
+
   object-fit: cover;
 }
 
@@ -393,6 +474,7 @@ body::before {
   display: none;
 
   position: fixed;
+
   inset: 0;
 
   z-index: 50;
@@ -413,6 +495,7 @@ body::before {
 
 .modal {
   width: min(700px, 100%);
+
   max-height: 90vh;
 
   overflow-y: auto;
@@ -436,6 +519,7 @@ body::before {
   height: 38px;
 
   border: 0;
+
   border-radius: 50%;
 
   background: #ead9d5;
@@ -449,15 +533,92 @@ body::before {
   color: var(--rose);
 
   font-size: 11px;
+
   letter-spacing: 3px;
 }
 
 .modal h2 {
   font-family: 'Caveat', cursive;
+
   font-size: 48px;
+
   font-weight: 500;
 
   margin: 4px 0 25px;
+}
+
+/* =========================
+   LOCK MODAL
+========================= */
+
+.lock-modal {
+  text-align: center;
+
+  padding: 35px 15px 20px;
+}
+
+.lock-heart {
+  font-size: 42px;
+
+  color: var(--rose);
+
+  margin-bottom: 10px;
+}
+
+.lock-modal h2 {
+  margin-bottom: 12px;
+}
+
+.lock-modal p {
+  font-family: 'Caveat', cursive;
+
+  font-size: 24px;
+
+  color: var(--muted);
+
+  max-width: 500px;
+
+  margin: 0 auto 18px;
+}
+
+.unlock-date {
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: var(--rose);
+}
+
+/* =========================
+   SPECIAL MESSAGE
+========================= */
+
+.special-message {
+  display: none;
+
+  margin-bottom: 25px;
+
+  padding: 25px;
+
+  background: #f8e9e5;
+
+  border: 1px solid rgba(189,146,147,.22);
+
+  text-align: center;
+}
+
+.special-message.active {
+  display: block;
+}
+
+.special-message-text {
+  font-family: 'Caveat', cursive;
+
+  font-size: 27px;
+
+  line-height: 1.35;
+
+  color: var(--muted);
 }
 
 /* =========================
@@ -466,13 +627,17 @@ body::before {
 
 .video-list {
   display: flex;
+
   flex-direction: column;
+
   gap: 12px;
 }
 
 .video-choice {
   display: flex;
+
   align-items: center;
+
   gap: 16px;
 
   width: 100%;
@@ -494,7 +659,20 @@ body::before {
 
 .video-choice:hover {
   background: #f7e7e7;
+
   transform: translateX(3px);
+}
+
+.video-choice.locked {
+  cursor: not-allowed;
+
+  opacity: .6;
+}
+
+.video-choice.locked:hover {
+  background: rgba(255,255,255,.7);
+
+  transform: none;
 }
 
 .video-thumb {
@@ -511,6 +689,7 @@ body::before {
 .video-thumb img {
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
@@ -520,13 +699,24 @@ body::before {
 
 .video-number {
   font-size: 10px;
+
   letter-spacing: 2px;
+
   color: var(--rose);
 }
 
 .video-name {
   font-family: 'Caveat', cursive;
+
   font-size: 23px;
+}
+
+.video-lock {
+  font-size: 10px;
+
+  color: var(--muted);
+
+  margin-top: 4px;
 }
 
 .play {
@@ -534,12 +724,16 @@ body::before {
   height: 32px;
 
   border: 1px solid var(--ink);
+
   border-radius: 50%;
 
   display: grid;
+
   place-items: center;
 
   font-size: 11px;
+
+  flex-shrink: 0;
 }
 
 /* =========================
@@ -556,9 +750,11 @@ body::before {
 
 .back {
   border: 0;
+
   background: transparent;
 
   padding: 0;
+
   margin-bottom: 15px;
 
   font-size: 13px;
@@ -570,21 +766,24 @@ body::before {
 
 .player video {
   width: 100%;
+
   max-height: 65vh;
 
   background: #111;
+
   border-radius: 3px;
 }
 
 .player-caption {
   font-family: 'Caveat', cursive;
+
   font-size: 25px;
 
   margin-top: 12px;
 }
 
 /* =========================
-   SPOTIFY BUTTON
+   SPOTIFY
 ========================= */
 
 .spotify-box {
@@ -593,24 +792,31 @@ body::before {
 
 .spotify-box p {
   font-family: 'Caveat', cursive;
+
   font-size: 23px;
+
   color: var(--muted);
 }
 
 .spotify-link {
   display: inline-flex;
+
   align-items: center;
+
   gap: 12px;
 
   margin-top: 10px;
+
   padding: 13px 20px;
 
   color: var(--ink);
+
   text-decoration: none;
 
   border: 1px solid var(--ink);
 
   font-size: 10px;
+
   letter-spacing: 2px;
 
   transition:
@@ -620,6 +826,7 @@ body::before {
 
 .spotify-link:hover {
   background: var(--ink);
+
   color: white;
 }
 
@@ -633,6 +840,7 @@ footer {
   margin-top: 65px;
 
   font-family: 'Caveat', cursive;
+
   font-size: 28px;
 
   color: var(--muted);
@@ -646,12 +854,15 @@ footer {
 
   .page {
     width: min(100% - 22px, 600px);
+
     padding-top: 25px;
   }
 
   .hero {
     display: block;
+
     min-height: auto;
+
     margin-bottom: 45px;
   }
 
@@ -665,6 +876,7 @@ footer {
 
   .photo-area {
     height: 390px;
+
     margin-top: 35px;
   }
 
@@ -678,16 +890,19 @@ footer {
 
   .p2 {
     right: 2%;
+
     top: 125px;
   }
 
   .p3 {
     left: 25%;
+
     bottom: 0;
   }
 
   .memory-grid {
     grid-template-columns: 1fr;
+
     gap: 18px;
   }
 
@@ -716,6 +931,7 @@ footer {
 
   .polaroid {
     width: 155px;
+
     padding-bottom: 32px;
   }
 
@@ -752,13 +968,20 @@ footer {
       MICH VERMISST.
     </div>
 
-    <div class="small-heart">♡</div>
+    <div class="small-heart">
+      ♡
+    </div>
 
     <!-- SPOTIFY -->
 
-    <div class="music-card" onclick="openSpotify()">
+    <div
+      class="music-card"
+      onclick="openSpotify()"
+    >
 
-      <div class="music-dot">▶</div>
+      <div class="music-dot">
+        ▶️
+      </div>
 
       <div class="music-text">
 
@@ -782,27 +1005,45 @@ footer {
 
   <div class="photo-area">
 
-    <div class="polaroid p1" data-caption="you & me">
+    <div
+      class="polaroid p1"
+      data-caption="you & me"
+    >
 
       <div class="tape"></div>
 
-      <img src="1.jpeg" alt="Erinnerung">
+      <img
+        src="1.jpeg"
+        alt="Erinnerung"
+      >
 
     </div>
 
-    <div class="polaroid p2" data-caption="♡">
+    <div
+      class="polaroid p2"
+      data-caption="♡"
+    >
 
       <div class="tape"></div>
 
-      <img src="2.jpeg" alt="Erinnerung">
+      <img
+        src="2.jpeg"
+        alt="Erinnerung"
+      >
 
     </div>
 
-    <div class="polaroid p3" data-caption="für dich">
+    <div
+      class="polaroid p3"
+      data-caption="für dich"
+    >
 
       <div class="tape"></div>
 
-      <img src="3.jpeg" alt="Erinnerung">
+      <img
+        src="3.jpeg"
+        alt="Erinnerung"
+      >
 
     </div>
 
@@ -834,114 +1075,254 @@ footer {
 
   <div class="memory-grid">
 
-    <div class="memory-card" onclick="openCategory('birthday')">
+    <!-- 01 GEBURTSTAG -->
 
-      <div class="memory-number">01</div>
+    <div
+      class="memory-card"
+      data-category="birthday"
+      onclick="handleCategoryClick('birthday')"
+    >
 
-      <h3>DEIN GEBURTSTAG</h3>
+      <div class="memory-number">
+        01
+      </div>
 
-      <p>Für deinen besonderen Tag.</p>
+      <h3>
+        DEIN GEBURTSTAG
+      </h3>
+
+      <p>
+        Für deinen besonderen Tag.
+      </p>
+
+      <div
+        class="lock-text"
+        id="lock-birthday"
+      ></div>
 
       <div class="memory-photo">
-        <img src="4.jpeg" alt="">
+
+        <img
+          src="4.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
-    <div class="memory-card" onclick="openCategory('christmas')">
+    <!-- 02 WEIHNACHTEN -->
 
-      <div class="memory-number">02</div>
+    <div
+      class="memory-card"
+      data-category="christmas"
+      onclick="handleCategoryClick('christmas')"
+    >
 
-      <h3>WEIHNACHTEN</h3>
+      <div class="memory-number">
+        02
+      </div>
 
-      <p>Für deinen Weihnachtsmorgen.</p>
+      <h3>
+        WEIHNACHTEN
+      </h3>
+
+      <p>
+        Für deinen Weihnachtsmorgen.
+      </p>
+
+      <div
+        class="lock-text"
+        id="lock-christmas"
+      ></div>
 
       <div class="memory-photo">
-        <img src="5.jpeg" alt="">
+
+        <img
+          src="5.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
-    <div class="memory-card" onclick="openCategory('missyou')">
+    <!-- 03 VERMISSEN -->
 
-      <div class="memory-number">03</div>
+    <div
+      class="memory-card"
+      onclick="openCategory('missyou')"
+    >
 
-      <h3>WENN DU MICH VERMISST</h3>
+      <div class="memory-number">
+        03
+      </div>
 
-      <p>Für die Tage dazwischen.</p>
+      <h3>
+        WENN DU MICH VERMISST
+      </h3>
+
+      <p>
+        Für die Tage dazwischen.
+      </p>
 
       <div class="memory-photo">
-        <img src="6.jpeg" alt="">
+
+        <img
+          src="6.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
-    <div class="memory-card" onclick="openCategory('random')">
+    <!-- 04 EINFACH SO -->
 
-      <div class="memory-number">04</div>
+    <div
+      class="memory-card"
+      onclick="openCategory('random')"
+    >
 
-      <h3>EINFACH SO</h3>
+      <div class="memory-number">
+        04
+      </div>
 
-      <p>Weil es keinen Grund braucht.</p>
+      <h3>
+        EINFACH SO
+      </h3>
+
+      <p>
+        Weil es keinen Grund braucht.
+      </p>
 
       <div class="memory-photo">
-        <img src="7.jpeg" alt="">
+
+        <img
+          src="7.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
-    <div class="memory-card" onclick="openCategory('laugh')">
+    <!-- 05 LACHEN -->
 
-      <div class="memory-number">05</div>
+    <div
+      class="memory-card"
+      onclick="openCategory('laugh')"
+    >
 
-      <h3>WENN DU LACHEN WILLST</h3>
+      <div class="memory-number">
+        05
+      </div>
 
-      <p>Für ein kleines Grinsen.</p>
+      <h3>
+        WENN DU LACHEN WILLST
+      </h3>
+
+      <p>
+        Für ein kleines Grinsen.
+      </p>
 
       <div class="memory-photo">
-        <img src="8.jpeg" alt="">
+
+        <img
+          src="8.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
-    <div class="memory-card" onclick="openCategory('night')">
+    <!-- 06 NACHT -->
 
-      <div class="memory-number">06</div>
+    <div
+      class="memory-card"
+      onclick="openCategory('night')"
+    >
 
-      <h3>FÜR DIE NACHT</h3>
+      <div class="memory-number">
+        06
+      </div>
 
-      <p>Wenn der Tag ruhig wird.</p>
+      <h3>
+        FÜR DIE NACHT
+      </h3>
+
+      <p>
+        Wenn der Tag ruhig wird.
+      </p>
 
       <div class="memory-photo">
-        <img src="9.jpeg" alt="">
+
+        <img
+          src="9.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
-    <div class="memory-card" onclick="openCategory('bad')">
+    <!-- 07 SCHLECHTER TAG -->
 
-      <div class="memory-number">07</div>
+    <div
+      class="memory-card"
+      onclick="openCategory('bad')"
+    >
 
-      <h3>WENN DU EINEN SCHLECHTEN TAG HAST</h3>
+      <div class="memory-number">
+        07
+      </div>
 
-      <p>Ein kleines bisschen von mir.</p>
+      <h3>
+        WENN DU EINEN SCHLECHTEN TAG HAST
+      </h3>
+
+      <p>
+        Ein kleines bisschen von mir.
+      </p>
 
       <div class="memory-photo">
-        <img src="10.jpeg" alt="">
+
+        <img
+          src="10.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
 
-    <div class="memory-card" onclick="openCategory('again')">
+    <!-- 08 WIEDERSEHEN -->
 
-      <div class="memory-number">08</div>
+    <div
+      class="memory-card"
+      onclick="openCategory('again')"
+    >
 
-      <h3>BIS WIR UNS WIEDERSEHEN</h3>
+      <div class="memory-number">
+        08
+      </div>
 
-      <p>Für die Tage dazwischen.</p>
+      <h3>
+        BIS WIR UNS WIEDERSEHEN
+      </h3>
+
+      <p>
+        Für die Tage dazwischen.
+      </p>
 
       <div class="memory-photo">
-        <img src="11.jpeg" alt="">
+
+        <img
+          src="11.jpeg"
+          alt=""
+        >
+
       </div>
 
     </div>
@@ -960,7 +1341,10 @@ footer {
      MODAL
 ========================= -->
 
-<div class="overlay" id="overlay">
+<div
+  class="overlay"
+  id="overlay"
+>
 
   <div class="modal">
 
@@ -972,7 +1356,9 @@ footer {
       ×
     </button>
 
-    <!-- VIDEO-LISTE -->
+    <!-- =========================
+         LIST VIEW
+    ========================= -->
 
     <div id="listView">
 
@@ -983,6 +1369,22 @@ footer {
 
       <h2 id="modalTitle"></h2>
 
+      <!-- SPECIAL MESSAGE -->
+
+      <div
+        class="special-message"
+        id="specialMessage"
+      >
+
+        <div
+          class="special-message-text"
+          id="specialMessageText"
+        ></div>
+
+      </div>
+
+      <!-- VIDEO LIST -->
+
       <div
         class="video-list"
         id="videoList"
@@ -990,9 +1392,14 @@ footer {
 
     </div>
 
-    <!-- VIDEO PLAYER -->
+    <!-- =========================
+         VIDEO PLAYER
+    ========================= -->
 
-    <div class="player" id="player">
+    <div
+      class="player"
+      id="player"
+    >
 
       <button
         class="back"
@@ -1014,7 +1421,39 @@ footer {
 
     </div>
 
-    <!-- SPOTIFY -->
+    <!-- =========================
+         LOCK VIEW
+    ========================= -->
+
+    <div
+      class="lock-modal"
+      id="lockView"
+      style="display:none;"
+    >
+
+      <div class="lock-heart">
+        ♡
+      </div>
+
+      <div
+        class="modal-number"
+        id="lockModalNumber"
+      ></div>
+
+      <h2 id="lockModalTitle"></h2>
+
+      <p id="lockMessage"></p>
+
+      <div
+        class="unlock-date"
+        id="unlockDateText"
+      ></div>
+
+    </div>
+
+    <!-- =========================
+         SPOTIFY
+    ========================= -->
 
     <div
       class="spotify-box"
@@ -1040,7 +1479,7 @@ footer {
         target="_blank"
         rel="noopener noreferrer"
       >
-        ▶ &nbsp; AUF SPOTIFY ÖFFNEN
+        ▶️ &nbsp; AUF SPOTIFY ÖFFNEN
       </a>
 
     </div>
@@ -1051,192 +1490,643 @@ footer {
 
 <script>
 
-/* ==================================
-   VIDEO-DATEN
-================================== */
+/* =========================================================
+   DATUMS-HILFEN
+========================================================= */
+
+/*
+  WICHTIG:
+
+  Die Website verwendet die lokale Uhrzeit des Gerätes.
+
+  Geburtstag:
+  01.06. um 00:00 Uhr
+
+  Weihnachten:
+  24.12. um 00:00 Uhr
+*/
+
+function isDateUnlocked(month, day) {
+
+  const now = new Date();
+
+  const currentMonth = now.getMonth() + 1;
+  const currentDay = now.getDate();
+
+  if (currentMonth > month) {
+    return true;
+  }
+
+  if (currentMonth === month && currentDay >= day) {
+    return true;
+  }
+
+  return false;
+}
+
+
+/* =========================================================
+   KATEGORIEN
+========================================================= */
 
 const categories = {
 
+  /* =========================
+     01 GEBURTSTAG
+  ========================= */
+
   birthday: {
+
     number: "01",
+
     title: "Dein Geburtstag",
 
+    unlockMonth: 6,
+    unlockDay: 1,
+
+    lockMessage:
+      "Noch ein kleines bisschen warten. ♡",
+
+    unlockText:
+      "Öffnet sich am 01. Juni um 00:00 Uhr.",
+
     videos: [
+
       {
         name: "Für deinen Geburtstag",
+
+        /*
+          HIER DEIN VIDEO EINTRAGEN
+        */
+
         url: "DEIN-GEBURTSTAG-LINK",
-        image: "4.jpeg"
+
+        image: "4.jpeg",
+
+        /*
+          Dieses Video wird ab dem 01.06.
+          dauerhaft verfügbar.
+        */
+
+        unlockDate: "2026-06-01T00:00:00"
       }
+
     ]
+
   },
+
+
+  /* =========================
+     02 WEIHNACHTEN
+  ========================= */
 
   christmas: {
+
     number: "02",
+
     title: "Weihnachten",
 
+    unlockMonth: 12,
+    unlockDay: 24,
+
+    lockMessage:
+      "Noch ein bisschen warten… dann ist Weihnachten da. 🎄♡",
+
+    unlockText:
+      "Öffnet sich am 24. Dezember um 00:00 Uhr.",
+
     videos: [
+
       {
         name: "Für deinen Weihnachtsmorgen",
+
         url: "DEIN-WEIHNACHTS-LINK",
-        image: "5.jpeg"
+
+        image: "5.jpeg",
+
+        unlockDate: "2026-12-24T00:00:00"
       }
+
     ]
+
   },
 
+
+  /* =========================
+     03 VERMISSEN
+  ========================= */
+
   missyou: {
+
     number: "03",
+
     title: "Wenn du mich vermisst",
 
     videos: [
+
       {
         name: "Für heute",
+
         url: "DEIN-VERMISSE-LINK-1",
+
         image: "6.jpeg"
       },
 
       {
         name: "Wenn du mich besonders vermisst",
+
         url: "DEIN-VERMISSE-LINK-2",
+
         image: "6.jpeg"
       },
 
       {
         name: "Einfach weil ich dich vermisse",
+
         url: "DEIN-VERMISSE-LINK-3",
+
         image: "6.jpeg"
       }
+
     ]
+
   },
 
+
+  /* =========================
+     04 EINFACH SO
+  ========================= */
+
   random: {
+
     number: "04",
+
     title: "Einfach so",
 
     videos: [
+
       {
         name: "Eine kleine Nachricht",
+
         url: "DEIN-EINFACH-SO-LINK-1",
+
         image: "7.jpeg"
       },
 
       {
         name: "Einfach so",
+
         url: "DEIN-EINFACH-SO-LINK-2",
+
         image: "7.jpeg"
       },
 
       {
         name: "Für irgendwann",
+
         url: "DEIN-EINFACH-SO-LINK-3",
+
         image: "7.jpeg"
       }
+
     ]
+
   },
 
+
+  /* =========================
+     05 LACHEN
+  ========================= */
+
   laugh: {
+
     number: "05",
+
     title: "Wenn du lachen willst",
 
     videos: [
+
       {
         name: "Nummer 1",
+
         url: "DEIN-LACHEN-LINK-1",
+
         image: "8.jpeg"
       },
 
       {
         name: "Nummer 2",
+
         url: "DEIN-LACHEN-LINK-2",
+
         image: "8.jpeg"
       }
+
     ]
+
   },
 
+
+  /* =========================
+     06 NACHT
+  ========================= */
+
   night: {
+
     number: "06",
+
     title: "Für die Nacht",
 
     videos: [
+
       {
         name: "Gute Nacht",
+
         url: "DEIN-NACHT-LINK-1",
+
         image: "9.jpeg"
       },
 
       {
         name: "Noch wach?",
+
         url: "DEIN-NACHT-LINK-2",
+
         image: "9.jpeg"
       }
+
     ]
+
   },
 
+
+  /* =========================
+     07 SCHLECHTER TAG
+  ========================= */
+
   bad: {
+
     number: "07",
+
     title: "Wenn du einen schlechten Tag hast",
 
+    specialMessage:
+      "Und es ist okay, wenn du gerade nicht okay bist. Wir kriegen das hin. Wenn du dich grad nicht so lieb hast, lieb ich dich für dich. 💕 – Tom Twers",
+
     videos: [
+
       {
         name: "Für heute",
+
         url: "DEIN-SCHLECHTER-TAG-LINK-1",
+
         image: "10.jpeg"
       },
 
       {
         name: "Für einen schweren Tag",
+
         url: "DEIN-SCHLECHTER-TAG-LINK-2",
+
         image: "10.jpeg"
       }
+
     ]
+
   },
 
+
+  /* =========================
+     08 WIEDERSEHEN
+  ========================= */
+
   again: {
+
     number: "08",
+
     title: "Bis wir uns wiedersehen",
 
     videos: [
+
       {
         name: "Für die Tage dazwischen",
+
         url: "DEIN-WIEDERSEHEN-LINK-1",
+
         image: "11.jpeg"
       },
 
       {
         name: "Bis bald",
+
         url: "DEIN-WIEDERSEHEN-LINK-2",
+
         image: "11.jpeg"
       }
+
     ]
+
   }
 
 };
 
-/* ==================================
+
+/* =========================================================
+   VIDEO-DATUM PRÜFEN
+========================================================= */
+
+function isVideoUnlocked(video) {
+
+  /*
+    Wenn kein unlockDate angegeben wurde,
+    ist das Video sofort verfügbar.
+  */
+
+  if (!video.unlockDate) {
+    return true;
+  }
+
+  const now = new Date();
+
+  const unlock = new Date(video.unlockDate);
+
+  return now >= unlock;
+}
+
+
+/* =========================================================
+   KARTEN BEIM LADEN AKTUALISIEREN
+========================================================= */
+
+function updateLockedCards() {
+
+  const birthdayUnlocked =
+    isDateUnlocked(6, 1);
+
+  const christmasUnlocked =
+    isDateUnlocked(12, 24);
+
+
+  const birthdayCard =
+    document.querySelector('[data-category="birthday"]');
+
+  const christmasCard =
+    document.querySelector('[data-category="christmas"]');
+
+
+  if (!birthdayUnlocked) {
+
+    birthdayCard.classList.add("locked");
+
+    document.getElementById("lock-birthday")
+      .textContent =
+      "🔒 Öffnet am 01.06. um 00:00 Uhr";
+
+  } else {
+
+    birthdayCard.classList.remove("locked");
+
+    document.getElementById("lock-birthday")
+      .textContent = "";
+
+  }
+
+
+  if (!christmasUnlocked) {
+
+    christmasCard.classList.add("locked");
+
+    document.getElementById("lock-christmas")
+      .textContent =
+      "🔒 Öffnet am 24.12. um 00:00 Uhr";
+
+  } else {
+
+    christmasCard.classList.remove("locked");
+
+    document.getElementById("lock-christmas")
+      .textContent = "";
+
+  }
+
+}
+
+
+/* =========================================================
+   KATEGORIE KLICK
+========================================================= */
+
+function handleCategoryClick(category) {
+
+  const data = categories[category];
+
+  /*
+    Geburtstag prüfen
+  */
+
+  if (
+    category === "birthday" &&
+    !isDateUnlocked(6, 1)
+  ) {
+
+    openLockedModal(data);
+
+    return;
+  }
+
+
+  /*
+    Weihnachten prüfen
+  */
+
+  if (
+    category === "christmas" &&
+    !isDateUnlocked(12, 24)
+  ) {
+
+    openLockedModal(data);
+
+    return;
+  }
+
+
+  /*
+    Alles freigeschaltete öffnen
+  */
+
+  openCategory(category);
+
+}
+
+
+/* =========================================================
+   GESPERRTE KATEGORIE
+========================================================= */
+
+function openLockedModal(data) {
+
+  document.getElementById("listView")
+    .style.display = "none";
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+  document.getElementById("spotifyBox")
+    .style.display = "none";
+
+  document.getElementById("lockView")
+    .style.display = "block";
+
+
+  document.getElementById("lockModalNumber")
+    .textContent = data.number;
+
+  document.getElementById("lockModalTitle")
+    .textContent = data.title;
+
+  document.getElementById("lockMessage")
+    .textContent = data.lockMessage;
+
+  document.getElementById("unlockDateText")
+    .textContent = data.unlockText;
+
+
+  document.getElementById("overlay")
+    .classList.add("active");
+
+}
+
+
+/* =========================================================
    KATEGORIE ÖFFNEN
-================================== */
+========================================================= */
 
 function openCategory(category) {
 
   const data = categories[category];
 
-  document.getElementById("modalNumber").textContent =
-    data.number;
+  document.getElementById("modalNumber")
+    .textContent = data.number;
 
-  document.getElementById("modalTitle").textContent =
-    data.title;
+  document.getElementById("modalTitle")
+    .textContent = data.title;
+
+
+  /*
+    Sperr-Ansicht ausblenden
+  */
+
+  document.getElementById("lockView")
+    .style.display = "none";
+
+
+  /*
+    Spotify ausblenden
+  */
+
+  document.getElementById("spotifyBox")
+    .style.display = "none";
+
+
+  /*
+    Video-Player zurücksetzen
+  */
+
+  document.getElementById("player")
+    .classList.remove("active");
+
+
+  /*
+    Liste anzeigen
+  */
+
+  document.getElementById("listView")
+    .style.display = "block";
+
+
+  /*
+    Besondere Nachricht
+  */
+
+  const specialMessage =
+    document.getElementById("specialMessage");
+
+  const specialMessageText =
+    document.getElementById("specialMessageText");
+
+
+  if (data.specialMessage) {
+
+    specialMessage.classList.add("active");
+
+    specialMessageText.textContent =
+      data.specialMessage;
+
+  } else {
+
+    specialMessage.classList.remove("active");
+
+    specialMessageText.textContent = "";
+
+  }
+
+
+  /*
+    Videos erstellen
+  */
 
   const list =
     document.getElementById("videoList");
 
   list.innerHTML = "";
 
+
   data.videos.forEach((video, index) => {
+
+    const unlocked =
+      isVideoUnlocked(video);
+
 
     const button =
       document.createElement("button");
 
+
     button.className =
       "video-choice";
+
+
+    if (!unlocked) {
+
+      button.classList.add("locked");
+
+    }
+
+
+    /*
+      Datum für gesperrtes Video
+    */
+
+    let lockText = "";
+
+
+    if (!unlocked && video.unlockDate) {
+
+      const date =
+        new Date(video.unlockDate);
+
+      lockText =
+        "🔒 Verfügbar ab " +
+        date.toLocaleDateString(
+          "de-DE",
+          {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+          }
+        );
+
+    }
+
 
     button.innerHTML = `
 
@@ -1259,110 +2149,162 @@ function openCategory(category) {
           ${video.name}
         </div>
 
+        ${
+          lockText
+            ? `<div class="video-lock">${lockText}</div>`
+            : ""
+        }
+
       </div>
 
       <div class="play">
-        ▶
+        ${unlocked ? "▶️" : "🔒"}
       </div>
+
     `;
 
-    button.onclick =
-      () => openVideo(video);
+
+    /*
+      Nur freigeschaltete Videos
+      können geöffnet werden.
+    */
+
+    if (unlocked) {
+
+      button.onclick =
+        () => openVideo(video);
+
+    }
+
 
     list.appendChild(button);
 
   });
 
-  document.getElementById("listView")
-    .style.display = "block";
-
-  document.getElementById("player")
-    .classList.remove("active");
-
-  document.getElementById("spotifyBox")
-    .style.display = "none";
 
   document.getElementById("overlay")
     .classList.add("active");
+
 }
 
-/* ==================================
+
+/* =========================================================
    VIDEO ÖFFNEN
-================================== */
+========================================================= */
 
 function openVideo(video) {
+
+  /*
+    Sicherheit:
+    Falls jemand versucht, ein gesperrtes
+    Video manuell aufzurufen.
+  */
+
+  if (!isVideoUnlocked(video)) {
+
+    return;
+
+  }
+
 
   const element =
     document.getElementById("videoElement");
 
+
   element.src =
     video.url;
 
+
   element.load();
+
 
   document.getElementById("playerCaption")
     .textContent =
     video.name;
 
+
   document.getElementById("listView")
     .style.display = "none";
+
 
   document.getElementById("spotifyBox")
     .style.display = "none";
 
+
+  document.getElementById("lockView")
+    .style.display = "none";
+
+
   document.getElementById("player")
     .classList.add("active");
+
 }
 
-/* ==================================
-   ZURÜCK
-================================== */
+
+/* =========================================================
+   ZURÜCK ZUR LISTE
+========================================================= */
 
 function backToList() {
 
   const element =
     document.getElementById("videoElement");
 
+
   element.pause();
 
   element.removeAttribute("src");
 
   element.load();
 
+
   document.getElementById("player")
     .classList.remove("active");
 
+
   document.getElementById("listView")
     .style.display = "block";
+
 }
 
-/* ==================================
+
+/* =========================================================
    SPOTIFY
-================================== */
+========================================================= */
 
 function openSpotify() {
 
   document.getElementById("listView")
     .style.display = "none";
 
+
   document.getElementById("player")
     .classList.remove("active");
+
+
+  document.getElementById("lockView")
+    .style.display = "none";
+
 
   document.getElementById("spotifyBox")
     .style.display = "block";
 
+
   document.getElementById("overlay")
     .classList.add("active");
+
 }
 
-/* ==================================
+
+/* =========================================================
    SCHLIESSEN
-================================== */
+========================================================= */
 
 function closeModal() {
 
   const element =
     document.getElementById("videoElement");
+
 
   element.pause();
 
@@ -1370,44 +2312,89 @@ function closeModal() {
 
   element.load();
 
+
   document.getElementById("overlay")
     .classList.remove("active");
+
 
   document.getElementById("player")
     .classList.remove("active");
 
+
   document.getElementById("spotifyBox")
     .style.display = "none";
 
+
+  document.getElementById("lockView")
+    .style.display = "none";
+
+
   document.getElementById("listView")
     .style.display = "block";
+
 }
 
-/* ==================================
+
+/* =========================================================
    AUSSERHALB KLICKEN
-================================== */
+========================================================= */
 
 document
   .getElementById("overlay")
-  .addEventListener("click", function(event) {
+  .addEventListener(
+    "click",
+    function(event) {
 
-    if (event.target === this) {
+      if (event.target === this) {
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Escape") {
+
       closeModal();
+
     }
 
-  });
-
-/* ==================================
-   ESC
-================================== */
-
-document.addEventListener("keydown", function(event) {
-
-  if (event.key === "Escape") {
-    closeModal();
   }
+);
 
-});
+
+/* =========================================================
+   BEIM START
+========================================================= */
+
+updateLockedCards();
+
+
+/*
+  Prüft einmal pro Minute,
+  ob inzwischen ein Datum erreicht wurde.
+
+  Beispiel:
+  Die Seite ist am 31.05. geöffnet.
+  Um Mitternacht wird die Karte automatisch
+  freigeschaltet, ohne dass die Seite neu
+  geladen werden muss.
+*/
+
+setInterval(
+  updateLockedCards,
+  60000
+);
 
 </script>
 
